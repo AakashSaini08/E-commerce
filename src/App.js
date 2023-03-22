@@ -9,10 +9,15 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <RootRouter />
-        <p>Sign in branch</p>
       </PersistGate>
     </Provider>
   );
 }
 
 export default App;
+
+// git add .
+// git status
+// git commit -m "message"
+// git status
+// git push / git push origin <branchName>
