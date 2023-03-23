@@ -1,32 +1,51 @@
-import AboutUs from "Views/AboutUs";
-// import { Link } from "react-router-dom";
+
+import SignUp from "Views/SignUp";
+import Home from "../Views/Home";
+import SignIn from "../Views/SignIn"
+
+
 
 export const PUBLIC_ROUTES = [
   {
     path: "/",
-    component: () => (
-      <>
-        {/* <Link to="/wishlist">see wishlist</Link>
-        <p>"WElcome"</p> */}
-      </>
-    ),
+    component: Home,
     title: "Homepage",
     exact: true,
   },
+  // {
+  //   path: "/newArrivals",
+  //   component: ShowPlayer,
+  //   title: "New Arrivals",
+  // },
+  // {
+  //   path: "/fashion",
+  //   component: ShowTeam,
+  //   title: "Fashion",
+  // },
+  // {
+  //   path: "/mobile",
+  //   component: SelectTeam,
+  //   title: "Mobile",
+  // },
+  // {
+  //   path: "/books",
+  //   component: ScoreCard,
+  //   title: "Books",
+  // },
+  // {
+  //   path: "/sale",
+  //   component: ScoreCard,
+  //   title: "Sale",
+  // },
   {
-    path: "/about-us/divyan",
-    component: () => <p>"divyan"</p>,
-    title: "About Divyan",
+    path: "/login",
+    component: SignIn ,
+    title: "Score card",
   },
   {
-    path: "/about-us",
-    component: AboutUs,
-    title: "About Us",
-    exact: true,
+    path: "/signup",
+    component: SignUp ,
+    title: "SIGNUP",
   },
-  {
-    path: "/about-us/:name",
-    component: () => <p>"random guy"</p>,
-    title: "About random guy",
-  },
+  
 ];

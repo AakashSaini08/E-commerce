@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import amazonlogo from '../../../Assets/Images/amazonlogo.png'
 import cartlogo from '../../../Assets/Images/cartlogo.png'
-
 import './style.css'
+
 function Navbar() {
   return (
     <div className="navouter">
@@ -18,27 +18,27 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/showPlayer">
+                <Link className="nav-link " to="/newArrival">
                   New arrivals
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/showTeam">
+                <Link className="nav-link " to="/fashion">
                   Fashion
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/selectTeam">
+                <Link className="nav-link " to="/mobile">
                   Mobile
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/scheduleMatch">
+                <Link className="nav-link " to="/Books">
                   Books
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/scoreCard">
+                <Link className="nav-link " to="/sale">
                   Sale
                 </Link>
               </li>
@@ -47,14 +47,9 @@ function Navbar() {
                   Login
                 </Link>
               </li>
-              <li className="nav-item nav-login">
-              <img className="navimg" alt="logo" src={cartlogo} />
-              </li>
-              
-              
-              
             </ul>
           </div>
+          <img className="cartimg" alt="logo" src={cartlogo} />
         </div>
       </nav>
     </div>

@@ -22,13 +22,20 @@ color: white;
   padding: 0px 5px;
   margin-top: -20px;
 }
-/* .nav-login{
+.nav-login{
   position: absolute;
-  right: 10px;
-  top:10px
-} */
+  right: 90px;
+  top:30px
+}
 .navouter{
   background-color: #e3f2fd;
   width: auto;
-  height:70px
+  height:70px;
+}
+.cartimg{
+  position: fixed;
+  right: 0px;
+  top:-10px;
+  width: 120px;
+  height: 90px
 }

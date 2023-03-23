@@ -1,0 +1,26 @@
+.signup{
+    height: 730px;
+    /* background-color: bisque; */
+    background-color: wheat;
+    border-top:3px solid black ;
+}
+.signup-head{
+    /* background-color: bisque; */
+    background-color: black;
+    border: 2px solid black;
+}
+
+.signup-box{
+    margin-top: 40px;
+    width:400px;
+    height: 600px;
+    border: 2px solid black;
+    border-radius: 20px;
+    /* background-color: wheat; */
+    background-color: aliceblue;
+
+}
+.otp{
+    position: relative;
+    bottom: -100px;
+}
