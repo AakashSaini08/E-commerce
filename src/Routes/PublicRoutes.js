@@ -1,4 +1,5 @@
 
+import Cart from "Views/Cart";
 import SignUp from "Views/SignUp";
 import Home from "../Views/Home";
 import SignIn from "../Views/SignIn"
@@ -40,12 +41,17 @@ export const PUBLIC_ROUTES = [
   {
     path: "/login",
     component: SignIn ,
-    title: "Score card",
+    title: "SIGNIN",
   },
   {
     path: "/signup",
     component: SignUp ,
     title: "SIGNUP",
   },
+  {
+      path: "/cart",
+      component: Cart,
+      title: "Cart",
+    },
   
 ];
