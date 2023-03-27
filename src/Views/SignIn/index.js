@@ -2,8 +2,10 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const SignIn = () => {
+  var myToken;
   const history = useHistory();
 
   function handleSignup(){
@@ -39,8 +41,8 @@ const SignIn = () => {
 
     if(!password){
       errors.password = "Password Required"
-    }else if(password.length < 9){
-      errors.password ="Password must be greater than 8"
+    }else if(password.length < 5){
+      errors.password ="Password must be greater than 5"
     }
     return errors;
   }
@@ -58,10 +60,29 @@ const SignIn = () => {
       setPassword(e.target.value)
     }
   }
+  const formData = new FormData();
+  formData.append("phone_number",contact)
+  formData.append("password",password)
   
-  function handleSubmit(e){
+  const handleSubmit= async(e)=>{
     e.preventDefault();
     setErrors(validation(contact,password));
+
+    try{
+      const resp = await axios.post("https://5d96-122-160-165-213.in.ngrok.io/signin/",
+        formData
+      );
+      console.log(resp.data)
+      myToken = resp.data.token
+
+    }
+    catch(error){
+      console.log(error.data)
+      console.log(error?.data?.token)
+
+    }
+   if(myToken)
+    history.push("/")
 
   }
 

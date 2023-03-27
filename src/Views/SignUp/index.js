@@ -1,10 +1,10 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 
 const SignUp = () => {
-
     const history =useHistory();
 
     function handleSignin(){
@@ -63,14 +63,29 @@ const SignUp = () => {
       setPassword(e.target.value)
     }
   }
+
+  const formData = new FormData();
+  formData.append("name",user)
+  formData.append("phone_number",contact)
+  formData.append("password",password)
   
-  function handleClick(e){
+  const handleClick = async(e) =>{
     e.preventDefault();
     setErrors(validation(user,contact,password));
-    
 
+    try{
+      const resp = await axios.post("https://5d96-122-160-165-213.in.ngrok.io/signup/",
+        formData
+      );
+      console.log(resp.data)
+    }
+    catch(error){
+      console.log(error.data)
+
+    }
+   if(user !== "" && contact!=="" && password !=="")
+    history.push("/otp")
   }
-
 
   return (
     <div>

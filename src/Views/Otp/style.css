@@ -1,20 +1,20 @@
-.signup{
+.my-otp{
     height: 730px;
     margin-top: 0px;
     /* background-color: bisque; */
     background-color: wheat;
     border-top:3px solid black ;
 }
-.signup-head{
+.otp-head{
     /* background-color: bisque; */
     background-color: black;
     border: 2px solid black;
 }
 
-.signup-box{
+.otp-box{
     margin-top: 40px;
     width:400px;
-    height: 600px;
+    height: 400px;
     border: 2px solid black;
     border-radius: 20px;
     /* background-color: wheat; */

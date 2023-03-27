@@ -1,5 +1,6 @@
 
 import Cart from "Views/Cart";
+import Otp from "Views/Otp";
 import SignUp from "Views/SignUp";
 import Home from "../Views/Home";
 import SignIn from "../Views/SignIn"
@@ -52,6 +53,11 @@ export const PUBLIC_ROUTES = [
       path: "/cart",
       component: Cart,
       title: "Cart",
+    },
+    {
+      path: "/otp",
+      component: Otp,
+      title: "OTP",
     },
   
 ];
