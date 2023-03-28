@@ -60,6 +60,13 @@ const SignIn = () => {
       setPassword(e.target.value)
     }
   }
+
+  function handleForgot(){
+
+      history.push("/forgot")
+
+  }
+
   const formData = new FormData();
   formData.append("phone_number",contact)
   formData.append("password",password)
@@ -67,23 +74,26 @@ const SignIn = () => {
   const handleSubmit= async(e)=>{
     e.preventDefault();
     setErrors(validation(contact,password));
-
-    try{
-      const resp = await axios.post("https://5d96-122-160-165-213.in.ngrok.io/signin/",
-        formData
-      );
-      console.log(resp.data)
-      myToken = resp.data.token
-
+    if(contact !== '' && password !== ''){
+      try{
+        const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/signin/",
+          formData
+        );
+        console.log(resp.data)
+        myToken = resp.data.token
+  
+      }
+      catch(error){
+        console.log(error.data)
+        console.log(error?.data?.token)
+  
+      }
+     if(myToken)
+      history.push("/")
     }
-    catch(error){
-      console.log(error.data)
-      console.log(error?.data?.token)
-
+    else{
+      alert("Invalid Contact or Phone number")
     }
-   if(myToken)
-    history.push("/")
-
   }
 
   return (
@@ -108,7 +118,7 @@ const SignIn = () => {
                     <label><b>Password :</b></label>
                     <input type='password' placeholder='Password' className="form-control my-2" value={password} onChange={(e) => handlePassword(e)} ></input>
                     {errors.password && <p>{errors.password}</p>}
-                    <button className="btn btn-link text-black m-2  round rounded-4 " > Forgot Password</button>
+                    <button className="btn btn-link text-black m-2  round rounded-4 " onClick={handleForgot}> Forgot Password</button>
                   </div>
                 
                 <div className='d-sm-grid gap-2 d-flex'>
@@ -116,13 +126,11 @@ const SignIn = () => {
                 </div>
 
                 <div className='d-sm-grid gap-2 d-flex'>
-                  <button className="btn btn-dark text-white m-2  round rounded-4 " onClick={handleSignup}> Create Account</button>
+                  <button className="btn btn-link text-black m-2  round rounded-4 " onClick={handleSignup}> Create Account</button>
                 </div>
               </form>
               </div>
-              <div className='otp d-sm-grid gap-2 d-flex'>
-                  <button className="btn btn-link text-black m-2  round rounded-4 " > Get an OTP on your phone</button>
-                </div>
+              
             </div>
 
           </div>

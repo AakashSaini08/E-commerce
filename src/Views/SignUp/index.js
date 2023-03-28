@@ -15,6 +15,7 @@ const SignUp = () => {
    const [contact, setContact] = useState("");
    const [password, setPassword] = useState("");
    const [errors,setErrors] = useState({});
+   const [detail,setDetail] = useState('');
 
    // const [errorMessage,setErrorMessage]=useState("")
    // const dispatch = useDispatch();
@@ -64,27 +65,41 @@ const SignUp = () => {
     }
   }
 
+  function handleDetail(val){
+    // e.preventDefault();
+      setDetail(val)
+  }
+
   const formData = new FormData();
   formData.append("name",user)
   formData.append("phone_number",contact)
   formData.append("password",password)
+  formData.append("detail",detail)
   
   const handleClick = async(e) =>{
     e.preventDefault();
     setErrors(validation(user,contact,password));
-
-    try{
-      const resp = await axios.post("https://5d96-122-160-165-213.in.ngrok.io/signup/",
-        formData
-      );
-      console.log(resp.data)
+    if(user !== "" && contact!=="" && password !=="" && detail !== ""){
+      try{
+        const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/signup/",
+          formData
+          
+        );
+        console.log(formData)
+        console.log(resp.data)
+      }
+      catch(error){
+        console.log(error.data)
+  
+      }
+      history.push({
+        pathname:"/otp",
+        state:{contact}
+      })
+    }else{
+      alert("Check Empty Fields")
     }
-    catch(error){
-      console.log(error.data)
-
-    }
-   if(user !== "" && contact!=="" && password !=="")
-    history.push("/otp")
+    
   }
 
   return (
@@ -110,6 +125,17 @@ const SignUp = () => {
                     <label><b>Password :</b></label>
                     <input type='password' placeholder='abc@123' className="form-control my-2" value={password} onChange={(e) => handlePassword(e)} required></input>
                     {errors.password && <p>{errors.password}</p>}
+                  </div>
+                  <div className='d-sm-grid gap-1'>
+                    <label><b>Detail:</b></label>
+                    <div className="customer-outer">
+                      <div><input type='radio' className="customer" value="0" name="detail" onChange={(e) => handleDetail(0)}/></div> 
+                      <div><p >Customer</p></div>
+                    </div>
+                    <div className="vendor-outer">
+                      <div><input type='radio' className="vendor" value="1" name="detail" onChange={(e) => handleDetail(1)}/></div>
+                      <div> <p>Vendor</p></div>
+                    </div>
                   </div>
                 </form>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './style.css';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation} from "react-router-dom";
 import axios from "axios";
 
 
@@ -14,7 +14,7 @@ const Otp = () => {
    // const [name, setName] = useState("");
 //    const [user, setUser] = useState("");
    const [otp,setOtp] = useState("");
-   const[contact,setContact] = useState("")
+  //  const[contact,setContact] = useState("")
 //    const [password, setPassword] = useState("");
 //    const [errors,setErrors] = useState({});
 
@@ -28,12 +28,12 @@ const Otp = () => {
 //     }
 //   }
 
-  function handleContact(e){  
-    var contact = e.target.value;
-    if(contact.length < 11){
-      setContact(e.target.value)
-    }
-  }
+  // function handleContact(e){  
+  //   var contact = e.target.value;
+  //   if(contact.length < 11){
+  //     setContact(e.target.value)
+  //   }
+  // }
 
   function handleOtp(e){ 
     var otp = e.target.value;
@@ -41,27 +41,32 @@ const Otp = () => {
         setOtp(e.target.value); 
     }
   }
-
+  const location = useLocation()
+  let myContact = location.state.contact
   const formData = new FormData();
   formData.append("otp",otp)
-  formData.append("phone_number",contact)
+  formData.append("phone_number", myContact)
 
   const handleClick = async(e) =>{
     e.preventDefault();
-
-    try{
-      const resp = await axios.post("https://5d96-122-160-165-213.in.ngrok.io/verify/",
-        formData
-      );
-      console.log(resp.data)
-
-      otpResp = resp.data;
+    if(otp !== ''){
+      try{
+        const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/verify/",
+          formData
+        );
+        console.log(resp.data)
+  
+        otpResp = resp.data.status;
+      }
+      catch(error){
+        console.log(error.data)
+      }
+     if(otpResp)
+      history.push("/login")
     }
-    catch(error){
-      console.log(error.data)
+    else{
+      alert ("OTP incorrect")
     }
-   if(otpResp.response === 'success')
-    history.push("/login")
   }
 
 
@@ -74,10 +79,10 @@ const Otp = () => {
               <h1 className=" otp-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">OTP</h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group" >
-                <div className='d-sm-grid gap-1'>
+                {/* <div className='d-sm-grid gap-1'>
                     <label><b>Phone no. :</b></label>
                     <input type='number' placeholder='Phone no.' className="form-control my-2" value={contact} onChange={(e) => handleContact(e)} required></input>
-                  </div>
+                  </div> */}
                   <div className='d-sm-grid gap-1'>
                     <label><b>OTP :</b></label>
                     <input type='number' placeholder='OTP' className="form-control my-2" value={otp} onChange={(e) => handleOtp(e)} required></input>
