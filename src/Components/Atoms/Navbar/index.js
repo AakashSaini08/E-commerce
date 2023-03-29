@@ -17,8 +17,9 @@ function Navbar() {
   return (
     <div className="navouter">
     <nav className="navbar navbar-expand-lg bg-body-tertiary fs-5 ">
+    <img className="navimg" alt="logo" src={amazonlogo} />
         <div className="container-fluid">
-          <img className="navimg" alt="logo" src={amazonlogo} />
+          
           <div className="collapse navbar-collapse"  >
             <ul className="navbar-nav ">
               <li className="nav-item ">
@@ -58,7 +59,12 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <img className="cartimg" alt="logo" src={cartlogo} onClick={handleCart} />
+            <div>
+            <img className="cartimg" alt="logo" src={cartlogo} onClick={handleCart} />
+            <p className='item-count'>0</p>
+            </div>
+          
+
         </div>
       </nav>
     </div>

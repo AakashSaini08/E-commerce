@@ -1,9 +1,13 @@
 .navimg{
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: -10px;
+  margin-top: -32px;
   width: 150px;
   height: 90px
+}
+
+.container-fluid{
+  margin-top: -20px;
 }
 
 .navbar .navbar-nav .nav-link:active {
@@ -27,7 +31,7 @@ color: white;
   position: absolute;
   font-size: 22px;
   right: 90px;
-  top:35px
+  top:40px
 }
 .navouter{
   margin-top: -10px;
@@ -38,7 +42,13 @@ color: white;
 .cartimg{
   position: relative;
   right: -10px;
-  top:-12px;
+  top:12px;
   width: 100px;
   height: 90px
+}
+.item-count{
+  position: relative;
+  left: 74px;
+  top: -65px;
+  width: 10px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import { updateAuthToken } from "Shared/Axios";
@@ -14,7 +14,6 @@ import RenderRoutes from "./RenderRoutes";
 
 const DEFAULT_AUTHENTICATED_ROUTE = "/dashboard";
 const DEFAULT_GUEST_ROUTE = "/";
-
 const GuestRoutes = () => {
   return (
     <Switch>
@@ -46,6 +45,9 @@ const AuthenticatedRoutes = () => {
 };
 
 const RootRouter = () => {
+  
+  // const data=useSelector(state=>state)
+  // console.log(data,"data")
   const token = useSelector((state) => state.auth.token);
   updateAuthToken(token);
   const baseName = process.env.REACT_APP_BASE_NAME;
