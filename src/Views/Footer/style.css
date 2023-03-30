@@ -1,6 +1,6 @@
 .main-footer{
     width:auto;
-    height: 400px;
+    height: 300px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,10 +19,12 @@
 
 }
 .playImg {
+    margin: 5px;
     width: 200px;
-    height: 80px;
+    height: 70px;
 }
 .storeImg{
+    margin: 5px;
     width: 200px;
     height: 70px;
 }

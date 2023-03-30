@@ -5,12 +5,13 @@ const initialData={
 };
 
 const homeReducer = (data = initialData,action) => {
-    console.log('reducer....')
+    // console.log('reducer....')
     switch(action.type){
         case GETDATA:
             return data;
         case SETDATA:
-            return {...data, products: action.data.map((data) => ({...data}))};
+            // console.log('setdata........')
+            return {...data, products: action?.data?.map((data) => ({...data}))};
 
         default:
             return data;

@@ -16,14 +16,16 @@
 
 .navbar .navbar-nav .nav-link {
   color: black;
-  font-size: 1.1em;
+  font-size: 20px;
+  border-radius: 25px;
 }
 .navbar .navbar-nav .nav-link:hover {
 background-color: rgb(9, 89, 120);
 color: white;
+border-radius: 20px;
 }
 .nav-item{
-  padding: 0px 8px;
+  padding: 0px 5px;
   font-size: 22px;
   margin-top: -20px;
 }
@@ -31,8 +33,15 @@ color: white;
   position: absolute;
   font-size: 22px;
   right: 90px;
-  top:40px
+  top:43px
 }
+.nav-logout{
+position: absolute;
+font-size: 22px;
+right: 180px;
+  top:43px
+}
+
 .navouter{
   margin-top: -10px;
   background-color: #a0c7e5;

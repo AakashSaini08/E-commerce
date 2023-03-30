@@ -81,7 +81,7 @@ const SignUp = () => {
     setErrors(validation(user,contact,password));
     if(user !== "" && contact!=="" && password !=="" && detail !== ""){
       try{
-        const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/signup/",
+        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/signup/",
           formData
           
         );

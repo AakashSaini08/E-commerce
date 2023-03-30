@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const handleClick =async()=>{
     if(contact !== ''){
       try{
-        const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/resend_otp/",
+        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/resend_otp/",
           formData
         );
         console.log(resp.data)

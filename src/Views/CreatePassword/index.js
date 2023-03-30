@@ -63,7 +63,7 @@ const CreatePassword = () => {
     setErrors(validation(reset_password,confirm_password));
 
     try{
-      const resp = await axios.post("https://c196-122-160-165-213.in.ngrok.io/forgot_password/",
+      const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/forgot_password/",
         formData
         
       );

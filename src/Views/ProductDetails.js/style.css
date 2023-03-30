@@ -1,0 +1,16 @@
+.main-product{
+    display: flex;
+    margin:auto;
+    width: 60%;
+    padding: 10px;
+    margin-top: 150px;
+}
+.product-img{
+    width: 350px;
+    height: 400px;
+}
+.product-detail{
+    padding: 20px;
+    width: 600px;
+    height: 800px;
+}

@@ -1,25 +1,34 @@
 import './style.css'
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 function MyProduct() {
-  const products=useSelector((state)=>state.homeReducer.products[1]);
- const productsArray = Object.values(products);
+  const products=useSelector((state)=>state?.homeReducer?.products[1]);
+  // debugger;
+  // console.log(products,"kk");
+ const productsArray = products?Object.values(products):[];
+ const history = useHistory();
+ const handleProductDetail =(x)=>{
+  history.push(`/${x}`)
+ };
   return (
     <>
-    {/* <div>
-      <h3>Some of our best selling products</h3>
-    </div> */}
-    {productsArray.map((e)=>{
-      return (<div className="myCard">
-    <img src="https://m.media-amazon.com/images/I/71yzJoE7WlL._AC_UY218_.jpg" className="pro-img " alt="..." />
+   <div className='main'>
+      {productsArray?.map((item,idx)=>{
+      return (
+        <div key={idx} className='card-outer'>
+        <div className="myCard">
+        <button className='prod-btn' onClick={()=>handleProductDetail(item.id)}>
+        <img src= {"https://54ab-122-160-165-213.in.ngrok.io/"+ item.photo} className="pro-img " alt="..." />
+        </button>
     <div className="myCard-body">
-    <h5 className="card-title">{e.name}</h5>
-    <p className="card-text">Rating: 4.5</p>
-    <p className="card-text">Price: 1,49,900</p>
-    <a href="#fgghf" className="btn btn-dark">Add To Cart</a>
+    <h5 className="card-title">{item.name}</h5>
+    <p className="card-text"><b>Price:</b> {item.price}</p>
+    <a href="#fgghf" className=" myBtn btn btn-dark">Add To Cart</a>
   </div>
+</div>
 </div>)
     })}
-    
+    </div>
 </>
   );
 }

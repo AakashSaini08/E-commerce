@@ -1,10 +1,12 @@
 .pro-img{
     margin-left: 30px;
     width: 165px;
+    height: 250px;
 }
 
 .myCard-body{
     width: 246px;
+    height: 185px;
     text-align: center;
     background-color: #a0c7e5;
     border-top: 2px solid grey;
@@ -13,5 +15,24 @@
 .myCard{
 border: 2px solid grey;
 width: 250px;
+height: 441px;
 margin: 5px;
+}
+.card-outer{
+    width: 250px;
+    height: 460px;
+}
+.main{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+}
+.myBtn{
+    align-items: baseline;
+}
+.prod-btn{
+    width: 247px;
+    background-color: white;
+    border: none;
 }
