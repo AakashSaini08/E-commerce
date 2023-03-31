@@ -1,10 +1,19 @@
 // import { useSelector, useDispatch } from 'react-redux'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './style.css';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "Redux/Actions/HomeActions";
 
 const SignIn = () => {
+
+  const myUser =useSelector((state)=>state?.homeReducer?.user)
+  console.log(myUser);
+
+
+  const dispatch=useDispatch();
+
   var myToken;
   const history = useHistory();
 
@@ -73,27 +82,32 @@ const SignIn = () => {
   
   const handleSubmit= async(e)=>{
     e.preventDefault();
-    setErrors(validation(contact,password));
-    if(contact !== '' && password !== ''){
-      try{
-        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/signin/",
-          formData
-        );
-        console.log(resp.data)
-        myToken = resp.data.token
+    // setErrors(validation(contact,password));
+    // if(contact !== '' && password !== ''){
+    //   try{
+    //     const resp = await axios.post("https://e956-122-160-165-213.in.ngrok.io/signin/",
+    //       formData
+    //     );
+    //     // console.log(resp.data)
+    //     myToken = resp.data.token
   
-      }
-      catch(error){
-        console.log(error.data)
-        console.log(error?.data?.token)
+    //   }
+    //   catch(error){
+    //     console.log(error.data)
+    //     console.log(error?.data?.token)
   
-      }
-     if(myToken)
-      history.push("/")
-    }
-    else{
-      alert("Invalid Contact or Phone number")
-    }
+    //   }
+    //  if(myToken)
+    //   history.push("/")
+    // }
+    // else{
+    //   alert("Invalid Contact or Phone number")
+    // }
+      dispatch(getUser(formData,(response)=>{
+        console.log(response,"respone<><>");
+        // history.push("/");
+      }));
+  
   }
 
   return (

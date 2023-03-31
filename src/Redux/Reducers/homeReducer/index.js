@@ -1,7 +1,8 @@
-import {GETDATA, SETDATA} from "../../Actions/HomeActions/actionStates";
+import {GETDATA, GETUSER, SETDATA, SETUSER} from "../../Actions/HomeActions/actionStates";
 
 const initialData={
     products:[],
+    user:[]
 };
 
 const homeReducer = (data = initialData,action) => {
@@ -12,6 +13,11 @@ const homeReducer = (data = initialData,action) => {
         case SETDATA:
             // console.log('setdata........')
             return {...data, products: action?.data?.map((data) => ({...data}))};
+
+        case GETUSER:
+            return data;
+        case SETUSER:
+            return {...data, user: action.data  };
 
         default:
             return data;

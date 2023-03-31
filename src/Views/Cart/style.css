@@ -1,0 +1,30 @@
+.details{
+    display: flex;
+    justify-content: space-evenly;
+}
+.outer-main{
+    
+    display: flex;
+    margin:auto;
+    width: 90%;
+    padding: 10px;
+    margin-top: 50px;
+    height: auto;
+    justify-content: space-between;
+}
+.count-value{
+    width: 65px;
+}
+.inner-left{
+    /* background-color: azure; */
+    width: 70%;
+}
+.inner-right{
+    width: 20%;
+    /* background-color: azure; */
+    /* text-align: center; */
+    /* border: 2px solid gray; */
+}
+.continue-shopping{
+    margin: 5px;
+}

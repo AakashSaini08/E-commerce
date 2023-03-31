@@ -12,16 +12,16 @@ function Home() {
   const dispatch=useDispatch()
   useEffect(() => {
     dispatch(getData([]));
-  }, [])
+  },[])
 
   return (
     <div>
         <Carousel/>
-        <h2 className='m-2'>DEAL OF THE DAY</h2>
+        <h2 className='headings'>DEAL OF THE DAY</h2>
         <div >
           <img className='productList' alt="myProducts" src={Products}/>
         </div>
-       <h2 className='m-2'>Most Selling Products</h2>
+       <h2 className='headings'>Most Selling Products</h2>
           <div><MyProduct/></div>
          
         <MyFooter/>

@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css'
 import googlPlay from '../../Assets/Images/googlePlay.png'
 import appStore from '../../Assets/Images/appStore.png'
-import { BsInstagram,BsFacebook,BsYoutube,BsTwitter } from "react-icons/bs";
+// import { BsInstagram,BsFacebook,BsYoutube,BsTwitter } from "react-icons/bs";
 
 
 function MyFooter() {
@@ -36,15 +36,14 @@ function MyFooter() {
             
         </div>
         <div className='footer4'>
-            <div>
-                <h5>Keep In Touch</h5>
+            <div>   
+                <h3>Keep In Touch</h3>
                 <div className='myIcons'>
-                    <div><BsInstagram/></div>
-                    <div><BsFacebook/></div>
-                    <div><BsYoutube/></div>
-                    <div><BsTwitter/></div>
+                    <div><h3><i className="bi bi-instagram"></i></h3></div>
+                    <div><h3><i className="bi bi-facebook"></i></h3></div>
+                    <div><h3><i className="bi bi-twitter"></i></h3></div>
+                    <div><h3><i className="bi bi-youtube"></i></h3></div>
                 </div>
-                
             </div>
             <div className='mt-3'>
             <h5>100% ORIGINAL guarantee for all products </h5>
