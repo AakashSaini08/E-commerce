@@ -1,4 +1,4 @@
-import { GETDATA, SETDATA} from "./actionStates";
+import { ADD_TO_CART, GETDATA, SETDATA, SET_ADD_TO_CART} from "./actionStates";
 
 export const getData = (data) => {
     // console.log("getData action called...");
@@ -15,3 +15,19 @@ export const getData = (data) => {
       data,
     };
   };
+
+  export const addToCart = (data) => {
+    // console.log("addToCart action called...");
+    return {
+      type: ADD_TO_CART,
+      data,
+    };
+  };
+
+  // export const setAddToCart = (data) => {
+  //   // console.log("addToCart action called...");
+  //   return {
+  //     type: SET_ADD_TO_CART,
+  //     data,
+  //   };
+  // };

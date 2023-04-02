@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './style.css'
 import { useHistory } from 'react-router-dom'
 import { Images } from 'Shared/Images'
+import { useSelector } from 'react-redux'
 // import Logout from 'Views/Logout'
 
 // const Modal = ()=>{
@@ -18,6 +19,8 @@ import { Images } from 'Shared/Images'
 
 
 function Navbar() {
+
+  const result =useSelector((state)=>state.homeReducer.cartData)
 
   const history = useHistory();
 
@@ -77,7 +80,7 @@ function Navbar() {
           </div>
             <div>
             <img className="cartimg" alt="logo" src={Images.cartlogo} onClick={handleCart} />
-            <p className='item-count'>0</p>
+            <p className='item-count'>{result.length}</p>
             </div>
           
 

@@ -14,3 +14,16 @@
     width: 600px;
     height: 800px;
 }
+.btns{
+    display: flex;
+    justify-content:space-evenly;
+}
+.icons{
+    height: 80px;
+    padding: 2px;
+    margin: 2px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
