@@ -4,7 +4,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import rootReducer from "./Reducers/RootReducer";
-import Sagaa from "./Sagas/homeSaga";
+import RootSaga from './Sagas/RootSaga';
+
 import createSagaMiddleware from 'redux-saga';
 
 
@@ -12,7 +13,7 @@ import createSagaMiddleware from 'redux-saga';
 const rootPersistConfig = {
   key: "rootdata",
   storage: storage,
-  whitelist: ["loginReducer"],
+  whitelist: ["auth"],
 };
 
 
@@ -25,7 +26,7 @@ const composeEnhancers =
 
 
  const loginStore = createStore(persistedReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
- sagaMiddleware.run(Sagaa);
+ sagaMiddleware.run(RootSaga);
 export default loginStore;
 
 export const persistorlogin = persistStore(loginStore);

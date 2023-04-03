@@ -13,10 +13,9 @@ function ProductDetail() {
     const products=useSelector((state)=>state?.homeReducer?.products[1]);
     console.log(products)
     const productsArray = products?Object.values(products):[];
+
     const params = useParams();
     const {productDetails} = params;
-    // console.log(productDetails);
-    // console.log(productsArray);
     const selectedProduct = productsArray.find((product)=>product.id === +productDetails);
     console.log(selectedProduct);
     const history = useHistory();
@@ -28,7 +27,7 @@ function ProductDetail() {
     <>  
         <div className='main-product '>
         <div >
-            <img className='product-img' src={"https://e956-122-160-165-213.in.ngrok.io/"+ selectedProduct.photo} alt='iphone 14'/>
+            <img className='product-img' src={"https://52d6-122-160-165-213.in.ngrok.io/"+ selectedProduct.photo} alt='iphone 14'/>
         </div>
         <div className='product-detail'>
         

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getOtp } from "Redux/Actions/Auth";
 const ForgotPassword = () => {
-  var status;
+  const dispatch = useDispatch();
   const[contact,setContact] = useState("");
   const history =useHistory();
 
@@ -17,26 +19,27 @@ const ForgotPassword = () => {
   formData.append("phone_number",contact)
 
   const handleClick =async()=>{
+    debugger;
     if(contact !== ''){
       try{
-        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/resend_otp/",
-          formData
-        );
-        console.log(resp.data)
-        status =resp.data.status
+        dispatch(getOtp({
+          data:formData,
+          success:(Response)=>{
+            history.push({
+              pathname:"/phoneotp",
+              state:{contact}
+            })
+          },
+          fail:(err)=>{
+            alert("Please enter a valid Phone number")
+          }
+        }))
       }
       catch(error){
         console.log(error.data)
       }
-      if(status && contact !=='')
-      history.push({
-        pathname:"/phoneotp",
-        state:{contact}
-      })
     }
-    else{
-      alert("Please enter a valid Phone number")
-    }
+    
   }
 
   return (

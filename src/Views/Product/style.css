@@ -15,17 +15,18 @@
 border: 2px solid grey;
 width: 250px;
 height: 441px;
-margin: 5px;
+/* margin: 5px; */
 }
 .card-outer{
     width: 250px;
     height: 460px;
+    /* margin:18px; */
 }
 .main{
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-evenly;
+    justify-content:space-around;
 }
 .myBtn{
     align-items: baseline;

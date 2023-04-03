@@ -1,11 +1,12 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory, useLocation} from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { signUpOtp } from "Redux/Actions/Auth";
 
 
 const Otp = () => {
-    let otpResp;
+  const dispatch = useDispatch();
     const history =useHistory();
 
     // function handleSignin(){
@@ -51,24 +52,24 @@ const Otp = () => {
     e.preventDefault();
     if(otp !== ''){
       try{
-        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/verify/",
-          formData
-        );
-        console.log(resp.data)
-  
-        otpResp = resp.data.status;
+        dispatch(signUpOtp({
+          data:formData,
+          success:(Response)=>{
+            history.push({
+              pathname:"/login",
+              state:{myContact}
+            })
+          },
+          fail:(err)=>{
+            alert("OTP incorrect")
+          }
+        }))
       }
       catch(error){
         console.log(error.data)
       }
-     if(otpResp)
-      history.push("/login")
-    }
-    else{
-      alert ("OTP incorrect")
     }
   }
-
 
   return (
     <div>

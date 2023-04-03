@@ -1,18 +1,15 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getVerify } from "Redux/Actions/Auth";
 
 
 const PhoneOtp = () => {
-    let otpResp;
-    const history =useHistory();
-
-
-
-   const [otp,setOtp] = useState("");
-//    const[contact,setContact] = useState("")
-
+  const dispatch = useDispatch();
+  const history =useHistory();
+  const [otp,setOtp] = useState("");
 
   function handleOtp(e){ 
     var otp = e.target.value;
@@ -29,26 +26,23 @@ const PhoneOtp = () => {
     e.preventDefault();
 
     try{
-      const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/verify/",
-        formData
-      );
-      console.log(resp.data)
-
-      otpResp = resp.data;
+      dispatch(getVerify({
+        data:formData,
+        success:(Response)=>{
+          history.push({
+            pathname:"/createpassword",
+            state:{newContact}
+          })
+        },
+        fail:(err)=>{
+          alert("OTP incorrect")
+        }
+      }))
     }
     catch(error){
       console.log(error.data)
     }
-   if(otpResp?.response === 'success' )
-    history.push({
-        pathname:"/createpassword",
-        state:{newContact}
-    })
-    else{
-      alert ("OTP incorrect")
-    }
   }
-
 
   return (
     <div>

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { signup } from "Redux/Actions/Auth";
 
 
 const SignUp = () => {
+  const dispatch = useDispatch();
     const history =useHistory();
 
     function handleSignin(){
@@ -81,25 +83,23 @@ const SignUp = () => {
     setErrors(validation(user,contact,password));
     if(user !== "" && contact!=="" && password !=="" && detail !== ""){
       try{
-        const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/signup/",
-          formData
-          
-        );
-        console.log(formData)
-        console.log(resp.data)
+        dispatch(signup({
+          data:formData,
+          success:(Response)=>{
+            history.push({
+              pathname:"/otp",
+              state:{contact}
+            })
+          },
+          fail:(err)=>{
+            alert("Check Empty Fields")
+          }
+        }))
       }
       catch(error){
         console.log(error.data)
-  
       }
-      history.push({
-        pathname:"/otp",
-        state:{contact}
-      })
-    }else{
-      alert("Check Empty Fields")
     }
-    
   }
 
   return (

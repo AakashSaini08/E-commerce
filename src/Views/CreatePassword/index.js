@@ -1,13 +1,13 @@
 import { useState } from "react";
 import './style.css';
 import { useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getPassword } from "Redux/Actions/Auth";
 
 
 const CreatePassword = () => {
+  const dispatch =useDispatch();
     const history =useHistory();
-    var confirm;
-   // const [name, setName] = useState("");
    const [reset_password, setreset_password] = useState("");
    const [confirm_password,setconfirm_password] =useState("");
    const [errors,setErrors] = useState({});
@@ -63,21 +63,22 @@ const CreatePassword = () => {
     setErrors(validation(reset_password,confirm_password));
 
     try{
-      const resp = await axios.post("https://54ab-122-160-165-213.in.ngrok.io/forgot_password/",
-        formData
-        
-      );
-      console.log(formData)
-      confirm = resp.data
+      dispatch(getPassword({
+        data:formData,
+        success:(Response)=>{
+          history.push({
+            pathname:"/login",
+            state:{myParam}
+          })
+        },
+        fail:(err)=>{
+          alert("Password doesn't Match")
+        }
+      }))
     }
     catch(error){
       console.log(error.data)
 
-    }
-    if(confirm)
-    history.push("/login")
-    else{
-      alert ("Password doesn't Match")
     }
   }
 

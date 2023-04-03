@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './style.css'
 import { useHistory } from 'react-router-dom'
 import { Images } from 'Shared/Images'
+import { useSelector } from 'react-redux'
 // import Logout from 'Views/Logout'
 
 // const Modal = ()=>{
@@ -19,6 +20,11 @@ import { Images } from 'Shared/Images'
 
 function Navbar() {
 
+  const userName=useSelector((state)=>state?.auth?.userInfo.username);
+  // console.log(info,"userInfo")
+//  const productsArray = products?Object.values(products):[];
+
+//  const user = useSelector((state)=>state?.auth?.)
   const history = useHistory();
 
   function handleCart(){
@@ -62,6 +68,9 @@ function Navbar() {
                 <Link className="nav-link " to="/sale">
                   SALE
                 </Link>
+              </li>
+              <li className="nav-item user-name">
+                <p>{userName}</p>
               </li>
               <li className="nav-item nav-login">
                 <Link className="nav-link " to="/login">

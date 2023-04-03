@@ -1,26 +1,18 @@
 // import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import './style.css';
 import { useHistory } from "react-router-dom";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "Redux/Actions/HomeActions";
+import { useDispatch } from "react-redux";
+import { login } from "Redux/Actions/Auth";
 
 const SignIn = () => {
 
-  const myUser =useSelector((state)=>state?.homeReducer?.user)
-  console.log(myUser);
-
-
-  const dispatch=useDispatch();
-
-  var myToken;
+  const dispatch =useDispatch();
   const history = useHistory();
 
   function handleSignup(){
     history.push("/signup")
   }
-
 
   // const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -71,7 +63,6 @@ const SignIn = () => {
   }
 
   function handleForgot(){
-
       history.push("/forgot")
 
   }
@@ -79,41 +70,35 @@ const SignIn = () => {
   const formData = new FormData();
   formData.append("phone_number",contact)
   formData.append("password",password)
-  
+  // console.log(formData);
   const handleSubmit= async(e)=>{
+    // debugger;
     e.preventDefault();
-    // setErrors(validation(contact,password));
-    // if(contact !== '' && password !== ''){
-    //   try{
-    //     const resp = await axios.post("https://e956-122-160-165-213.in.ngrok.io/signin/",
-    //       formData
-    //     );
-    //     // console.log(resp.data)
-    //     myToken = resp.data.token
+    setErrors(validation(contact,password));
+    if(contact !== '' && password !== ''){
+      try{
+        dispatch(login({
+          data:formData,
+          success:(Response)=>{
+            history.push("/")
+          },
+          fail:(err)=>{
+            alert("Invalid Contact or Phone number")
+          }
+        }))
   
-    //   }
-    //   catch(error){
-    //     console.log(error.data)
-    //     console.log(error?.data?.token)
+      }
+      catch(error){
+        console.log(error.data)
+        console.log(error?.data?.token)
   
-    //   }
-    //  if(myToken)
-    //   history.push("/")
-    // }
-    // else{
-    //   alert("Invalid Contact or Phone number")
-    // }
-      dispatch(getUser(formData,(response)=>{
-        console.log(response,"respone<><>");
-        // history.push("/");
-      }));
-  
+      }
+    }
   }
 
   return (
     <>
       <div className="d-flex  justify-content-center w-100 mt-2">
-        {/* <h5 className="text-danger">{errorMessage}</h5> */}
       </div>
       <div className="signin d-flex justify-content-center w-100 login ">
         <div className="w-30 ">
@@ -130,7 +115,7 @@ const SignIn = () => {
                   </div>
                   <div className='d-sm-grid gap-1'>
                     <label><b>Password :</b></label>
-                    <input type='password' placeholder='Password' className="form-control my-2" value={password} onChange={(e) => handlePassword(e)} ></input>
+                    <input type='password' placeholder='Password' className="form-control my-2" value={password} autoComplete="off" onChange={(e) => handlePassword(e)} ></input>
                     {errors.password && <p>{errors.password}</p>}
                     <button className="btn btn-link text-black m-2  round rounded-4 " onClick={handleForgot}> Forgot Password</button>
                   </div>
