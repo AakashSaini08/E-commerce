@@ -5,7 +5,6 @@ import appStore from '../../Assets/Images/appStore.png'
 // import { BsInstagram,BsFacebook,BsYoutube,BsTwitter } from "react-icons/bs";
 
 
-
 function MyFooter() {
   return (
     <div className='main-footer'>

@@ -1,12 +1,11 @@
+import { addToCart } from 'Redux/Actions/HomeActions';
 import './style.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { addToCart } from 'Redux/Actions/HomeActions';
+// import { addToCart } from 'Redux/Actions/HomeActions';
 // import axios from 'axios';
 function MyProduct() {
-  // let count = 1;
-  const dispatch = useDispatch();
-
+  const dispatch =useDispatch();
   const products=useSelector((state)=>state?.homeReducer?.products[1]);
  const productsArray = products?Object.values(products):[];
  const history = useHistory();
@@ -51,12 +50,7 @@ function MyProduct() {
     <div className="myCard-body">
     <h5 className="card-title">{item.name}</h5>
     <p className="card-text"><b>Price:</b> {item.price}</p>
-      <div>
-      <a href="#fgghf" className=" myBtn btn btn-dark" onClick={()=>dispatch(addToCart(item))}>Add To Cart</a>
-      </div>
-      
-
-    
+    <a href="#fgghf" className=" myBtn btn btn-dark" onClick={()=>dispatch(addToCart(item))}>Add To Cart</a>
   </div>
 </div>
 </div>)

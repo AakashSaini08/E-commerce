@@ -1,7 +1,5 @@
 // import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-// import { getData } from 'Redux/Actions/HomeActions';
-
 import { useHistory, useParams } from 'react-router-dom';
 import './style.css'
 
@@ -13,8 +11,7 @@ function ProductDetail() {
     const products=useSelector((state)=>state?.homeReducer?.products[1]);
     console.log(products)
     const productsArray = products?Object.values(products):[];
-
-    const params = useParams();
+    const params =useParams();
     const {productDetails} = params;
     const selectedProduct = productsArray.find((product)=>product.id === +productDetails);
     console.log(selectedProduct);
@@ -22,12 +19,11 @@ function ProductDetail() {
     const goBack =()=>{
         history.push("/")
     }
-
   return (
-    <>  
+    <>
         <div className='main-product '>
         <div >
-            <img className='product-img' src={"https://52d6-122-160-165-213.in.ngrok.io/"+ selectedProduct.photo} alt='iphone 14'/>
+            <img className='product-img' src={"https://e956-122-160-165-213.in.ngrok.io/"+ selectedProduct.photo} alt='iphone 14'/>
         </div>
         <div className='product-detail'>
         

@@ -1,5 +1,4 @@
-import {GETDATA, SETDATA} from "../../Actions/HomeActions/actionStates";
-import {ADD_TO_CART} from "../../Actions/HomeActions/actionStates";
+import {ADD_TO_CART, GETDATA, SETDATA, SET_ADD_TO_CART} from "../../Actions/HomeActions/actionStates";
 
 const initialData={
     products:[],
@@ -15,7 +14,7 @@ const homeReducer = (data = initialData,action) => {
         case SETDATA:
             // console.log('setdata........')
             return {...data, products: action?.data?.map((data) => ({...data}))};
-    
+            
         case ADD_TO_CART:
             return {...data, cartData: action?.data?.map((data) => ({...data}))};
 
