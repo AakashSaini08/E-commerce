@@ -5,12 +5,13 @@ import Products from '../../Assets/Images/Products.png'
 import MyFooter from '../Footer/index'
 import MyProduct from 'Views/Product'
 import { useDispatch } from 'react-redux'
-import { getData } from 'Redux/Actions/HomeActions'
+import { getCart, getData } from 'Redux/Actions/HomeActions'
 
 function Home() {
   
   const dispatch=useDispatch()
   useEffect(() => {
+    dispatch(getCart([]));
     dispatch(getData([]));
   },[])
 

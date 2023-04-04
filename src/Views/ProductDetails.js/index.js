@@ -1,7 +1,10 @@
 // import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import './style.css'
+import { BASE_URL } from 'Shared/Constants';
+import { useState } from 'react';
+import { addToCart } from 'Redux/Actions/HomeActions';
 
 function ProductDetail() {
     // const dispatch = useDispatch();
@@ -15,15 +18,49 @@ function ProductDetail() {
     const {productDetails} = params;
     const selectedProduct = productsArray.find((product)=>product.id === +productDetails);
     console.log(selectedProduct);
+
     const history = useHistory();
+    const dispatch = useDispatch();
     const goBack =()=>{
         history.push("/")
     }
+
+    const [count,setCount] = useState(0);
+    const handleCount = (e)=>{
+      setCount(e.target.value)
+    }
+
+    const handleCart= (selectedProduct)=>{
+        const countt = parseInt(count)
+        const formData = new FormData();
+       formData.append("product_id",selectedProduct.id)
+       formData.append("quantity",countt )
+       
+        // console.log(item.id);
+          try{
+            dispatch(addToCart({
+                data:formData,
+                success:(Response)=>{
+                  history.push("/cart")
+                },
+                fail:(err)=>{
+                  alert("Item out of stock")
+                }
+              }))
+          }
+          catch(error){
+            console.log(error.data)
+            console.log(error?.data?.token)
+        }
+        
+      }
+   
+
   return (
     <>
         <div className='main-product '>
         <div >
-            <img className='product-img' src={"https://e956-122-160-165-213.in.ngrok.io/"+ selectedProduct.photo} alt='iphone 14'/>
+            <img className='product-img' src={BASE_URL+ selectedProduct.photo} alt='iphone 14'/>
         </div>
         <div className='product-detail'>
         
@@ -49,8 +86,11 @@ function ProductDetail() {
             </div>
             <hr/>
             <div className='btns'>
+                <div className='count-value'>
+               <input type='number' placeholder='Phone number' className="form-control my-2 " value={count} onChange={(e) => handleCount(e)} required></input>
+               </div>
                 <div >
-                    <button className='btn btn-dark'>Add to Cart</button>
+                <button className=" myBtn btn btn-dark" onClick={()=>handleCart(selectedProduct)}>Add to Cart</button>
                 </div>
                 <div>
                     <button className='btn btn-dark' onClick={goBack}>Go Back</button>

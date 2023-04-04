@@ -4,12 +4,14 @@ import { GETOTP, GETPASSWORD, GETVERIFY, LOGIN, setLogin, setOtp, setPassword, s
 // import { login, logout } from "Services/Api/Auth";
 // import requestSaga from "Shared/RequestSaga";
 import axios from "axios";
+import { API } from "Shared/Constants";
 
 function* auth({ payload: { data, success, fail } }) {
   // debugger;
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/signin/",
+        API.signin,
+      // "https://9690-122-160-165-213.in.ngrok.io/signin/",
       data
     );
     yield put(setLogin(response?.data));
@@ -26,7 +28,8 @@ function* auth({ payload: { data, success, fail } }) {
 function* otp({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/resend_otp/",
+      API.resend_otp,
+      // "https://9690-122-160-165-213.in.ngrok.io/resend_otp/",
       data
     );
     console.log(response);
@@ -44,7 +47,8 @@ function* otp({ payload: { data, success, fail } }) {
 function* verify({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/verify/",
+      API.verify,
+      // "https://9690-122-160-165-213.in.ngrok.io/verify/",
       data
     );
     console.log(response);
@@ -62,7 +66,8 @@ function* verify({ payload: { data, success, fail } }) {
 function* resetPassword({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/forgot_password/",
+      API.forgot_password,
+      // "https://9690-122-160-165-213.in.ngrok.io/forgot_password/",
       data
     );
     console.log(response);
@@ -80,7 +85,8 @@ function* resetPassword({ payload: { data, success, fail } }) {
 function* signup({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/signup/",
+      API.signup,
+      // "https://9690-122-160-165-213.in.ngrok.io/signup/",
       data
     );
     console.log(response);
@@ -98,7 +104,8 @@ function* signup({ payload: { data, success, fail } }) {
 function* otpVerify({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(
-      "https://9690-122-160-165-213.in.ngrok.io/verify/",
+      API.verify,
+      // "https://9690-122-160-165-213.in.ngrok.io/verify/",
       data
     );
     console.log(response);

@@ -30,3 +30,9 @@
     align-items: center;
     justify-content: space-evenly;
 }
+.count-value{
+    width: 65px;
+    top: -7px;
+    left: 34px;
+    position: relative;
+}

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, GETDATA, SETDATA, SET_ADD_TO_CART} from "./actionStates";
+import { ADD_TO_CART, GETCART, GETDATA, SETCART, SETDATA, SET_ADD_TO_CART} from "./actionStates";
 
 export const getData = (data) => {
     // console.log("getData action called...");
@@ -7,7 +7,7 @@ export const getData = (data) => {
       data,
     };
   };
-  
+
   export const setData = (data) => {
     // console.log('setdata action....')
     return {
@@ -16,18 +16,34 @@ export const getData = (data) => {
     };
   };
 
-  export const addToCart = (data) => {
+  export const addToCart = (payload) => {
     // console.log("addToCart action called...");
     return {
       type: ADD_TO_CART,
-      data,
+      payload,
     };
   };
 
-  // export const setAddToCart = (data) => {
-  //   // console.log("addToCart action called...");
-  //   return {
-  //     type: SET_ADD_TO_CART,
-  //     data,
-  //   };
-  // };
+  export const setAddToCart = (payload) => {
+    // console.log("addToCart action called...");
+    return {
+      type: SET_ADD_TO_CART,
+      payload,
+    };
+  };
+
+  export const getCart = (data) => {
+    // console.log("getData action called...");
+    return {
+      type: GETCART,
+      data,
+    };
+  };
+  
+  export const setCart = (data) => {
+    // console.log(data)
+    return {
+      type: SETCART,
+      data,
+    };
+  };

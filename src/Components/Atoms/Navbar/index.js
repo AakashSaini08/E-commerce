@@ -21,6 +21,8 @@ import { useSelector } from 'react-redux'
 function Navbar() {
 
   const userName=useSelector((state)=>state?.auth?.userInfo.username);
+  const finalList=useSelector((state)=>state?.homeReducer?.checkoutData);
+
   // console.log(info,"userInfo")
 //  const productsArray = products?Object.values(products):[];
 
@@ -70,23 +72,23 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item user-name">
-                <p>{userName}</p>
+                <p>{"Hi, "+userName}</p>
               </li>
               <li className="nav-item nav-login">
                 <Link className="nav-link " to="/login">
                   LOGIN
                 </Link>
                 </li>
-                <li className="nav-item nav-logout">
+                {/* <li className="nav-item nav-logout">
                   <Link className="nav-link " to="/logout">
                   LOGOUT
                 </Link>
-                </li>
+                </li> */}
             </ul>
           </div>
             <div>
             <img className="cartimg" alt="logo" src={Images.cartlogo} onClick={handleCart} />
-            <p className='item-count'>0</p>
+            <p className='item-count'>{finalList.length}</p>
             </div>
           
 
