@@ -1,9 +1,9 @@
-import { LOGIN, SETLOGIN, } from "../Actions/Auth";
+import { LOGIN, SETLOGIN } from "../Actions/Auth";
 import { ACTION_STATES } from "../Actions/ActionStates";
 
 const initialState = {
   token: null,
-  userInfo: {}
+  userInfo: {},
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,14 +14,14 @@ const authReducer = (state = initialState, action) => {
         data: action.data,
       };
     }
-    
+
     case SETLOGIN: {
       // console.log(action.data,"sdsafdas")
       //  console.log(action);
       return {
         ...state,
         data: action.payload.token,
-        userInfo: action.payload.data
+        userInfo: action.payload.data,
       };
     }
 
@@ -40,7 +40,6 @@ const authReducer = (state = initialState, action) => {
     // case SETVERIFY + ACTION_STATES.SUCCESS: {
     //   return state;
     // }
-
 
     default: {
       return state;

@@ -11,7 +11,7 @@ const appReducer = combineReducers({
   auth: authReducer,
   loading: loadingReducer,
   error: errorReducer,
-  homeReducer
+  homeReducer,
 });
 
 const rootReducer = (state, action) => {

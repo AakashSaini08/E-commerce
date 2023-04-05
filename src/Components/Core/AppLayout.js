@@ -9,7 +9,7 @@ const AppLayout = ({ isAuthenticated, children }) => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       {/* error Msg: {errorMsg}
       network status: {networkStatus ? "online" : "offline"} */}
       {children}

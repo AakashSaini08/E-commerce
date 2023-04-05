@@ -1,18 +1,18 @@
-.navimg{
+.navimg {
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: -32px;
+  margin-top: -14px;
   width: 150px;
-  height: 90px
+  height: 90px;
 }
 
-.container-fluid{
+.container-fluid {
   margin-top: -20px;
 }
 
 .navbar .navbar-nav .nav-link:active {
   color: red;
-  }
+}
 
 .navbar .navbar-nav .nav-link {
   color: black;
@@ -20,50 +20,50 @@
   border-radius: 25px;
 }
 .navbar .navbar-nav .nav-link:hover {
-background-color: rgb(9, 89, 120);
-color: white;
-border-radius: 20px;
+  background-color: rgb(9, 89, 120);
+  color: white;
+  border-radius: 20px;
 }
-.nav-item{
+.nav-item {
   padding: 0px 5px;
   font-size: 22px;
   margin-top: -20px;
 }
-.nav-login{
+.nav-login {
   position: absolute;
   font-size: 22px;
   right: 90px;
-  top:43px
+  top: 43px;
 }
-.nav-logout{
-position: absolute;
-font-size: 22px;
-right: 180px;
-  top:43px
+.nav-logout {
+  position: absolute;
+  font-size: 22px;
+  right: 90px;
+  top: 43px;
 }
 
-.navouter{
+.navouter {
   margin-top: -10px;
   background-color: #a0c7e5;
   width: auto;
-  height:80px;
+  height: 80px;
 }
-.cartimg{
+.cartimg {
   position: relative;
   right: -10px;
-  top:12px;
+  top: 12px;
   width: 100px;
-  height: 90px
+  height: 90px;
 }
-.item-count{
+.item-count {
   position: relative;
   left: 74px;
   top: -65px;
   width: 10px;
 }
-.user-name{
+.user-name {
   color: black;
-  position: relative;
-  left: 469px;
-  top: 6px;
+  position: absolute;
+  right: 188px;
+  top: 49px;
 }

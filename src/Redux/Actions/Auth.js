@@ -3,6 +3,8 @@ export const SETLOGIN = "SETLOGIN";
 export const SIGNUP = "SIGNUP";
 export const SETSIGNUP = "SETSIGNUP";
 export const LOGOUT = "LOGOUT";
+export const SETLOGOUT = "SETLOGOUT";
+
 export const GETOTP = "GETOTP";
 export const SETOTP = "SETOTP";
 export const GETVERIFY = "GETVERIFY";
@@ -28,81 +30,87 @@ export const setLogin = (payload) => {
     type: SETLOGIN,
     payload,
   };
-  
 };
 
 export const getOtp = (payload) => {
   return {
     type: GETOTP,
-    payload
+    payload,
   };
 };
 
 export const setOtp = (payload) => {
   return {
     type: SETOTP,
-    payload
+    payload,
   };
 };
 
 export const getVerify = (payload) => {
   return {
     type: GETVERIFY,
-    payload
+    payload,
   };
 };
 
 export const setVerify = (payload) => {
   return {
     type: SETVERIFY,
-    payload
+    payload,
   };
 };
 
 export const getPassword = (payload) => {
   return {
     type: GETPASSWORD,
-    payload
+    payload,
   };
 };
 
 export const setPassword = (payload) => {
   return {
     type: SETPASSWORD,
-    payload
+    payload,
   };
 };
 
 export const signup = (payload) => {
   return {
     type: SIGNUP,
-    payload
+    payload,
   };
 };
 
 export const setSignUp = (payload) => {
   return {
     type: SETSIGNUP,
-    payload
+    payload,
   };
 };
 
 export const signUpOtp = (payload) => {
   return {
     type: SIGNUPOTP,
-    payload
+    payload,
   };
 };
 
 export const setSignUpOtp = (payload) => {
   return {
     type: SETSIGNUPOTP,
-    payload
+    payload,
   };
 };
 
-export const logout = () => {
+export const logout = (payload) => {
   return {
     type: LOGOUT,
+    payload,
+  };
+};
+
+export const setLogout = () => {
+  return {
+    type: SETLOGOUT,
   };
 };

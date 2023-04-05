@@ -1,9 +1,10 @@
 export const STRINGS = {
   SOMETHING_WENT_WRONG: "Sorry, something went wrong.",
-  OFFLINE_MESSAGE: "You appear to be offline. Please check your internet connection.",
+  OFFLINE_MESSAGE:
+    "You appear to be offline. Please check your internet connection.",
 };
 
-export const BASE_URL = "https://bf54-122-160-165-213.in.ngrok.io/";
+export const BASE_URL = "https://1670-122-160-165-213.in.ngrok.io/";
 
 export const API = {
   signin: `${BASE_URL}signin/`,
@@ -13,7 +14,5 @@ export const API = {
   forgot_password: `${BASE_URL}forgot_password/`,
   getProduct: `${BASE_URL}getproduct/`,
   cart: `${BASE_URL}cart/`,
-}
-
-
-
+  logout: `${BASE_URL}logout/`,
+};

@@ -1,27 +1,26 @@
-.my-otp{
-    height: 730px;
-    margin-top: 0px;
-    /* background-color: bisque; */
-    background-color: wheat;
-    border-top:3px solid black ;
+.my-otp {
+  height: 730px;
+  margin-top: 0px;
+  /* background-color: bisque; */
+  background-color: wheat;
+  border-top: 3px solid black;
 }
-.otp-head{
-    /* background-color: bisque; */
-    background-color: black;
-    border: 2px solid black;
+.otp-head {
+  /* background-color: bisque; */
+  background-color: black;
+  border: 2px solid black;
 }
 
-.otp-box{
-    margin-top: 40px;
-    width:400px;
-    height: 400px;
-    border: 2px solid black;
-    border-radius: 20px;
-    /* background-color: wheat; */
-    background-color: aliceblue;
-
+.otp-box {
+  margin-top: 40px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  border-radius: 20px;
+  /* background-color: wheat; */
+  background-color: aliceblue;
 }
-.otp{
-    position: relative;
-    bottom: -100px;
+.otp {
+  position: relative;
+  bottom: -100px;
 }

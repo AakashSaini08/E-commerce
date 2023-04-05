@@ -1,19 +1,28 @@
 import { takeLatest, put, all } from "redux-saga/effects";
-
-import { GETOTP, GETPASSWORD, GETVERIFY, LOGIN, setLogin, setOtp, setPassword, setSignUp, setSignUpOtp, setVerify, SIGNUP, SIGNUPOTP } from "../Actions/Auth";
-// import { login, logout } from "Services/Api/Auth";
-// import requestSaga from "Shared/RequestSaga";
+import {
+  GETOTP,
+  GETPASSWORD,
+  GETVERIFY,
+  LOGIN,
+  LOGOUT,
+  setLogin,
+  setLogout,
+  setOtp,
+  setPassword,
+  setSignUp,
+  setSignUpOtp,
+  setVerify,
+  SIGNUP,
+  SIGNUPOTP,
+} from "../Actions/Auth";
 import axios from "axios";
 import { API } from "Shared/Constants";
+import { axiosInstance } from "Shared/Request";
 
 function* auth({ payload: { data, success, fail } }) {
   // debugger;
   try {
-    const response = yield axios.post(
-        API.signin,
-      // "https://9690-122-160-165-213.in.ngrok.io/signin/",
-      data
-    );
+    const response = yield axios.post(API.signin, data);
     yield put(setLogin(response?.data));
     if (success) {
       success(response);
@@ -27,11 +36,7 @@ function* auth({ payload: { data, success, fail } }) {
 
 function* otp({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(
-      API.resend_otp,
-      // "https://9690-122-160-165-213.in.ngrok.io/resend_otp/",
-      data
-    );
+    const response = yield axios.post(API.resend_otp, data);
     console.log(response);
     yield put(setOtp(Object.values(response?.data)));
     if (success) {
@@ -46,11 +51,7 @@ function* otp({ payload: { data, success, fail } }) {
 
 function* verify({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(
-      API.verify,
-      // "https://9690-122-160-165-213.in.ngrok.io/verify/",
-      data
-    );
+    const response = yield axios.post(API.verify, data);
     console.log(response);
     yield put(setVerify(Object.values(response?.data)));
     if (success) {
@@ -65,11 +66,7 @@ function* verify({ payload: { data, success, fail } }) {
 
 function* resetPassword({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(
-      API.forgot_password,
-      // "https://9690-122-160-165-213.in.ngrok.io/forgot_password/",
-      data
-    );
+    const response = yield axios.post(API.forgot_password, data);
     console.log(response);
     yield put(setPassword(Object.values(response?.data)));
     if (success) {
@@ -84,11 +81,7 @@ function* resetPassword({ payload: { data, success, fail } }) {
 
 function* signup({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(
-      API.signup,
-      // "https://9690-122-160-165-213.in.ngrok.io/signup/",
-      data
-    );
+    const response = yield axios.post(API.signup, data);
     console.log(response);
     yield put(setSignUp(Object.values(response?.data)));
     if (success) {
@@ -103,11 +96,7 @@ function* signup({ payload: { data, success, fail } }) {
 
 function* otpVerify({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(
-      API.verify,
-      // "https://9690-122-160-165-213.in.ngrok.io/verify/",
-      data
-    );
+    const response = yield axios.post(API.verify, data);
     console.log(response);
     yield put(setSignUpOtp(Object.values(response?.data)));
     if (success) {
@@ -120,10 +109,31 @@ function* otpVerify({ payload: { data, success, fail } }) {
   }
 }
 
+function* logoutCall({ payload: { success, fail } }) {
+  console.log(success, "dfdf");
+  try {
+    const response = yield axiosInstance.post(API.logout);
+    yield put(setLogout(response?.data));
+    if (success) {
+      success(response);
+    }
+  } catch (error) {
+    if (fail) {
+      fail(error);
+    }
+  }
+}
+
 function* Sagaa() {
   // yield takeLatest();
-  yield all([takeLatest(LOGIN, auth), takeLatest( GETOTP,otp), takeLatest( GETVERIFY,verify), takeLatest( GETPASSWORD,resetPassword), takeLatest( SIGNUP,signup), takeLatest( SIGNUPOTP,otpVerify)]);
+  yield all([
+    takeLatest(LOGIN, auth),
+    takeLatest(GETOTP, otp),
+    takeLatest(GETVERIFY, verify),
+    takeLatest(GETPASSWORD, resetPassword),
+    takeLatest(SIGNUP, signup),
+    takeLatest(SIGNUPOTP, otpVerify),
+    takeLatest(LOGOUT, logoutCall),
+  ]);
 }
 export default Sagaa;
-
-

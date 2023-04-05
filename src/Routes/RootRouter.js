@@ -1,5 +1,5 @@
 import React from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import { updateAuthToken } from "Shared/Axios";
@@ -45,7 +45,6 @@ const AuthenticatedRoutes = () => {
 };
 
 const RootRouter = () => {
-  
   // const data=useSelector(state=>state)
   // console.log(data,"data")
   const token = useSelector((state) => state.auth.token);
@@ -55,7 +54,9 @@ const RootRouter = () => {
   return (
     <BrowserRouter basename={baseName}>
       <DocumentTitle isAuthenticated={isAuthenticated} />
-      <AppLayout isAuthenticated={isAuthenticated}>{token ? <AuthenticatedRoutes /> : <GuestRoutes />}</AppLayout>
+      <AppLayout isAuthenticated={isAuthenticated}>
+        {token ? <AuthenticatedRoutes /> : <GuestRoutes />}
+      </AppLayout>
     </BrowserRouter>
   );
 };

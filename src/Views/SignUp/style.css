@@ -1,35 +1,35 @@
-.signup{
-    height: 750px;
-    margin-top: 0px;
-    /* background-color: bisque; */
-    background-color: wheat;
-    border-top:3px solid black ;
+.signup {
+  height: 750px;
+  margin-top: 0px;
+  /* background-color: bisque; */
+  background-color: wheat;
+  border-top: 3px solid black;
 }
-.signup-head{
-    /* background-color: bisque; */
-    background-color: black;
-    border: 2px solid black;
+.signup-head {
+  /* background-color: bisque; */
+  background-color: black;
+  border: 2px solid black;
 }
 
-.signup-box{
-    margin-top: 40px;
-    width:400px;
-    height: 635px;
-    border: 2px solid black;
-    border-radius: 20px;
-    /* background-color: wheat; */
-    background-color: aliceblue;
-
+.signup-box {
+  margin-top: 40px;
+  width: 400px;
+  height: 635px;
+  border: 2px solid black;
+  border-radius: 20px;
+  /* background-color: wheat; */
+  background-color: aliceblue;
 }
-.otp{
-    position: relative;
-    bottom: -100px;
+.otp {
+  position: relative;
+  bottom: -100px;
 }
-.customer-outer, .vendor-outer{
-    display: flex;
+.customer-outer,
+.vendor-outer {
+  display: flex;
 }
-.customer, .vendor{
-   width: 15px;
-    margin:5px
-    
+.customer,
+.vendor {
+  width: 15px;
+  margin: 5px;
 }

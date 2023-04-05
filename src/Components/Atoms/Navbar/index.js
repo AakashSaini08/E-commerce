@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './style.css'
-import { useHistory } from 'react-router-dom'
-import { Images } from 'Shared/Images'
-import { useSelector } from 'react-redux'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
+import { useHistory } from "react-router-dom";
+import { Images } from "Shared/Images";
+import { useSelector } from "react-redux";
 // import Logout from 'Views/Logout'
 
 // const Modal = ()=>{
@@ -11,35 +11,43 @@ import { useSelector } from 'react-redux'
 //   const closeModal =()=> setShowModal(false);
 //   return(
 //     <>
-//       <button onClick={()=>setShowModal(true)}>Logout</button> 
+//       <button onClick={()=>setShowModal(true)}>Logout</button>
 //       {showModal && <Logout closeModal={closeModal}/>}
 //     </>
 //   );
 // };
 
-
 function Navbar() {
+  const userName = useSelector((state) => state?.auth?.userInfo?.username);
+  const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
+  const token = useSelector((state) => state?.auth?.data);
 
-  const userName=useSelector((state)=>state?.auth?.userInfo.username);
-  const finalList=useSelector((state)=>state?.homeReducer?.checkoutData);
-
+  console.log(token, userName);
   // console.log(info,"userInfo")
-//  const productsArray = products?Object.values(products):[];
+  //  const productsArray = products?Object.values(products):[];
 
-//  const user = useSelector((state)=>state?.auth?.)
+  //  const user = useSelector((state)=>state?.auth?.)
   const history = useHistory();
 
-  function handleCart(){
-    history.push("/cart")
+  function handleCart() {
+    history.push("/cart");
+  }
+
+  function handleLogo() {
+    history.push("./");
   }
 
   return (
     <div className="navouter">
-    <nav className="navbar navbar-expand-lg bg-body-tertiary fs-5 ">
-    <img className="navimg" alt="logo" src={Images.amazonlogo} />
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fs-5 ">
         <div className="container-fluid">
-          
-          <div className="collapse navbar-collapse"  >
+          <img
+            onClick={handleLogo}
+            className="navimg"
+            alt="logo"
+            src={Images.amazonlogo}
+          />
+          <div className="collapse navbar-collapse">
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link className="nav-link " aria-current="page" to="/">
@@ -47,55 +55,64 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/men">
+                <Link className="nav-link " to="/">
                   MEN
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/women">
+                <Link className="nav-link " to="/">
                   WOMEN
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/kids">
+                <Link className="nav-link " to="/">
                   KIDS
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/Books">
+                <Link className="nav-link " to="/">
                   BOOKS
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/sale">
+                <Link className="nav-link " to="/">
                   SALE
                 </Link>
               </li>
-              <li className="nav-item user-name">
-                <p>{"Hi, "+userName}</p>
-              </li>
-              <li className="nav-item nav-login">
-                <Link className="nav-link " to="/login">
-                  LOGIN
-                </Link>
+              {token ? (
+                <li className="nav-item user-name">
+                  <p>{"Hi, " + userName}</p>
                 </li>
-                {/* <li className="nav-item nav-logout">
+              ) : null}
+              {!token ? (
+                <li className="nav-item nav-login">
+                  <Link className="nav-link " to="/login">
+                    LOGIN
+                  </Link>
+                </li>
+              ) : null}
+              {token ? (
+                <li className="nav-item nav-logout">
                   <Link className="nav-link " to="/logout">
-                  LOGOUT
-                </Link>
-                </li> */}
+                    LOGOUT
+                  </Link>
+                </li>
+              ) : null}
             </ul>
           </div>
-            <div>
-            <img className="cartimg" alt="logo" src={Images.cartlogo} onClick={handleCart} />
-            <p className='item-count'>{finalList.length}</p>
-            </div>
-          
-
+          <div>
+            <img
+              className="cartimg"
+              alt="logo"
+              src={Images.cartlogo}
+              onClick={handleCart}
+            />
+            <p className="item-count">{finalList?.length}</p>
+          </div>
         </div>
       </nav>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

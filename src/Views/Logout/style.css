@@ -1,0 +1,10 @@
+.logout-outer {
+  justify-content: center;
+  text-align: center;
+  margin-top: 161px;
+  background-color: grey;
+  width: 400px;
+  height: 300px;
+  margin-left: 500px;
+  padding-top: 100px;
+}
