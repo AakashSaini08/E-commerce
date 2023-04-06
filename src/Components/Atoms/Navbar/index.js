@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useHistory } from "react-router-dom";
@@ -6,29 +6,18 @@ import { Images } from "Shared/Images";
 import { useSelector } from "react-redux";
 // import Logout from 'Views/Logout'
 
-// const Modal = ()=>{
-//   const [showModal,setShowModal] = useState(false);
-//   const closeModal =()=> setShowModal(false);
-//   return(
-//     <>
-//       <button onClick={()=>setShowModal(true)}>Logout</button>
-//       {showModal && <Logout closeModal={closeModal}/>}
-//     </>
-//   );
-// };
-
 function Navbar() {
   const userName = useSelector((state) => state?.auth?.userInfo?.username);
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const token = useSelector((state) => state?.auth?.data);
 
-  console.log(token, userName);
+  // console.log(token, userName);
   // console.log(info,"userInfo")
   //  const productsArray = products?Object.values(products):[];
 
   //  const user = useSelector((state)=>state?.auth?.)
+  
   const history = useHistory();
-
   function handleCart() {
     history.push("/cart");
   }
@@ -36,6 +25,7 @@ function Navbar() {
   function handleLogo() {
     history.push("./");
   }
+
 
   return (
     <div className="navouter">
@@ -83,21 +73,21 @@ function Navbar() {
                 <li className="nav-item user-name">
                   <p>{"Hi, " + userName}</p>
                 </li>
-              ) : null}
+              ) : []}
               {!token ? (
                 <li className="nav-item nav-login">
                   <Link className="nav-link " to="/login">
                     LOGIN
                   </Link>
                 </li>
-              ) : null}
+              ) : []}
               {token ? (
                 <li className="nav-item nav-logout">
                   <Link className="nav-link " to="/logout">
                     LOGOUT
                   </Link>
                 </li>
-              ) : null}
+              ) : []}
             </ul>
           </div>
           <div>

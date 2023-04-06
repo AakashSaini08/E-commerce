@@ -3,10 +3,11 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "Shared/Constants";
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { addToCart } from 'Redux/Actions/HomeActions';
-// import axios from 'axios';
+
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer,toast } from "react-toastify";
+
 function MyProduct() {
   const count = 1;
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ function MyProduct() {
 
   const handleCart = (item) => {
     // debugger;
+    // toast("Wow so easy!");
+    alert("item has been added to cart")
     const formData = new FormData();
     formData.append("product_id", item.id);
     formData.append("quantity", count);
@@ -75,6 +78,7 @@ function MyProduct() {
           );
         })}
       </div>
+      {/* <ToastContainer /> */}
     </>
   );
 }

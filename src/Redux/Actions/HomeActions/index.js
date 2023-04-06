@@ -2,11 +2,14 @@ import {
   ADD_TO_CART,
   GETCART,
   GETDATA,
+  PAY,
   REMOVE_FROM_CART,
   SETCART,
   SETDATA,
+  SETPAY,
   SET_ADD_TO_CART,
   SET_REMOVE_FROM_CART,
+  // STRIPE,
 } from "./actionStates";
 
 export const getData = (data) => {
@@ -70,3 +73,24 @@ export const setRemoveFromCart = (payload) => {
     payload,
   };
 };
+
+export const paynow = (payload) => {
+  return {
+    type: PAY,
+    payload,
+  };
+};
+
+export const setPaynow = (payload) => {
+  return {
+    type: SETPAY,
+    payload,
+  };
+};
+
+// export const stripe = (payload) => {
+//   return {
+//     type: STRIPE,
+//     payload,
+//   };
+// };

@@ -19,7 +19,7 @@ import axios from "axios";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
-function* auth({ payload: { data, success, fail } }) {
+function* auth({ payload : { data, success, fail } }) {
   // debugger;
   try {
     const response = yield axios.post(API.signin, data);

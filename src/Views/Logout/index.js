@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logout, setLogin } from "Redux/Actions/Auth";
+import { logout, setLogin} from "Redux/Actions/Auth";
 import "./style.css";
 function Logout() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function Logout() {
     dispatch(
       logout({
         success: (response) => {
-          localStorage.clear();
+          // localStorage.clear();
           history.push("./login");
         },
         fail: (err) => {

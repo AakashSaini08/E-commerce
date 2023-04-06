@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { getCart, getData, removeFromCart } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
@@ -10,9 +10,8 @@ function Cart() {
   useEffect(() => {
     dispatch(getCart([]));
     dispatch(getData([]));
-  }, []);
+  }, [dispatch]);
 
-  // const history =useHistory();
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
   console.log(productsArray, "ProductsArrays");
@@ -27,6 +26,11 @@ function Cart() {
   //   return item;
   // }
   // )
+  const history =useHistory();
+
+  const handleBuy =()=>{
+    history.push("./checkout");
+  }
 
   const arr = [];
   finalList?.map((item) => {
@@ -34,6 +38,7 @@ function Cart() {
     if (data) {
       arr.push(data);
     }
+    return arr;//remember
   });
   // console.log(arr,"hggggg")
 
@@ -44,11 +49,12 @@ function Cart() {
 
   const handleRemove = (id) => {
     // console.log(id);
-
+let productId ;
     const myId = finalList?.find((item) => {
       if (item.product_id === id) {
-        return item.id;
+        productId = item.id;
       }
+      return productId;//remember
     });
     // console.log(myId.id,"Selected Id")
     const formData = new FormData();
@@ -74,12 +80,14 @@ function Cart() {
       </div>
       <hr />
 
+      <div className="checkout">
+
       <div className="outer-main">
         {arr?.map((item, idx) => {
           return (
             <div key={idx} className="inner-left">
               <div className="details">
-                <div>
+                <div className="photo">
                   <img
                     className="cart-img"
                     src={BASE_URL + item.photo}
@@ -104,13 +112,15 @@ function Cart() {
             </div>
           );
         })}
+      </div>
 
-        <div className="inner-right">
+      <div className="inner-right">
           <h3>Sub-Total</h3>
           <h4>₹{subTotal}</h4>
-          <button className="btn btn-dark">Proceed to Buy</button>
+          <button className="btn btn-dark" onClick={handleBuy}>Proceed to Buy</button>
         </div>
-      </div>
+
+        </div>
     </>
   );
 }

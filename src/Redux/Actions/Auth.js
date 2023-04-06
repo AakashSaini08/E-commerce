@@ -25,7 +25,7 @@ export const login = (payload) => {
 };
 export const setLogin = (payload) => {
   // console.log('set login action...........')
-  // console.log(payload);
+  console.log(payload);
   return {
     type: SETLOGIN,
     payload,

@@ -4,13 +4,16 @@ import {
   setAddToCart,
   setCart,
   setData,
+  setPaynow,
   setRemoveFromCart,
 } from "Redux/Actions/HomeActions";
 import {
   ADD_TO_CART,
   GETCART,
   GETDATA,
+  PAY,
   REMOVE_FROM_CART,
+  // STRIPE,
 } from "Redux/Actions/HomeActions/actionStates";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
@@ -69,6 +72,36 @@ function* removeItem({ payload: { data, success, fail } }) {
   }
 }
 
+function* payhere({ payload: { data, success, fail } }) {
+  // console.log(response);
+  try {
+    const response = yield axiosInstance.post(API.create_checkout , data);
+    if (success) {
+      yield put(setPaynow(response?.data));
+      success(response);
+    }
+  } catch (error) {
+    if (fail) {
+      fail(error);
+    }
+  }
+}
+
+// function* stripePay({ payload: { data, success, fail } }) {
+//   // console.log(response);
+//   try {
+//     const response = yield axiosInstance.post(API.create_checkout , data);
+//     if (success) {
+//       yield put(setPaynow(response?.data));
+//       success(response);
+//     }
+//   } catch (error) {
+//     if (fail) {
+//       fail(error);
+//     }
+//   }
+// }
+
 function* Sagaa() {
   // yield takeLatest(GETDATA,products);
   yield all([
@@ -76,8 +109,10 @@ function* Sagaa() {
     takeLatest(ADD_TO_CART, myCart),
     takeLatest(GETCART, cartData),
     takeLatest(REMOVE_FROM_CART, removeItem),
+    takeLatest(PAY, payhere),
+    // takeLatest(STRIPE, stripePay),
+
+    
   ]);
 }
 export default Sagaa;
-
-//"https://52d6-122-160-165-213.in.ngrok.io/cart/

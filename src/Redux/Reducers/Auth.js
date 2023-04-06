@@ -18,10 +18,11 @@ const authReducer = (state = initialState, action) => {
     case SETLOGIN: {
       // console.log(action.data,"sdsafdas")
       //  console.log(action);
+      console.log(action.data)
       return {
         ...state,
-        data: action.payload.token,
-        userInfo: action.payload.data,
+        data: action.payload?.token,
+        userInfo: action.payload?.data,
       };
     }
 

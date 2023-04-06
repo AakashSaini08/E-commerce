@@ -12,7 +12,7 @@ function Home() {
   useEffect(() => {
     dispatch(getCart([]));
     dispatch(getData([]));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -1,4 +1,5 @@
 import Cart from "Views/Cart";
+import Checkout from "Views/Checkout";
 import CreatePassword from "Views/CreatePassword";
 import ForgotPassword from "Views/ForgotPassword";
 import Logout from "Views/Logout";
@@ -16,31 +17,6 @@ export const PUBLIC_ROUTES = [
     title: "Homepage",
     exact: true,
   },
-  // {
-  //   path: "/newArrivals",
-  //   component: ShowPlayer,
-  //   title: "New Arrivals",
-  // },
-  // {
-  //   path: "/fashion",
-  //   component: ShowTeam,
-  //   title: "Fashion",
-  // },
-  // {
-  //   path: "/mobile",
-  //   component: SelectTeam,
-  //   title: "Mobile",
-  // },
-  // {
-  //   path: "/books",
-  //   component: ScoreCard,
-  //   title: "Books",
-  // },
-  // {
-  //   path: "/sale",
-  //   component: ScoreCard,
-  //   title: "Sale",
-  // },
   {
     path: "/login",
     component: SignIn,
@@ -72,6 +48,11 @@ export const PUBLIC_ROUTES = [
     title: "Phone Otp",
   },
   {
+    path: "/checkout",
+    component: Checkout,
+    title: "Checkout",
+  },
+  {
     path: "/createpassword",
     component: CreatePassword,
     title: "Create Password",
@@ -86,4 +67,5 @@ export const PUBLIC_ROUTES = [
     component: ProductDetail,
     title: "Product Details",
   },
+  
 ];

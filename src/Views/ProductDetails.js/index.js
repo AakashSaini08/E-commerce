@@ -7,10 +7,6 @@ import { useState } from "react";
 import { addToCart } from "Redux/Actions/HomeActions";
 
 function ProductDetail() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getData([]));
-  // }, [])
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   console.log(products);
   const productsArray = products ? Object.values(products) : [];
@@ -67,18 +63,18 @@ function ProductDetail() {
         <div>
           <img
             className="product-img"
-            src={BASE_URL + selectedProduct.photo}
+            src={BASE_URL + selectedProduct?.photo}
             alt="iphone 14"
           />
         </div>
         <div className="product-detail">
-          <h2>{selectedProduct.name}</h2>
+          <h2>{selectedProduct?.name}</h2>
           <hr />
-          <h3>Price: ₹{selectedProduct.price}</h3>
+          <h3>Price: ₹{selectedProduct?.price}</h3>
           <p>Inclusive of all taxes</p>
           <hr />
           <div>
-            <p>{selectedProduct.product_details}</p>
+            <p>{selectedProduct?.product_details}</p>
           </div>
           <hr />
           <div className="icons">
