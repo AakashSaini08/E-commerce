@@ -1,12 +1,14 @@
 import Cart from "Views/Cart";
 import Checkout from "Views/Checkout";
 import CreatePassword from "Views/CreatePassword";
+import Failure from "Views/Failure";
 import ForgotPassword from "Views/ForgotPassword";
 import Logout from "Views/Logout";
 import Otp from "Views/Otp";
 import PhoneOtp from "Views/PhoneOtp";
 import ProductDetail from "Views/ProductDetails.js";
 import SignUp from "Views/SignUp";
+import Success from "Views/Success";
 import Home from "../Views/Home";
 import SignIn from "../Views/SignIn";
 
@@ -61,6 +63,16 @@ export const PUBLIC_ROUTES = [
     path: "/logout",
     component: Logout,
     title: "Logout",
+  },
+  {
+    path: "/success",
+    component: Success,
+    title: "Success",
+  },
+  {
+    path: "/failure",
+    component: Failure,
+    title: "Failure",
   },
   {
     path: "/:productDetails",

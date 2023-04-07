@@ -4,16 +4,22 @@ import "./style.css";
 import Products from "../../Assets/Images/Products.png";
 import MyFooter from "../Footer/index";
 import MyProduct from "Views/Product";
-import { useDispatch } from "react-redux";
-import { getCart, getData } from "Redux/Actions/HomeActions";
+import { useDispatch} from "react-redux";
+import { getData } from "Redux/Actions/HomeActions";
 
 function Home() {
+
+  // const token=useSelector((state)=>state?.auth?.data);
+  // console.log(token);
+
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart([]));
     dispatch(getData([]));
+    // dispatch(getCart([]));
   }, [dispatch]);
-
+  
+  
   return (
     <div>
       <Carousel />

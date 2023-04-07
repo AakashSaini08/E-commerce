@@ -12,8 +12,6 @@ function App() {
     <Provider store={loginStore}>
       <PersistGate persistor={persistorlogin}>
         <RootRouter />
-        {/* <Success/> */}
-        {/* <Failure/> */}
       </PersistGate>
     </Provider>
   );
