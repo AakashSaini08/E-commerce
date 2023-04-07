@@ -75,7 +75,6 @@ const PhoneOtp = () => {
                     className="btn btn-dark text-white m-2  round rounded-4 "
                     onClick={handleClick}
                   >
-                    {" "}
                     Continue
                   </button>
                 </div>

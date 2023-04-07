@@ -61,7 +61,7 @@ function MyFooter() {
         </div>
         <div className="mt-3">
           <h5>100% ORIGINAL guarantee for all products </h5>
-          <h5>Return within 30days of receiving your order</h5>
+          <h5>Return within 30 days of receiving your order</h5>
         </div>
       </div>
     </div>

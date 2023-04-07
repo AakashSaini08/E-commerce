@@ -1,12 +1,20 @@
 // import { useSelector, useDispatch } from 'react-redux'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "Redux/Actions/Auth";
+import { getCart } from "Redux/Actions/HomeActions";
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(getCart())
+    }
+  }, [dispatch])
+  
+  
   const history = useHistory();
 
   function handleSignup() {

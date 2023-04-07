@@ -19,7 +19,6 @@ const ForgotPassword = () => {
   formData.append("phone_number", contact);
 
   const handleClick = async () => {
-    debugger;
     if (contact !== "") {
       try {
         dispatch(

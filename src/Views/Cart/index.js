@@ -29,7 +29,10 @@ function Cart() {
   const history =useHistory();
 
   const handleBuy =()=>{
-    history.push("./checkout");
+    console.log(finalList)
+    if(finalList.length !==0){
+      history.push("./checkout");
+    }
   }
 
   const arr = [];
@@ -75,12 +78,15 @@ let productId ;
 
   return (
     <>
+    
+        
       <div className="Shoping-cart">
-        <h3>Shopping Cart</h3>
+        <h2>Shopping Cart</h2>
       </div>
       <hr />
 
-      <div className="checkout">
+      {(finalList.length !== 0)?
+        <div className="checkout">
 
       <div className="outer-main">
         {arr?.map((item, idx) => {
@@ -121,6 +127,13 @@ let productId ;
         </div>
 
         </div>
+      
+      :
+      <div className="emptyCart">
+        <h2>Cart Is Empty</h2>
+      </div>
+      }  
+      
     </>
   );
 }

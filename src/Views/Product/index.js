@@ -1,4 +1,4 @@
-import { addToCart } from "Redux/Actions/HomeActions";
+import { addToCart, getCart } from "Redux/Actions/HomeActions";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -25,9 +25,6 @@ function MyProduct() {
   };
 
   const handleCart = (item) => {
-    // debugger;
-    // toast("Wow so easy!");
-    alert("item has been added to cart")
     const formData = new FormData();
     formData.append("product_id", item.id);
     formData.append("quantity", count);
@@ -35,6 +32,7 @@ function MyProduct() {
       addToCart({
         data: formData,
         success: (Response) => {
+          dispatch(getCart());
           history.push("/");
         },
         fail: (err) => {
@@ -42,6 +40,7 @@ function MyProduct() {
         },
       })
     );
+    alert("item has been added to cart");
   };
 
   return (

@@ -17,16 +17,14 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [detail, setDetail] = useState("");
-
-  // const [errorMessage,setErrorMessage]=useState("")
-  // const dispatch = useDispatch();
-  // const data = useSelector(((state) => state.data.players))
-
   const validation = (user, contact, password) => {
     let errors = {};
 
-    if (!user) {
-      errors.user = "Name is Required";
+    const nameRegex = new RegExp('^[A-Za-z]+$')
+    //  console.log(nameRegex.test(user));
+     
+    if (!nameRegex.test(user)) {
+      errors.user = "Name should contain only charcters";
     } else if (user.length < 3) {
       errors.user = "Name must be greater than 3 charcter";
     }
@@ -39,8 +37,8 @@ const SignUp = () => {
 
     if (!password) {
       errors.password = "Password Required";
-    } else if (password.length < 9) {
-      errors.password = "Password must be greater than 8";
+    } else if (password.length < 5) {
+      errors.password = "Password must be greater than 6";
     }
     return errors;
   };
@@ -80,16 +78,18 @@ const SignUp = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setErrors(validation(user, contact, password));
-    if (user !== "" && contact !== "" && password !== "" && detail !== "") {
+    console.log(Object.keys(validation(user, contact, password)).length);
+    if (user !== "" && contact !== "" && password !== "" && detail !== "" && !Object.keys(validation(user, contact, password)).length) {
       try {
         dispatch(
           signup({
             data: formData,
             success: (Response) => {
-              history.push({
-                pathname: "/otp",
-                state: { contact },
-              });
+                history.push({
+                  pathname: "/otp",
+                  state: { contact },
+                });
+
             },
             fail: (err) => {
               alert("Check Empty Fields");
@@ -116,7 +116,7 @@ const SignUp = () => {
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>Name :</b>
-                    </label>
+                    
                     <input
                       type="text"
                       placeholder="First and last name"
@@ -125,12 +125,13 @@ const SignUp = () => {
                       onChange={(e) => handleUser(e)}
                       required
                     ></input>
+                    </label>
                     {errors.user && <p>{errors.user}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>Phone Number :</b>
-                    </label>
+                    
                     <input
                       type="number"
                       placeholder="Phone number"
@@ -139,6 +140,7 @@ const SignUp = () => {
                       onChange={(e) => handleContact(e)}
                       required
                     ></input>
+                    </label>
                     {errors.contact && <p>{errors.contact}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">

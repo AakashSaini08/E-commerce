@@ -38,7 +38,7 @@ const homeReducer = (data = initialData, action) => {
       return {
         ...data,
         checkoutData: action?.data?.data?.map((data) => ({ ...data })),
-        totalPrice: action.data.Total_price,
+        totalPrice: action?.data?.Total_price,
       };
 
     default:

@@ -57,24 +57,28 @@ const CreatePassword = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setErrors(validation(reset_password, confirm_password));
-
-    try {
-      dispatch(
-        getPassword({
-          data: formData,
-          success: (Response) => {
-            history.push({
-              pathname: "/login",
-              state: { myParam },
-            });
-          },
-          fail: (err) => {
-            alert("Password doesn't Match");
-          },
-        })
-      );
-    } catch (error) {
-      console.log(error.data);
+    if(reset_password === confirm_password){
+      try {
+        dispatch(
+          getPassword({
+            data: formData,
+            success: (Response) => {
+              history.push({
+                pathname: "/login",
+                state: { myParam },
+              });
+            },
+            fail: (err) => {
+              alert("Password doesn't Match");
+            },
+          })
+        );
+      } catch (error) {
+        console.log(error.data);
+      }
+      alert("Password has been reset, You can now login");
+    }else{
+      alert("Recheck Password you have entered")
     }
   };
 
@@ -85,13 +89,13 @@ const CreatePassword = () => {
           <div className="signup-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" signup-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                Change Password
+                Reset Password
               </h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Reset Password :</b>
+                      <b>Set Password :</b>
                     </label>
                     <input
                       type="password"
@@ -105,7 +109,7 @@ const CreatePassword = () => {
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Password :</b>
+                      <b>Comfirm Password :</b>
                     </label>
                     <input
                       type="password"

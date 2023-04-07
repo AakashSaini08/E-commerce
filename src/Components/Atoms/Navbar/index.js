@@ -1,12 +1,21 @@
-import React  from "react";
+import React, { useEffect }  from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { Images } from "Shared/Images";
-import { useSelector } from "react-redux";
-// import Logout from 'Views/Logout'
+import { useDispatch, useSelector } from "react-redux";
+import { getCart, getData } from "Redux/Actions/HomeActions";
 
 function Navbar() {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(getCart([]));
+    },1000)
+
+    dispatch(getData([]));
+  }, [dispatch]);
   const userName = useSelector((state) => state?.auth?.userInfo?.username);
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const token = useSelector((state) => state?.auth?.data);

@@ -29,7 +29,8 @@ function Checkout() {
 
 
   const handlePay=()=>{
-    try {
+    if(address !== ''){
+      try {
         dispatch(
           paynow({
             data: formData,
@@ -45,6 +46,9 @@ function Checkout() {
       } catch (error) {
         console.log(error.data);
       }
+    }else{
+      alert("Please Enter Address")
+    }
   }
 
 
@@ -67,27 +71,8 @@ function Checkout() {
                 onChange={handleAddress}
               />
             </div>
-            {/* <div className="change-btn">
-              <button className=" btn btn-link">Change</button>
-            </div> */}
           </div>
-          {/* <div className="item-detail">
-            <div>
-              <h3>Product Detail</h3>
-            </div>
-            <div>
-              <p>HP Victus Gaming Latest AMD Ryzen 5-5600H Processor</p>
-            </div>
-            <div className="change-btn">
-              <button className=" btn btn-link">Change</button>
-            </div>
-          </div> */}
-
-          <div className="payment">
-            <div>
-              <h3>Select a payment method</h3>
-            </div>
-          </div>
+          
         </div>
         <div className="outer-cart-right">
           <div>
