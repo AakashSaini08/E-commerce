@@ -14,17 +14,9 @@ function Cart() {
 
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
-  // console.log(productsArray, "ProductsArrays");
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-  // console.log(totalAmount,subTotal)
-
-  // const myItems =productsArray.filter((item)=>{
-  //   if(finalList.find((value)=> value.product_id === item.id))
-  //   return item;
-  // }
-  // )
   const history =useHistory();
 
   const handleBuy =()=>{
@@ -40,12 +32,8 @@ function Cart() {
     if (data) {
       arr.push(data);
     }
-    return arr;//remember
+    return arr;
   });
-  // console.log(finalList,"finalList")
-
-  // console.log(arr,"hggggg")
-
   const [page,setPage] = useState(1);
   const nextPage = ()=>{
     dispatch((getCart(page+1)))
@@ -60,15 +48,13 @@ function Cart() {
   }
 
   const handleRemove = (id) => {
-    // console.log(id);
 let productId ;
     const myId = finalList?.find((item) => {
       if (item.product_id === id) {
         productId = item.id;
       }
-      return productId;//remember
+      return productId;
     });
-    // console.log(myId.id,"Selected Id")
     const formData = new FormData();
     formData.append("cart_id", myId.id);
 

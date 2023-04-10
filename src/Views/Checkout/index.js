@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import { getCart, getData, paynow } from "Redux/Actions/HomeActions";
 import "./style.css";
 
@@ -14,28 +13,18 @@ function Checkout() {
     dispatch(getCart([]));
     dispatch(getData([]));
   }, [dispatch]);
-//   const checkoutList = useSelector((state) => state?.homeReducer?.checkoutData);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-// console.log(checkoutList,subTotal)
-// const item_id =checkoutList[0].product_id;
-// const item_qty =checkoutList[0].quantity;
-// const history = useHistory();
-// console.log(checkoutList[1].product_id,"sdsd",checkoutList[1].quantity)//product_id , quanitity
-//   console.log(address,"dfafd");
-
-  const formData = new FormData();
-  formData.append("address", address);
-
 
   const handlePay=()=>{
+    const formData = new FormData();
+    formData.append("address", address);
     if(address !== ''){
       try {
         dispatch(
           paynow({
             data: formData,
             success: (Response) => {
-                // console.log(Response.data.url)
               window.open(Response.data.url)
             },
             fail: (err) => {

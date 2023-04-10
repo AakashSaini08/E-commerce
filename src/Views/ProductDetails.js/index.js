@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
@@ -41,8 +40,6 @@ function ProductDetail() {
     const formData = new FormData();
     formData.append("product_id", selectedProduct.id);
     formData.append("quantity", countt);
-
-    // console.log(item.id);
     try {
       dispatch(
         addToCart({
@@ -56,8 +53,8 @@ function ProductDetail() {
         })
       );
     } catch (error) {
-      console.log(error.data);
-      console.log(error?.data?.token);
+      // console.log(error.data);
+      // console.log(error?.data?.token);
     }
   };
 

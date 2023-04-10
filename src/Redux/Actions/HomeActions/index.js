@@ -13,11 +13,9 @@ import {
   SET_ADD_TO_CART,
   SET_REMOVE_FROM_CART,
   VIEWED,
-  // STRIPE,
 } from "./actionStates";
 
 export const getData = (data) => {
-  // console.log("getData action called...");
   return {
     type: GETDATA,
     data,
@@ -25,7 +23,6 @@ export const getData = (data) => {
 };
 
 export const setData = (data) => {
-  // console.log('setdata action....')
   return {
     type: SETDATA,
     data,
@@ -33,7 +30,6 @@ export const setData = (data) => {
 };
 
 export const getViewedItems = (data) => {
-  // console.log("getData action called...");
   return {
     type: GETVIEWEDITEMS,
     data,
@@ -41,7 +37,6 @@ export const getViewedItems = (data) => {
 };
 
 export const setViewedItems = (data) => {
-  // console.log(data,'setdata action....')
   return {
     type: SETVIEWEDITEMS,
     data,
@@ -49,7 +44,6 @@ export const setViewedItems = (data) => {
 };
 
 export const addToCart = (payload) => {
-  // console.log("addToCart action called...");
   return {
     type: ADD_TO_CART,
     payload,
@@ -57,7 +51,6 @@ export const addToCart = (payload) => {
 };
 
 export const setAddToCart = (payload) => {
-  // console.log("addToCart action called...");
   return {
     type: SET_ADD_TO_CART,
     payload,
@@ -65,7 +58,6 @@ export const setAddToCart = (payload) => {
 };
 
 export const viewed = (payload) => {
-  // console.log("addToCart action called...");
   return {
     type: VIEWED,
     payload,
@@ -73,7 +65,6 @@ export const viewed = (payload) => {
 };
 
 export const setViewed = (payload) => {
-  // console.log("addToCart action called...");
   return {
     type: SETVIEWED,
     payload,
@@ -81,8 +72,6 @@ export const setViewed = (payload) => {
 };
 
 export const getCart = (data) => {
-  console.log(data,"getcart");
-  // console.log("getData action called...");
   return {
     type: GETCART,
     data,
@@ -90,7 +79,6 @@ export const getCart = (data) => {
 };
 
 export const setCart = (data) => {
-  // console.log(data ,"setcart")
   return {
     type: SETCART,
     data,
@@ -124,10 +112,3 @@ export const setPaynow = (payload) => {
     payload,
   };
 };
-
-// export const stripe = (payload) => {
-//   return {
-//     type: STRIPE,
-//     payload,
-//   };
-// };

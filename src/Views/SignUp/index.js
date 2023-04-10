@@ -11,7 +11,6 @@ const SignUp = () => {
   function handleSignin() {
     history.push("/login");
   }
-  // const [name, setName] = useState("");
   const [user, setUser] = useState("");
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
@@ -21,8 +20,6 @@ const SignUp = () => {
     let errors = {};
 
     const nameRegex = new RegExp('^[A-Za-z]+$')
-    //  console.log(nameRegex.test(user));
-     
     if (!nameRegex.test(user)) {
       errors.user = "Name should contain only charcters";
     } else if (user.length < 3) {
@@ -65,17 +62,14 @@ const SignUp = () => {
   }
 
   function handleDetail(val) {
-    // e.preventDefault();
     setDetail(val);
   }
-
-  const formData = new FormData();
-  formData.append("name", user);
-  formData.append("phone_number", contact);
-  formData.append("password", password);
-  formData.append("detail", detail);
-
   const handleClick = async (e) => {
+    const formData = new FormData();
+    formData.append("name", user);
+    formData.append("phone_number", contact);
+    formData.append("password", password);
+    formData.append("detail", detail);
     e.preventDefault();
     setErrors(validation(user, contact, password));
     console.log(Object.keys(validation(user, contact, password)).length);

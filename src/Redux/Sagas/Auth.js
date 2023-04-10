@@ -20,7 +20,6 @@ import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
 function* auth({ payload : { data, success, fail } }) {
-  // debugger;
   try {
     const response = yield axios.post(API.signin, data);
     yield put(setLogin(response?.data));
@@ -125,7 +124,6 @@ function* logoutCall({ payload: { success, fail } }) {
 }
 
 function* Sagaa() {
-  // yield takeLatest();
   yield all([
     takeLatest(LOGIN, auth),
     takeLatest(GETOTP, otp),

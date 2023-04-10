@@ -15,16 +15,12 @@ export const SIGNUPOTP = "SIGNUPOTP";
 export const SETSIGNUPOTP = "SETSIGNUPOTP";
 
 export const login = (payload) => {
-  // debugger;
-  // console.log("login action........");
-  // console.log(payload)
   return {
     type: LOGIN,
     payload,
   };
 };
 export const setLogin = (payload) => {
-  // console.log('set login action...........')
   console.log(payload);
   return {
     type: SETLOGIN,

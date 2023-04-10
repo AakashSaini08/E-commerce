@@ -9,11 +9,6 @@ import { getCart, getData, getViewedItems } from "Redux/Actions/HomeActions";
 import RecentProducts from "Views/RecentProduct";
 
 function Home() {
-
-  // const token=useSelector((state)=>state?.auth?.data);
-  // console.log(token);
-
-
   const dispatch = useDispatch();
   useEffect(() => {
     setTimeout(() => {

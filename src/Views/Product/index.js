@@ -8,14 +8,7 @@ function MyProduct() {
   const count = 1;
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.homeReducer?.products[1]);
-  console.log('lkj',products)
   const productsArray = products ? Object.values(products) : [];
-  //  console.log(productsArray.id)
-
-  //  const token=useSelector((state)=>state?.auth?.data);
-  // console.log(token);
-
-    
   const history = useHistory();
   
   const handleProductDetail = (x) => {

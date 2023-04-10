@@ -13,13 +13,6 @@ const CreatePassword = () => {
 
   const validation = (contact, reset_password, confirm_password) => {
     let errors = {};
-
-    // if(!user){
-    //   errors.user = "Name is Required"
-    // }else if(user.length < 3 ){
-    //   errors.user ="Name must be greater than 3 charcter"
-    // }
-
     if (!reset_password) {
       errors.reset_password = "Password Required";
     } else if (reset_password.length < 5) {
@@ -49,12 +42,13 @@ const CreatePassword = () => {
   }
   const location = useLocation();
   let myParam = location.state.newContact;
-  const formData = new FormData();
-  formData.append("phone_number", myParam);
-  formData.append("reset_password", reset_password);
-  formData.append("confirm_password", confirm_password);
+
 
   const handleClick = async (e) => {
+    const formData = new FormData();
+    formData.append("phone_number", myParam);
+    formData.append("reset_password", reset_password);
+    formData.append("confirm_password", confirm_password);
     e.preventDefault();
     setErrors(validation(reset_password, confirm_password));
     if(reset_password === confirm_password){

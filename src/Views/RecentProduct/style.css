@@ -23,12 +23,9 @@
   .card-outer {
     width: 250px;
     height: 460px;
-    /* margin:18px; */
   }
   .main {
     margin-top: 10px;
-    /* margin: 20px; */
-  
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

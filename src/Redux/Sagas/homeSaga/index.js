@@ -17,13 +17,12 @@ import {
   PAY,
   REMOVE_FROM_CART,
   VIEWED,
-  // STRIPE,
+
 } from "Redux/Actions/HomeActions/actionStates";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
 function* products(payload) {
-  // console.log('saga...')
   try {
     const response = yield axios.get(API.getProduct);
     yield put(setData(Object.values(response?.data)));
@@ -33,7 +32,6 @@ function* products(payload) {
     }
   }
 }
-//axios.instance
 
 function* myCart({ payload: { data, success, fail } }) {
   try {
@@ -50,10 +48,6 @@ function* myCart({ payload: { data, success, fail } }) {
 }
 
 function* cartData(payload) {
-  console.log(payload.data,"page number");
-  // const currentPage = payload.data;
-  // console.log(currentPage)
-
   try {
     const response = yield axiosInstance.get(API.cart + "?page="+ payload?.data);
     yield put(setCart(response?.data));
@@ -65,7 +59,6 @@ function* cartData(payload) {
 }
 
 function* removeItem({ payload: { data, success, fail } }) {
-  // console.log(response);
   try {
     const response = yield axiosInstance.delete(API.cart + data + "/");
     if (success) {
@@ -80,7 +73,6 @@ function* removeItem({ payload: { data, success, fail } }) {
 }
 
 function* payhere({ payload: { data, success, fail } }) {
-  // console.log(response);
   try {
     const response = yield axiosInstance.post(API.create_checkout , data);
     if (success) {
@@ -121,7 +113,6 @@ function* myViewedItem(payload) {
 }
 
 function* Sagaa() {
-  // yield takeLatest(GETDATA,products);
   yield all([
     takeLatest(GETDATA, products),
     takeLatest(ADD_TO_CART, myCart),
@@ -130,11 +121,6 @@ function* Sagaa() {
     takeLatest(PAY, payhere),
     takeLatest(VIEWED, viewedItem),
     takeLatest(GETVIEWEDITEMS, myViewedItem),
-
-
-
-    // takeLatest(STRIPE, stripePay),
-
     
   ]);
 }

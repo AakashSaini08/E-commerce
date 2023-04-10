@@ -6,22 +6,18 @@ import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
 function RecentProducts() {
-    const products = useSelector((state) => state?.homeReducer?.products[1]);
+  const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
-  console.log(productsArray, "ProductsArrays OK");
-
   const viewedItems = useSelector((state) => state?.homeReducer?.viewedData);
-  console.log(viewedItems, "viewedItems OK");
-
   const arr = [];
   viewedItems?.map((item) => {
     let data = productsArray.find((value) => value.id === item.product_id);
     if (data) {
       arr.push(data);
     }
-    return arr;//remember
+    return arr;
   });
-  console.log(arr,"finalList")
+
 
   const history = useHistory();
   const handleProductDetail = (x) => {

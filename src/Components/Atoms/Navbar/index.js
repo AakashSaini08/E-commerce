@@ -10,22 +10,11 @@ function Navbar() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // setTimeout(() => {
-    //   dispatch(getCart([]));
-    // },1000)
-
     dispatch(getData([]));
   }, [dispatch]);
   const userName = useSelector((state) => state?.auth?.userInfo?.username);
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const token = useSelector((state) => state?.auth?.data);
-
-  // console.log(token, userName);
-  // console.log(info,"userInfo")
-  //  const productsArray = products?Object.values(products):[];
-
-  //  const user = useSelector((state)=>state?.auth?.)
-  
   const history = useHistory();
   function handleCart() {
     history.push({

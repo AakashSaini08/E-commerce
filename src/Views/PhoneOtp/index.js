@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./style.css";
 import { useHistory, useLocation } from "react-router-dom";
-// import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getVerify } from "Redux/Actions/Auth";
 
@@ -18,12 +17,12 @@ const PhoneOtp = () => {
   }
   const location = useLocation();
   let newContact = location.state.contact;
-  const formData = new FormData();
-  formData.append("otp", otp);
-  formData.append("phone_number", newContact);
-  const handleClick = async (e) => {
-    e.preventDefault();
 
+  const handleClick = async (e) => {
+    const formData = new FormData();
+    formData.append("otp", otp);
+    formData.append("phone_number", newContact);
+    e.preventDefault();
     try {
       dispatch(
         getVerify({

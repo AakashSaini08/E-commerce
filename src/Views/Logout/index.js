@@ -15,7 +15,6 @@ function Logout() {
     dispatch(
       logout({
         success: (response) => {
-          // localStorage.clear();
           history.push("./login");
         },
         fail: (err) => {

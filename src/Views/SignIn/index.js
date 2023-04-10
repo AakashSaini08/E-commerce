@@ -1,42 +1,19 @@
-// import { useSelector, useDispatch } from 'react-redux'
 import {  useState } from "react";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "Redux/Actions/Auth";
-// import { getCart } from "Redux/Actions/HomeActions";
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(getCart())
-  //   }
-  // }, [dispatch])
-  
-  
   const history = useHistory();
 
   function handleSignup() {
     history.push("/signup");
   }
-
-  // const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [contact, setContact] = useState("");
   const [errors, setErrors] = useState({});
-
-  // const [errorMessage,setErrorMessage]=useState("")
-  // const dispatch = useDispatch();
-  // const data = useSelector(((state) => state.data.players))
-
-  // function handleClick() {
-
-  //   // let token = []
-  //   // token = data?.filter(val => val.PhoneNo == contact )
-  //   console.log("logged in");
-  // }
-
   const validation = (contact, password) => {
     let errors = {};
 
@@ -72,13 +49,10 @@ const SignIn = () => {
     history.push("/forgot");
   }
 
-  const formData = new FormData();
+  const handleSubmit = async (e) => {
+    const formData = new FormData();
   formData.append("phone_number", contact);
   formData.append("password", password);
-  // console.log(formData);
-  
-  const handleSubmit = async (e) => {
-    // debugger;
     e.preventDefault();
     setErrors(validation(contact, password));
     if (contact !== "" && password !== "") {
@@ -123,7 +97,6 @@ const SignIn = () => {
                       className="form-control my-2"
                       value={contact}
                       onChange={(e) => handleContact(e)}
-                      // onChange={handleContact}
                     ></input>
                     {errors.contact && <p>{errors.contact}</p>}
                   </div>
