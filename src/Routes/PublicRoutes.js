@@ -29,11 +29,7 @@ export const PUBLIC_ROUTES = [
     component: SignUp,
     title: "SIGNUP",
   },
-  {
-    path: "/cart",
-    component: Cart,
-    title: "Cart",
-  },
+  
   {
     path: "/otp",
     component: Otp,
@@ -73,6 +69,11 @@ export const PUBLIC_ROUTES = [
     path: "/failure",
     component: Failure,
     title: "Failure",
+  },
+  {
+    path: "/cart",
+    component: Cart,
+    title: "Cart",
   },
   {
     path: "/:productDetails",

@@ -10,6 +10,11 @@ export const PAY = "PAY";
 export const SETPAY = "SETPAY";
 export const STRIPE = "STRIPE";
 export const SETSTRIPE = "SETSTRIPE";
+export const VIEWED = "VIEWED";
+export const SETVIEWED = "SETVIEWED";
+export const GETVIEWEDITEMS = "GETVIEWEDITEMS";
+export const SETVIEWEDITEMS = "SETVIEWEDITEMS";
+
 
 
 

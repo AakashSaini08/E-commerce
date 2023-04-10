@@ -1,18 +1,18 @@
 // import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "Redux/Actions/Auth";
-import { getCart } from "Redux/Actions/HomeActions";
+// import { getCart } from "Redux/Actions/HomeActions";
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    return () => {
-      dispatch(getCart())
-    }
-  }, [dispatch])
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(getCart())
+  //   }
+  // }, [dispatch])
   
   
   const history = useHistory();
@@ -123,6 +123,7 @@ const SignIn = () => {
                       className="form-control my-2"
                       value={contact}
                       onChange={(e) => handleContact(e)}
+                      // onChange={handleContact}
                     ></input>
                     {errors.contact && <p>{errors.contact}</p>}
                   </div>

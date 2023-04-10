@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getCart, getData, removeFromCart } from "Redux/Actions/HomeActions";
@@ -8,17 +8,16 @@ import "./style.css";
 function Cart() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart([]));
+    dispatch(getCart(1));
     dispatch(getData([]));
   }, [dispatch]);
 
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
-  console.log(productsArray, "ProductsArrays");
+  // console.log(productsArray, "ProductsArrays");
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-  // console.log(finalList,"finalList")
   // console.log(totalAmount,subTotal)
 
   // const myItems =productsArray.filter((item)=>{
@@ -30,7 +29,7 @@ function Cart() {
 
   const handleBuy =()=>{
     console.log(finalList)
-    if(finalList.length !==0){
+    if(finalList?.length !==0){
       history.push("./checkout");
     }
   }
@@ -43,12 +42,22 @@ function Cart() {
     }
     return arr;//remember
   });
+  // console.log(finalList,"finalList")
+
   // console.log(arr,"hggggg")
 
-  // const [count,setCount] = useState(0);
-  // const handleCount = (e)=>{
-  //   setCount(e.target.value)
-  // }
+  const [page,setPage] = useState(1);
+  const nextPage = ()=>{
+    dispatch((getCart(page+1)))
+    setPage(page + 1);
+  }
+  const previousPage = ()=>{
+    if(page >1){
+      setPage(page - 1);
+    }
+    dispatch((getCart(page-1)))
+
+  }
 
   const handleRemove = (id) => {
     // console.log(id);
@@ -78,16 +87,13 @@ let productId ;
 
   return (
     <>
-    
-        
       <div className="Shoping-cart">
         <h2>Shopping Cart</h2>
       </div>
       <hr />
 
-      {(finalList.length !== 0)?
+      {(finalList?.length !== 0)?
         <div className="checkout">
-
       <div className="outer-main">
         {arr?.map((item, idx) => {
           return (
@@ -125,14 +131,18 @@ let productId ;
           <h4>₹{subTotal}</h4>
           <button className="btn btn-dark" onClick={handleBuy}>Proceed to Buy</button>
         </div>
-
         </div>
-      
       :
       <div className="emptyCart">
         <h2>Cart Is Empty</h2>
       </div>
       }  
+
+      <div className="paging">
+        <button className="btn btn-dark m-5" onClick={previousPage} >Previous</button>
+        <span><b>{page}</b></span>
+        <button className="btn btn-dark m-5" onClick={nextPage} >Next</button>
+      </div>
       
     </>
   );

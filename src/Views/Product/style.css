@@ -5,17 +5,20 @@
 }
 
 .myCard-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 246px;
-  height: 185px;
+  height: 192px;
   text-align: center;
   background-color: #a0c7e5;
   padding: 5px;
+  
 }
 .myCard {
   border: 2px solid grey;
   width: 250px;
-  height: 441px;
-  /* margin: 5px; */
+  height: 448px;
 }
 .card-outer {
   width: 250px;
@@ -24,6 +27,8 @@
 }
 .main {
   margin-top: 10px;
+  /* margin: 20px; */
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

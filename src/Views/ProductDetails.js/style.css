@@ -36,3 +36,17 @@
   left: 34px;
   position: relative;
 }
+.review-left{
+  margin-top: 145px;
+  margin-left:100px;
+  font-size: 20px;
+}
+.review-right{
+  margin-top: 145px;
+  margin-left:100px;
+  font-size: 16px;
+  margin-right: 120px;
+}
+.review-outer{
+display: flex;
+}

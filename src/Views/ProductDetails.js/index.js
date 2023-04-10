@@ -16,6 +16,10 @@ function ProductDetail() {
     (product) => product.id === +productDetails
   );
   console.log(selectedProduct);
+  const [review, setReview] = useState();
+  const handleReview = (e) => {
+    setReview(e.target.value);
+  };
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -130,6 +134,47 @@ function ProductDetail() {
                 Go Back
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="review-outer">
+        <div className="review-left">
+          <div>
+            <h3>Customer Reviews</h3>
+            <p>Rating: 4.5</p>
+          </div>
+          <div className="review-title">
+            <div>
+              <h4>Review this Product</h4>
+            </div>
+            <div>
+              <textarea
+                name="textValue"
+                value={review}
+                onChange={handleReview}
+              />
+            </div>
+            <div>
+              <button className="btn btn-dark ">Submit</button>
+            </div>
+          </div>
+        </div>
+        <div className="review-right">
+          <div>
+            <h3>Top Reviews</h3>
+          </div>
+          <div>
+            <h4>User name</h4>
+            <p>
+              I previously bought JBL Charge 5, which was a Rs. 16K trash
+              speaker. But when I compare that JBL with this speaker, this one
+              is well over my expectation. This speaker sounds really really
+              good. Of course the bigger the speaker, the better it will sound.
+              In this case, the speaker is about 12cm (height) x 29cm (wide) x
+              12cm(depth). And the speaker has to be bigger to give you more
+              bass.
+            </p>
           </div>
         </div>
       </div>

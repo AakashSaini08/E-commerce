@@ -19,6 +19,9 @@ const authReducer = (state = initialState, action) => {
       // console.log(action.data,"sdsafdas")
       //  console.log(action);
       console.log(action.data)
+      state.data = action.payload.token;
+      state.userInfo = action.payload.data;
+      return state;
       return {
         ...state,
         data: action.payload?.token,

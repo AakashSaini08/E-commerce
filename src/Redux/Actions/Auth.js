@@ -1,4 +1,4 @@
-export const LOGIN = "LOGIN";
+export const LOGIN = "LOGIN_FAILURE";
 export const SETLOGIN = "SETLOGIN";
 export const SIGNUP = "SIGNUP";
 export const SETSIGNUP = "SETSIGNUP";

@@ -2,13 +2,17 @@ import {
   ADD_TO_CART,
   GETCART,
   GETDATA,
+  GETVIEWEDITEMS,
   PAY,
   REMOVE_FROM_CART,
   SETCART,
   SETDATA,
   SETPAY,
+  SETVIEWED,
+  SETVIEWEDITEMS,
   SET_ADD_TO_CART,
   SET_REMOVE_FROM_CART,
+  VIEWED,
   // STRIPE,
 } from "./actionStates";
 
@@ -24,6 +28,22 @@ export const setData = (data) => {
   // console.log('setdata action....')
   return {
     type: SETDATA,
+    data,
+  };
+};
+
+export const getViewedItems = (data) => {
+  // console.log("getData action called...");
+  return {
+    type: GETVIEWEDITEMS,
+    data,
+  };
+};
+
+export const setViewedItems = (data) => {
+  // console.log(data,'setdata action....')
+  return {
+    type: SETVIEWEDITEMS,
     data,
   };
 };
@@ -44,7 +64,24 @@ export const setAddToCart = (payload) => {
   };
 };
 
+export const viewed = (payload) => {
+  // console.log("addToCart action called...");
+  return {
+    type: VIEWED,
+    payload,
+  };
+};
+
+export const setViewed = (payload) => {
+  // console.log("addToCart action called...");
+  return {
+    type: SETVIEWED,
+    payload,
+  };
+};
+
 export const getCart = (data) => {
+  console.log(data,"getcart");
   // console.log("getData action called...");
   return {
     type: GETCART,
@@ -53,7 +90,7 @@ export const getCart = (data) => {
 };
 
 export const setCart = (data) => {
-  // console.log(data)
+  // console.log(data ,"setcart")
   return {
     type: SETCART,
     data,

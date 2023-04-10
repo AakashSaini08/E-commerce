@@ -4,15 +4,15 @@ import "./style.css";
 import { useHistory } from "react-router-dom";
 import { Images } from "Shared/Images";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, getData } from "Redux/Actions/HomeActions";
+import { getData } from "Redux/Actions/HomeActions";
 
 function Navbar() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(getCart([]));
-    },1000)
+    // setTimeout(() => {
+    //   dispatch(getCart([]));
+    // },1000)
 
     dispatch(getData([]));
   }, [dispatch]);
@@ -28,7 +28,9 @@ function Navbar() {
   
   const history = useHistory();
   function handleCart() {
-    history.push("/cart");
+    history.push({
+      pathname:"/cart"
+  });
   }
 
   function handleLogo() {

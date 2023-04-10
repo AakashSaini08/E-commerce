@@ -19,7 +19,7 @@
 .inner-left {
   /* background-color: azure; */
   width: 70%;
-  height: 430px;
+  height: 370px;
   margin: 5px;
 }
 .inner-right {
@@ -59,4 +59,7 @@
 }
 .Shoping-cart{
   margin-left:600px ;
+}
+.paging{
+  margin-left: 1050px;
 }

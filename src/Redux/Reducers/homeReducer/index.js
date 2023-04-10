@@ -2,8 +2,10 @@ import {
   ADD_TO_CART,
   GETCART,
   GETDATA,
+  GETVIEWEDITEMS,
   SETCART,
   SETDATA,
+  SETVIEWEDITEMS,
   SET_ADD_TO_CART,
 } from "../../Actions/HomeActions/actionStates";
 
@@ -11,6 +13,7 @@ const initialData = {
   products: [],
   cartData: [],
   checkoutData: [],
+  viewedData:[],
 };
 
 const homeReducer = (data = initialData, action) => {
@@ -40,6 +43,14 @@ const homeReducer = (data = initialData, action) => {
         checkoutData: action?.data?.data?.map((data) => ({ ...data })),
         totalPrice: action?.data?.Total_price,
       };
+
+    case GETVIEWEDITEMS:
+      return data;
+
+    case SETVIEWEDITEMS:
+      return {...data,
+      viewedData:action?.data?.data.map((data)=>({...data})),
+      }  
 
     default:
       return data;
