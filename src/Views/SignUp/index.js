@@ -19,23 +19,31 @@ const SignUp = () => {
   const validation = (user, contact, password) => {
     let errors = {};
 
-    const nameRegex = new RegExp('^[A-Za-z]+$')
-    if (!nameRegex.test(user)) {
-      errors.user = "Name should contain only charcters";
+    const nameRegex = new RegExp("^[A-Za-z]+$");
+    if (!user) {
+      errors.user = "Name is required";
     } else if (user.length < 3) {
       errors.user = "Name must be greater than 3 charcter";
+    } else if (!nameRegex.test(user)) {
+      errors.user = "Name should contain only charcters";
     }
 
+    const contactRegex = new RegExp("^[0-9]{10}$");
     if (!contact) {
-      errors.contact = "Contact Required";
-    } else if (contact.length < 10 || contact.length > 10) {
-      errors.contact = "Contact number must be of size 10";
+      errors.contact = "Contact is required";
+    } else if (!contactRegex.test(contact)) {
+      errors.contact = "Contact must be in number";
     }
 
+    const psdRegex = new RegExp(
+      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+    );
     if (!password) {
       errors.password = "Password Required";
-    } else if (password.length < 5) {
-      errors.password = "Password must be greater than 6";
+    } else if (password.length <= 8) {
+      errors.password = "Password must be greater than 8";
+    } else if (!psdRegex.test(password)) {
+      errors.password = "Password must be in proper format";
     }
     return errors;
   };
@@ -72,18 +80,23 @@ const SignUp = () => {
     formData.append("detail", detail);
     e.preventDefault();
     setErrors(validation(user, contact, password));
-    console.log(Object.keys(validation(user, contact, password)).length);
-    if (user !== "" && contact !== "" && password !== "" && detail !== "" && !Object.keys(validation(user, contact, password)).length) {
+    // console.log(Object.keys(validation(user, contact, password)).length);
+    if (
+      user !== "" &&
+      contact !== "" &&
+      password !== "" &&
+      detail !== "" &&
+      !Object.keys(validation(user, contact, password)).length
+    ) {
       try {
         dispatch(
           signup({
             data: formData,
             success: (Response) => {
-                history.push({
-                  pathname: "/otp",
-                  state: { contact },
-                });
-
+              history.push({
+                pathname: "/otp",
+                state: { contact },
+              });
             },
             fail: (err) => {
               alert("Check Empty Fields");
@@ -109,37 +122,43 @@ const SignUp = () => {
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Name :</b>
-                    
-                    <input
-                      type="text"
-                      placeholder="First and last name"
-                      className="form-control my-2"
-                      value={user}
-                      onChange={(e) => handleUser(e)}
-                      required
-                    ></input>
+                      <b>
+                        Name<span>*</span> :
+                      </b>
+
+                      <input
+                        type="text"
+                        placeholder="First and last name"
+                        className="form-control my-2"
+                        value={user}
+                        onChange={(e) => handleUser(e)}
+                        required
+                      ></input>
                     </label>
-                    {errors.user && <p>{errors.user}</p>}
+                    {errors.user && <p className="err">{errors.user}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Phone Number :</b>
-                    
-                    <input
-                      type="number"
-                      placeholder="Phone number"
-                      className="form-control my-2"
-                      value={contact}
-                      onChange={(e) => handleContact(e)}
-                      required
-                    ></input>
+                      <b>
+                        Phone Number<span>*</span> :
+                      </b>
+
+                      <input
+                        type="text"
+                        placeholder="Phone number"
+                        className="form-control my-2"
+                        value={contact}
+                        onChange={(e) => handleContact(e)}
+                        required
+                      ></input>
                     </label>
-                    {errors.contact && <p>{errors.contact}</p>}
+                    {errors.contact && <p className="err">{errors.contact}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Password :</b>
+                      <b>
+                        Password<span>*</span> :
+                      </b>
                     </label>
                     <input
                       type="password"
@@ -149,11 +168,15 @@ const SignUp = () => {
                       onChange={(e) => handlePassword(e)}
                       required
                     ></input>
-                    {errors.password && <p>{errors.password}</p>}
+                    {errors.password && (
+                      <p className="err">{errors.password}</p>
+                    )}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Detail:</b>
+                      <b>
+                        Detail<span>*</span> :
+                      </b>
                     </label>
                     <div className="customer-outer">
                       <div>
@@ -162,6 +185,7 @@ const SignUp = () => {
                           className="customer"
                           value="0"
                           name="detail"
+                          checked = {true}
                           onChange={(e) => handleDetail(0)}
                         />
                       </div>
@@ -169,7 +193,7 @@ const SignUp = () => {
                         <p>Customer</p>
                       </div>
                     </div>
-                    <div className="vendor-outer">
+                    {/* <div className="vendor-outer">
                       <div>
                         <input
                           type="radio"
@@ -183,7 +207,7 @@ const SignUp = () => {
                         {" "}
                         <p>Vendor</p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </form>
 

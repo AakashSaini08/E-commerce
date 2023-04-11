@@ -16,17 +16,19 @@ const SignIn = () => {
   const [errors, setErrors] = useState({});
   const validation = (contact, password) => {
     let errors = {};
-
+    const contactRegex = new RegExp('^[0-9]{10}$')
     if (!contact) {
       errors.contact = "Contact Required";
-    } else if (contact.length < 10 || contact.length > 10) {
-      errors.contact = "Contact number must be of size 10";
+    }else if(!contactRegex.test(contact)){
+      errors.contact = "Contact must be 10 digit number";
     }
-
+    const psdRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
     if (!password) {
       errors.password = "Password Required";
-    } else if (password.length < 5) {
-      errors.password = "Password must be greater than 5";
+    } else if (password.length <= 8) {
+      errors.password = "Password must be greater than 8";
+    }else if(!psdRegex.test(password)){
+      errors.password = "Password must be in proper format"
     }
     return errors;
   };
@@ -61,7 +63,12 @@ const SignIn = () => {
           login({
             data: formData,
             success: (Response) => {
-              history.push("/");
+              console.log(Response,"dfdfsd")
+              if(Response.data.token){
+                history.push("/");
+              }else{
+                alert(Response.data.message)
+              }
             },
             fail: (err) => {
               alert("Invalid Contact or Phone number");
@@ -89,20 +96,20 @@ const SignIn = () => {
                 <form className="form-group" onSubmit={handleSubmit}>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Phone Number :</b>
+                      <b>Phone Number<span>*</span> :</b>
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       placeholder="contact no."
                       className="form-control my-2"
                       value={contact}
                       onChange={(e) => handleContact(e)}
                     ></input>
-                    {errors.contact && <p>{errors.contact}</p>}
+                    {errors.contact && <p className="err">{errors.contact}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Password :</b>
+                      <b>Password<span>*</span> :</b>
                     </label>
                     <input
                       type="password"
@@ -112,7 +119,7 @@ const SignIn = () => {
                       autoComplete="off"
                       onChange={(e) => handlePassword(e)}
                     ></input>
-                    {errors.password && <p>{errors.password}</p>}
+                    {errors.password && <p className="err">{errors.password}</p>}
                     <button
                       className="btn btn-link text-black m-2  round rounded-4 "
                       onClick={handleForgot}

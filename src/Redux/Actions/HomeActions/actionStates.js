@@ -14,6 +14,12 @@ export const VIEWED = "VIEWED";
 export const SETVIEWED = "SETVIEWED";
 export const GETVIEWEDITEMS = "GETVIEWEDITEMS";
 export const SETVIEWEDITEMS = "SETVIEWEDITEMS";
+export const ADDREVIEW = "ADDREVIEW";
+export const SETREVIEW = "SETREVIEW";
+export const SUCCESS = "SUCCESS";
+export const SETSUCCESS = "SETSUCCESS";
+
+
 
 
 

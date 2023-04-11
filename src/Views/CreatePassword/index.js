@@ -12,17 +12,23 @@ const CreatePassword = () => {
   const [errors, setErrors] = useState({});
 
   const validation = (contact, reset_password, confirm_password) => {
+    const psdRegex = new RegExp(
+      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+    );
     let errors = {};
     if (!reset_password) {
       errors.reset_password = "Password Required";
-    } else if (reset_password.length < 5) {
-      errors.reset_password = "Password must be greater than 6";
+    }else if (reset_password.length <= 8) {
+      errors.password = "Password must be greater than 8";
+    } else if (!psdRegex.test(reset_password)) {
+      errors.password = "Password must be in proper format";
     }
-
     if (!confirm_password) {
       errors.confirm_password = "Password Required";
-    } else if (confirm_password.length < 5) {
-      errors.confirm_password = "Password must be greater than 6";
+    } else if (confirm_password.length <= 8) {
+      errors.password = "Password must be greater than 8";
+    } else if (!psdRegex.test(confirm_password)) {
+      errors.password = "Password must be in proper format";
     }
 
     return errors;
@@ -89,7 +95,7 @@ const CreatePassword = () => {
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Set Password :</b>
+                      <b>Set Password<span>*</span> :</b>
                     </label>
                     <input
                       type="password"
@@ -99,11 +105,11 @@ const CreatePassword = () => {
                       onChange={(e) => handleResetPassword(e)}
                       required
                     ></input>
-                    {errors.reset_password && <p>{errors.reset_password}</p>}
+                    {errors.reset_password && <p className="err">{errors.reset_password}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Comfirm Password :</b>
+                      <b>Comfirm Password<span>*</span> :</b>
                     </label>
                     <input
                       type="password"
@@ -114,7 +120,7 @@ const CreatePassword = () => {
                       required
                     ></input>
                     {errors.confirm_password && (
-                      <p>{errors.confirm_password}</p>
+                      <p className="err">{errors.confirm_password}</p>
                     )}
                   </div>
                 </form>

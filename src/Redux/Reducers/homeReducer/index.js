@@ -3,8 +3,10 @@ import {
   GETCART,
   GETDATA,
   GETVIEWEDITEMS,
+  PAY,
   SETCART,
   SETDATA,
+  SETPAY,
   SETVIEWEDITEMS,
   SET_ADD_TO_CART,
 } from "../../Actions/HomeActions/actionStates";
@@ -14,6 +16,7 @@ const initialData = {
   cartData: [],
   checkoutData: [],
   viewedData:[],
+  payData:[],
 };
 
 const homeReducer = (data = initialData, action) => {
@@ -42,7 +45,17 @@ const homeReducer = (data = initialData, action) => {
         ...data,
         checkoutData: action?.data?.data?.map((data) => ({ ...data })),
         totalPrice: action?.data?.Total_price,
+        totalItems: action?.data?.product_count,
       };
+
+      case PAY:
+      return data;
+
+      case SETPAY:
+        return{
+          ...data,
+          payData: action?.payload?.sessionId,
+        }
 
     case GETVIEWEDITEMS:
       return data;

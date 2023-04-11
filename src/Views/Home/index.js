@@ -14,7 +14,7 @@ function Home() {
     setTimeout(() => {
       dispatch(getData([]));
       dispatch(getViewedItems([]));
-      dispatch(getCart([1]));  
+      dispatch(getCart(1));  
     },1000)
   }, [dispatch]);
 

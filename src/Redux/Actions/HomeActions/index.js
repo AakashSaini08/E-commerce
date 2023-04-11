@@ -1,4 +1,5 @@
 import {
+  ADDREVIEW,
   ADD_TO_CART,
   GETCART,
   GETDATA,
@@ -8,10 +9,13 @@ import {
   SETCART,
   SETDATA,
   SETPAY,
+  SETREVIEW,
+  SETSUCCESS,
   SETVIEWED,
   SETVIEWEDITEMS,
   SET_ADD_TO_CART,
   SET_REMOVE_FROM_CART,
+  SUCCESS,
   VIEWED,
 } from "./actionStates";
 
@@ -25,6 +29,20 @@ export const getData = (data) => {
 export const setData = (data) => {
   return {
     type: SETDATA,
+    data,
+  };
+};
+
+export const success = (data) => {
+  return {
+    type: SUCCESS,
+    data,
+  };
+};
+
+export const setSuccess = (data) => {
+  return {
+    type: SETSUCCESS,
     data,
   };
 };
@@ -56,6 +74,22 @@ export const setAddToCart = (payload) => {
     payload,
   };
 };
+
+export const addReview = (payload) => {
+  return {
+    type: ADDREVIEW,
+    payload,
+  };
+};
+
+export const setReview = (payload) => {
+  return {
+    type: SETREVIEW,
+    payload,
+  };
+};
+
+
 
 export const viewed = (payload) => {
   return {
@@ -107,6 +141,7 @@ export const paynow = (payload) => {
 };
 
 export const setPaynow = (payload) => {
+  console.log(payload.sessionId,"setPaynow action")
   return {
     type: SETPAY,
     payload,

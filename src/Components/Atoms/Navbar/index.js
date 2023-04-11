@@ -13,7 +13,7 @@ function Navbar() {
     dispatch(getData([]));
   }, [dispatch]);
   const userName = useSelector((state) => state?.auth?.userInfo?.username);
-  const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
+  const totalItems = useSelector((state) => state?.homeReducer?.totalItems);
   const token = useSelector((state) => state?.auth?.data);
   const history = useHistory();
   function handleCart() {
@@ -30,7 +30,7 @@ function Navbar() {
   return (
     <div className="navouter">
       <nav className="navbar navbar-expand-lg bg-body-tertiary fs-5 ">
-        <div className="container-fluid">
+        <div className="nav-left container-fluid">
           <img
             onClick={handleLogo}
             className="navimg"
@@ -42,31 +42,6 @@ function Navbar() {
               <li className="nav-item ">
                 <Link className="nav-link " aria-current="page" to="/">
                   HOME
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  MEN
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  WOMEN
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  KIDS
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  BOOKS
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  SALE
                 </Link>
               </li>
               {token ? (
@@ -90,6 +65,9 @@ function Navbar() {
               ) : []}
             </ul>
           </div>
+          {token ?(
+
+          
           <div>
             <img
               className="cartimg"
@@ -97,8 +75,9 @@ function Navbar() {
               src={Images.cartlogo}
               onClick={handleCart}
             />
-            <p className="item-count">{finalList?.length}</p>
+            <p className="item-count">{totalItems}</p>
           </div>
+          ):[]}
         </div>
       </nav>
     </div>

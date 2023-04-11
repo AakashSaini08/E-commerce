@@ -59,4 +59,9 @@
 }
 .paging{
   margin-left: 1050px;
+  position:relative;
+  bottom: 1px;
+}
+.pg{
+  color: black;
 }

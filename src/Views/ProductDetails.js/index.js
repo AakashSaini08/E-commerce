@@ -3,23 +3,16 @@ import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
 import { BASE_URL } from "Shared/Constants";
 import { useState } from "react";
-import { addToCart } from "Redux/Actions/HomeActions";
+import { addReview, addToCart } from "Redux/Actions/HomeActions";
 
 function ProductDetail() {
   const products = useSelector((state) => state?.homeReducer?.products[1]);
-  console.log(products);
   const productsArray = products ? Object.values(products) : [];
   const params = useParams();
   const { productDetails } = params;
   const selectedProduct = productsArray.find(
     (product) => product.id === +productDetails
   );
-  console.log(selectedProduct);
-  const [review, setReview] = useState();
-  const handleReview = (e) => {
-    setReview(e.target.value);
-  };
-
   const history = useHistory();
   const dispatch = useDispatch();
   const goBack = () => {
@@ -53,10 +46,40 @@ function ProductDetail() {
         })
       );
     } catch (error) {
-      // console.log(error.data);
-      // console.log(error?.data?.token);
     }
   };
+
+  const [rating, setRating] = useState(1);
+  const handleChange = (event) => {
+   setRating(event.target.value);
+ };
+
+  const [review, setReview] = useState();
+  const handleReview = (e) => {
+    setReview(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("product_id", selectedProduct.id);
+    formData.append("review", review);
+    formData.append("rating", rating);
+
+    try {
+      dispatch(
+        addReview({
+          data: formData,
+          success: (Response) => {
+            history.push(`/${selectedProduct.id}`);
+          },
+          fail: (err) => {
+            alert("Something went wrong");
+          },
+        })
+      );
+    } catch (error) {
+    }
+  }
 
   return (
     <>
@@ -139,7 +162,15 @@ function ProductDetail() {
         <div className="review-left">
           <div>
             <h3>Customer Reviews</h3>
-            <p>Rating: 4.5</p>
+            <label>Rating
+            <select value={rating} onChange={handleChange}>
+            <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+            <option value="3"> 3 </option>
+            <option value="4"> 4 </option>
+            <option value="5"> 5 </option>
+            </select>
+              </label>
           </div>
           <div className="review-title">
             <div>
@@ -153,7 +184,7 @@ function ProductDetail() {
               />
             </div>
             <div>
-              <button className="btn btn-dark ">Submit</button>
+              <button className="btn btn-dark " onClick={handleSubmit}>Submit</button>
             </div>
           </div>
         </div>
@@ -162,7 +193,8 @@ function ProductDetail() {
             <h3>Top Reviews</h3>
           </div>
           <div>
-            <h4>User name</h4>
+            <h5>User name</h5>
+            <h5>Rating</h5>
             <p>
               I previously bought JBL Charge 5, which was a Rs. 16K trash
               speaker. But when I compare that JBL with this speaker, this one

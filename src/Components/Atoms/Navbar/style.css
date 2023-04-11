@@ -29,12 +29,12 @@
   font-size: 22px;
   margin-top: -20px;
 }
-.nav-login {
+/* .nav-login {
   position: absolute;
   font-size: 22px;
   right: 90px;
   top: 43px;
-}
+} */
 .nav-logout {
   position: absolute;
   font-size: 22px;
@@ -67,3 +67,7 @@
   right: 188px;
   top: 49px;
 }
+
+/* .nav-left{
+  margin-top: 10px;
+} */

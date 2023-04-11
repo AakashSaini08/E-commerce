@@ -35,7 +35,7 @@ function RecentProducts() {
       addToCart({
         data: formData,
         success: (Response) => {
-          dispatch(getCart());
+          dispatch(getCart(1));
           history.push("/");
         },
         fail: (err) => {
@@ -47,12 +47,14 @@ function RecentProducts() {
   };
 
   return (
+    <>
     <div>
       <div>
         <h2 className="headings">Recently viewed Products</h2>
       </div>
       <div className="main">
-      {arr?.map((item, idx) => {
+      {arr.length > 0?
+      arr?.map((item, idx) => {
         return (
             <div key={idx} className="card-outer">
               <div className="myCard">
@@ -87,9 +89,13 @@ function RecentProducts() {
               </div>
             </div>
           );
-        })}
+        })
+        :
+        <div><h2>No item viewed yet</h2></div>
+        }
       </div>
     </div>
+    </>
   );
 }
 

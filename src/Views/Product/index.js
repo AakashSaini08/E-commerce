@@ -35,7 +35,7 @@ function MyProduct() {
       addToCart({
         data: formData,
         success: (Response) => {
-          dispatch(getCart());
+          dispatch(getCart(1));
           history.push("/");
         },
         fail: (err) => {

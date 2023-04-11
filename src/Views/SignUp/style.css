@@ -1,7 +1,7 @@
 .signup {
   height: 750px;
   margin-top: 0px;
-  background-color: wheat;
+  /* background-color: wheat; */
   border-top: 3px solid black;
 }
 .signup-head {
@@ -12,14 +12,14 @@
 .signup-box {
   margin-top: 40px;
   width: 400px;
-  height: 635px;
+  height: 665px;
   border: 2px solid black;
   border-radius: 20px;
   background-color: aliceblue;
 }
 .otp {
   position: relative;
-  bottom: -100px;
+  bottom: -120px;
 }
 .customer-outer,
 .vendor-outer {
@@ -29,4 +29,10 @@
 .vendor {
   width: 15px;
   margin: 5px;
+}
+span{
+  color:red
+}
+.err{
+  color: red;
 }

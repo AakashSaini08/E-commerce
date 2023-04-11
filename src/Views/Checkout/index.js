@@ -4,18 +4,19 @@ import { getCart, getData, paynow } from "Redux/Actions/HomeActions";
 import "./style.css";
 
 function Checkout() {
+  const [sessionId,setSessionId] = useState('')
+
   const [address, setAddress] = useState("");
   const handleAddress = (e) => {
     setAddress(e.target.value);
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart([]));
+    dispatch(getCart(1));
     dispatch(getData([]));
   }, [dispatch]);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-
   const handlePay=()=>{
     const formData = new FormData();
     formData.append("address", address);
@@ -25,13 +26,18 @@ function Checkout() {
           paynow({
             data: formData,
             success: (Response) => {
-              window.open(Response.data.url)
+              // console.log(Response,"stripe");
+              window.open(Response.data.url)//,"self"
+              // history.pushState('./success')
+              setSessionId(Response.data.sessionId);
+              
             },
             fail: (err) => {
               alert("Payment Faild");
             },
           })
         );
+        
       } catch (error) {
         console.log(error.data);
       }
@@ -39,6 +45,8 @@ function Checkout() {
       alert("Please Enter Address")
     }
   }
+
+  console.log(sessionId,"mySessionId")
 
 
   return (
