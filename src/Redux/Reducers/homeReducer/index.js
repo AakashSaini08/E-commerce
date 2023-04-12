@@ -1,11 +1,15 @@
 import {
   ADD_TO_CART,
+  GETALLREVIEWS,
   GETCART,
   GETDATA,
+  GETORDERHISTORY,
   GETVIEWEDITEMS,
   PAY,
+  SETALLREVIEWS,
   SETCART,
   SETDATA,
+  SETORDERHISTORY,
   SETPAY,
   SETVIEWEDITEMS,
   SET_ADD_TO_CART,
@@ -15,8 +19,10 @@ const initialData = {
   products: [],
   cartData: [],
   checkoutData: [],
-  viewedData:[],
-  payData:[],
+  viewedData: [],
+  payData: [],
+  reviews: [],
+  orderHistory: [],
 };
 
 const homeReducer = (data = initialData, action) => {
@@ -48,22 +54,42 @@ const homeReducer = (data = initialData, action) => {
         totalItems: action?.data?.product_count,
       };
 
-      case PAY:
+    case PAY:
       return data;
 
-      case SETPAY:
-        return{
-          ...data,
-          payData: action?.payload?.sessionId,
-        }
+    case SETPAY:
+      return {
+        ...data,
+        payData: action?.payload?.sessionId,
+      };
 
     case GETVIEWEDITEMS:
       return data;
 
     case SETVIEWEDITEMS:
-      return {...data,
-      viewedData:action?.data?.data.map((data)=>({...data})),
-      }  
+      return {
+        ...data,
+        viewedData: action?.data?.data.map((data) => ({ ...data })),
+      };
+
+    case GETALLREVIEWS:
+      return data;
+
+    case SETALLREVIEWS:
+      console.log(action, "action");
+      return {
+        ...data,
+        reviews: action?.payload?.data.map((data) => ({ ...data })),
+      };
+
+    case GETORDERHISTORY:
+      return data;
+
+    case SETORDERHISTORY:
+      return{
+        ...data,
+        orderHistory: action?.data?.data.map((data) => ({ ...data })),
+      }
 
     default:
       return data;

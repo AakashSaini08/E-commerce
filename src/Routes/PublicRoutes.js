@@ -4,6 +4,7 @@ import CreatePassword from "Views/CreatePassword";
 import Failure from "Views/Failure";
 import ForgotPassword from "Views/ForgotPassword";
 import Logout from "Views/Logout";
+import Orders from "Views/Orders";
 import Otp from "Views/Otp";
 import PhoneOtp from "Views/PhoneOtp";
 import ProductDetail from "Views/ProductDetails.js";
@@ -74,6 +75,11 @@ export const PUBLIC_ROUTES = [
     path: "/cart",
     component: Cart,
     title: "Cart",
+  },
+  {
+    path: "/orders",
+    component: Orders,
+    title: "Orders",
   },
   {
     path: "/:productDetails",

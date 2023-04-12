@@ -1,13 +1,17 @@
 import {
   ADDREVIEW,
   ADD_TO_CART,
+  GETALLREVIEWS,
   GETCART,
   GETDATA,
+  GETORDERHISTORY,
   GETVIEWEDITEMS,
   PAY,
   REMOVE_FROM_CART,
+  SETALLREVIEWS,
   SETCART,
   SETDATA,
+  SETORDERHISTORY,
   SETPAY,
   SETREVIEW,
   SETSUCCESS,
@@ -141,9 +145,37 @@ export const paynow = (payload) => {
 };
 
 export const setPaynow = (payload) => {
-  console.log(payload.sessionId,"setPaynow action")
   return {
     type: SETPAY,
     payload,
+  };
+};
+
+export const getAllReviews = (payload) => {
+  return {
+    type: GETALLREVIEWS,
+    payload,
+  };
+};
+
+export const setAllReviews= (payload) => {
+  console.log(payload,'jjjj');
+  return {
+    type: SETALLREVIEWS,
+    payload,
+  };
+};
+
+export const getOrderHistory = (data) => {
+  return {
+    type: GETORDERHISTORY,
+    data,
+  };
+};
+
+export const setOrderHistory = (data) => {
+  return {
+    type: SETORDERHISTORY,
+    data,
   };
 };

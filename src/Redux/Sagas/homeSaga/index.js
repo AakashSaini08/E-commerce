@@ -2,18 +2,23 @@ import axios from "axios";
 import { takeLatest, put, all } from "redux-saga/effects";
 import {
   setAddToCart,
+  setAllReviews,
   setCart,
   setData,
+  setOrderHistory,
   setPaynow,
   setRemoveFromCart,
+  setReview,
   setViewed,
   setViewedItems,
 } from "Redux/Actions/HomeActions";
 import {
   ADDREVIEW,
   ADD_TO_CART,
+  GETALLREVIEWS,
   GETCART,
   GETDATA,
+  GETORDERHISTORY,
   GETVIEWEDITEMS,
   PAY,
   REMOVE_FROM_CART,
@@ -116,10 +121,9 @@ function* myViewedItem(payload) {
 
 function* myReview({ payload: { data, success, fail } }) {
   try {
-    const response = yield axiosInstance.post(API.recentlyviewed ,data);//sdadsasdasdasdasdasd
+    const response = yield axiosInstance.post(API.productreview ,data);
     if (success) {
-      console.log(response)
-      yield put(setViewed(response?.data));
+      yield put(setReview(response?.data));
       success(response);
     }
   } catch (error) {
@@ -130,10 +134,33 @@ function* myReview({ payload: { data, success, fail } }) {
 }
 
 function* mySuccess(payload) {
-  console.log(payload.data,"homesaga")
   try {
-    const response = yield axiosInstance.post(API.success + "?checkout_session=" + payload.data);
+    const response = yield axiosInstance.get(API.success);
     yield put(setData(Object.values(response?.data)));
+  } catch (error) {
+    if (payload && payload?.fail) {
+      payload.fail(error);
+    }
+  }
+}
+
+function* allReviews(payload) {
+  try {
+    const response = yield axiosInstance.get(API.productreview + "?product_id=" + payload.payload);
+    console.log(response,"allReviews responce");
+    yield put(setAllReviews(response?.data));
+  } catch (error) {
+    if (payload && payload?.fail) {
+      payload.fail(error);
+    }
+  }
+}
+
+function* orderHistory(payload) {
+  try {
+    const response = yield axiosInstance.get(API.orderhistory + "?page="+ payload?.data);
+    console.log(response,"orderHistory response");
+    yield put(setOrderHistory(response?.data));
   } catch (error) {
     if (payload && payload?.fail) {
       payload.fail(error);
@@ -152,9 +179,9 @@ function* Sagaa() {
     takeLatest(VIEWED, viewedItem),
     takeLatest(GETVIEWEDITEMS, myViewedItem),
     takeLatest(ADDREVIEW, myReview),
-    takeLatest(SUCCESS,mySuccess)
-
-    
+    takeLatest(SUCCESS,mySuccess),
+    takeLatest(GETALLREVIEWS,allReviews),
+    takeLatest(GETORDERHISTORY,orderHistory),    
   ]);
 }
 export default Sagaa;

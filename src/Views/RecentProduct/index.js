@@ -9,6 +9,7 @@ function RecentProducts() {
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
   const viewedItems = useSelector((state) => state?.homeReducer?.viewedData);
+  const token = useSelector((state) => state?.auth?.data);
   const arr = [];
   viewedItems?.map((item) => {
     let data = productsArray.find((value) => value.id === item.product_id);
@@ -48,6 +49,7 @@ function RecentProducts() {
 
   return (
     <>
+    {token? 
     <div>
       <div>
         <h2 className="headings">Recently viewed Products</h2>
@@ -94,7 +96,9 @@ function RecentProducts() {
         <div><h2>No item viewed yet</h2></div>
         }
       </div>
+      
     </div>
+    :[]}
     </>
   );
 }

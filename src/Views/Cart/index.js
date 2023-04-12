@@ -123,7 +123,6 @@ function Cart() {
           <h2>Cart Is Empty</h2>
         </div>
       )}
-
       <div className="paging">
         {page > 1 ? (
           <button className="btn btn-dark m-5" onClick={previousPage}>

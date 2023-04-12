@@ -15,7 +15,7 @@ function Home() {
       dispatch(getData([]));
       dispatch(getViewedItems([]));
       dispatch(getCart(1));  
-    },1000)
+    },500)
   }, [dispatch]);
 
   

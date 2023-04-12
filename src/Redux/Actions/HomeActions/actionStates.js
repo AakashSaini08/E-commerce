@@ -18,6 +18,13 @@ export const ADDREVIEW = "ADDREVIEW";
 export const SETREVIEW = "SETREVIEW";
 export const SUCCESS = "SUCCESS";
 export const SETSUCCESS = "SETSUCCESS";
+export const GETALLREVIEWS = "GETALLREVIEWS";
+export const SETALLREVIEWS = "SETALLREVIEWS";
+export const GETORDERHISTORY = "GETORDERHISTORY";
+export const SETORDERHISTORY = "SETORDERHISTORY";
+
+
+
 
 
 

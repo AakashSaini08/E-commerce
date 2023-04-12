@@ -32,18 +32,35 @@ const SignUp = () => {
     if (!contact) {
       errors.contact = "Contact is required";
     } else if (!contactRegex.test(contact)) {
-      errors.contact = "Contact must be in number";
+      errors.contact = "Contact must be a 10 digit number";
     }
 
-    const psdRegex = new RegExp(
-      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-    );
-    if (!password) {
-      errors.password = "Password Required";
-    } else if (password.length <= 8) {
-      errors.password = "Password must be greater than 8";
-    } else if (!psdRegex.test(password)) {
-      errors.password = "Password must be in proper format";
+    const uppercaseRegExp = /(?=.*?[A-Z])/;
+    const lowercaseRegExp = /(?=.*?[a-z])/;
+    const digitsRegExp = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp = /.{8,}/;
+
+    const passwordLength = password.length;
+    const uppercasePassword = uppercaseRegExp.test(password);
+    const lowercasePassword = lowercaseRegExp.test(password);
+    const digitsPassword = digitsRegExp.test(password);
+    const specialCharPassword = specialCharRegExp.test(password);
+    const minLengthPassword = minLengthRegExp.test(password);
+    if (passwordLength === 0) {
+      errors.password = "Password is required";
+    } else if (!uppercasePassword) {
+      errors.password = "At least one Uppercase";
+    } else if (!lowercasePassword) {
+      errors.password = "At least one Lowercase";
+    } else if (!digitsPassword) {
+      errors.password = "At least one digit";
+    } else if (!specialCharPassword) {
+      errors.password = "At least one Special Characters";
+    } else if (!minLengthPassword) {
+      errors.password = "At least minumum 8 characters";
+    } else {
+      errors.password = "";
     }
     return errors;
   };
@@ -128,7 +145,7 @@ const SignUp = () => {
 
                       <input
                         type="text"
-                        placeholder="First and last name"
+                        placeholder="Name"
                         className="form-control my-2"
                         value={user}
                         onChange={(e) => handleUser(e)}
@@ -162,7 +179,7 @@ const SignUp = () => {
                     </label>
                     <input
                       type="password"
-                      placeholder="abc@123"
+                      placeholder="Password"
                       className="form-control my-2"
                       value={password}
                       onChange={(e) => handlePassword(e)}
@@ -193,21 +210,6 @@ const SignUp = () => {
                         <p>Customer</p>
                       </div>
                     </div>
-                    {/* <div className="vendor-outer">
-                      <div>
-                        <input
-                          type="radio"
-                          className="vendor"
-                          value="1"
-                          name="detail"
-                          onChange={(e) => handleDetail(1)}
-                        />
-                      </div>
-                      <div>
-                        {" "}
-                        <p>Vendor</p>
-                      </div>
-                    </div> */}
                   </div>
                 </form>
 

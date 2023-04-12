@@ -1,0 +1,10 @@
+.qty{
+    margin-top: 80px;
+}
+.inner-left {
+    /* border:1px solid grey; */
+    width: 70%;
+    height: 420px;
+    margin-top: 25px;
+    padding: 10px;
+}

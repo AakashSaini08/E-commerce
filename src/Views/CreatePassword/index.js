@@ -11,25 +11,58 @@ const CreatePassword = () => {
   const [confirm_password, setconfirm_password] = useState("");
   const [errors, setErrors] = useState({});
 
-  const validation = (contact, reset_password, confirm_password) => {
-    const psdRegex = new RegExp(
-      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-    );
+  const validation = (reset_password, confirm_password) => {
     let errors = {};
-    if (!reset_password) {
-      errors.reset_password = "Password Required";
-    }else if (reset_password.length <= 8) {
-      errors.password = "Password must be greater than 8";
-    } else if (!psdRegex.test(reset_password)) {
-      errors.password = "Password must be in proper format";
+    const uppercaseRegExp = /(?=.*?[A-Z])/;
+    const lowercaseRegExp = /(?=.*?[a-z])/;
+    const digitsRegExp = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp = /.{8,}/;
+
+    const rpasswordLength = reset_password.length;
+    const ruppercasePassword = uppercaseRegExp.test(reset_password);
+    const rlowercasePassword = lowercaseRegExp.test(reset_password);
+    const rdigitsPassword = digitsRegExp.test(reset_password);
+    const rspecialCharPassword = specialCharRegExp.test(reset_password);
+    const rminLengthPassword = minLengthRegExp.test(reset_password);
+    if (rpasswordLength === 0) {
+      errors.reset_password = "Password is required";
+    } else if (!ruppercasePassword) {
+      errors.reset_password = "At least one Uppercase";
+    } else if (!rlowercasePassword) {
+      errors.reset_password = "At least one Lowercase";
+    } else if (!rdigitsPassword) {
+      errors.reset_password = "At least one digit";
+    } else if (!rspecialCharPassword) {
+      errors.reset_password = "At least one Special Characters";
+    } else if (!rminLengthPassword) {
+      errors.reset_password = "At least minumum 8 characters";
+    } else {
+      errors.reset_password = "";
     }
-    if (!confirm_password) {
-      errors.confirm_password = "Password Required";
-    } else if (confirm_password.length <= 8) {
-      errors.password = "Password must be greater than 8";
-    } else if (!psdRegex.test(confirm_password)) {
-      errors.password = "Password must be in proper format";
+
+    const cpasswordLength = reset_password.length;
+    const cuppercasePassword = uppercaseRegExp.test(confirm_password);
+    const clowercasePassword = lowercaseRegExp.test(confirm_password);
+    const cdigitsPassword = digitsRegExp.test(confirm_password);
+    const cspecialCharPassword = specialCharRegExp.test(confirm_password);
+    const cminLengthPassword = minLengthRegExp.test(confirm_password);
+    if (cpasswordLength === 0) {
+      errors.confirm_password = "Password is required";
+    } else if (!cuppercasePassword) {
+      errors.confirm_password = "At least one Uppercase";
+    } else if (!clowercasePassword) {
+      errors.confirm_password = "At least one Lowercase";
+    } else if (!cdigitsPassword) {
+      errors.confirm_password = "At least one digit";
+    } else if (!cspecialCharPassword) {
+      errors.confirm_password = "At least one Special Characters";
+    } else if (!cminLengthPassword) {
+      errors.confirm_password = "At least minumum 8 characters";
+    } else {
+      errors.confirm_password = "";
     }
+
 
     return errors;
   };

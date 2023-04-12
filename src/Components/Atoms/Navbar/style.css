@@ -6,10 +6,12 @@
   height: 90px;
 }
 
-.container-fluid {
-  margin-top: -20px;
+/* .container-fluid {
+  margin-top: 8px;
+} */
+.navbar{
+  height: 120px;
 }
-
 .navbar .navbar-nav .nav-link:active {
   color: red;
 }
@@ -29,21 +31,20 @@
   font-size: 22px;
   margin-top: -20px;
 }
-/* .nav-login {
+.nav-login {
   position: absolute;
   font-size: 22px;
   right: 90px;
-  top: 43px;
-} */
+}
 .nav-logout {
   position: absolute;
   font-size: 22px;
   right: 90px;
-  top: 43px;
+  top: 52px;
 }
 
 .navouter {
-  margin-top: -10px;
+  margin-top: -25px;
   background-color: #a0c7e5;
   width: auto;
   height: 80px;
@@ -64,10 +65,17 @@
 .user-name {
   color: black;
   position: absolute;
-  right: 188px;
-  top: 49px;
+  right: 279px;
+    top: 57px;
 }
 
-/* .nav-left{
-  margin-top: 10px;
-} */
+.nav-left{
+  margin-top: 12px;
+} 
+.nav-orders{
+  position: absolute;
+  font-size: 22px;
+  right: 182px;
+  top: 52px;
+
+}

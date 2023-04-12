@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,7 @@ import { login } from "Redux/Actions/Auth";
 const SignIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  let myMsg = "Password must contain 1 capital letter , 1 small letter , 1 digit, 1 special character, length should be more than or equal to 8"
   function handleSignup() {
     history.push("/signup");
   }
@@ -16,19 +16,39 @@ const SignIn = () => {
   const [errors, setErrors] = useState({});
   const validation = (contact, password) => {
     let errors = {};
-    const contactRegex = new RegExp('^[0-9]{10}$')
+    const contactRegex = new RegExp("^[0-9]{10}$");
     if (!contact) {
-      errors.contact = "Contact Required";
-    }else if(!contactRegex.test(contact)){
+      errors.contact = "Contact is empty";
+    } else if (!contactRegex.test(contact)) {
       errors.contact = "Contact must be 10 digit number";
     }
-    const psdRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
-    if (!password) {
-      errors.password = "Password Required";
-    } else if (password.length <= 8) {
-      errors.password = "Password must be greater than 8";
-    }else if(!psdRegex.test(password)){
-      errors.password = "Password must be in proper format"
+
+    const uppercaseRegExp = /(?=.*?[A-Z])/;
+    const lowercaseRegExp = /(?=.*?[a-z])/;
+    const digitsRegExp = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp = /.{8,}/;
+
+    const passwordLength = password.length;
+    const uppercasePassword = uppercaseRegExp.test(password);
+    const lowercasePassword = lowercaseRegExp.test(password);
+    const digitsPassword = digitsRegExp.test(password);
+    const specialCharPassword = specialCharRegExp.test(password);
+    const minLengthPassword = minLengthRegExp.test(password);
+    if (passwordLength === 0) {
+      errors.password = "Password is empty";
+    } else if (!uppercasePassword) {
+      errors.password = "At least one Uppercase";
+    } else if (!lowercasePassword) {
+      errors.password = "At least one Lowercase";
+    } else if (!digitsPassword) {
+      errors.password = "At least one digit";
+    } else if (!specialCharPassword) {
+      errors.password = "At least one Special Characters";
+    } else if (!minLengthPassword) {
+      errors.password = "At least minumum 8 characters";
+    } else {
+      errors.password = "";
     }
     return errors;
   };
@@ -53,8 +73,8 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     const formData = new FormData();
-  formData.append("phone_number", contact);
-  formData.append("password", password);
+    formData.append("phone_number", contact);
+    formData.append("password", password);
     e.preventDefault();
     setErrors(validation(contact, password));
     if (contact !== "" && password !== "") {
@@ -63,11 +83,10 @@ const SignIn = () => {
           login({
             data: formData,
             success: (Response) => {
-              console.log(Response,"dfdfsd")
-              if(Response.data.token){
+              if (Response.data.token) {
                 history.push("/");
-              }else{
-                alert(Response.data.message)
+              } else {
+                alert(Response.data.message);
               }
             },
             fail: (err) => {
@@ -96,7 +115,9 @@ const SignIn = () => {
                 <form className="form-group" onSubmit={handleSubmit}>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Phone Number<span>*</span> :</b>
+                      <b>
+                        Phone Number<span>*</span> :
+                      </b>
                     </label>
                     <input
                       type="text"
@@ -109,7 +130,9 @@ const SignIn = () => {
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Password<span>*</span> :</b>
+                      <b>
+                        Password<span>*</span> :
+                      </b>
                     </label>
                     <input
                       type="password"
@@ -119,7 +142,9 @@ const SignIn = () => {
                       autoComplete="off"
                       onChange={(e) => handlePassword(e)}
                     ></input>
-                    {errors.password && <p className="err">{errors.password}</p>}
+                    {errors.password && (
+                      <p className="err">{<p className="myMsg">{myMsg}</p>} ... { errors.password}</p>
+                    )}
                     <button
                       className="btn btn-link text-black m-2  round rounded-4 "
                       onClick={handleForgot}

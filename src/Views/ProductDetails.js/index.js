@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
 import { BASE_URL } from "Shared/Constants";
-import { useState } from "react";
-import { addReview, addToCart } from "Redux/Actions/HomeActions";
+import {  useState } from "react";
+import { addReview, addToCart, getAllReviews } from "Redux/Actions/HomeActions";
 
 function ProductDetail() {
+
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
   const params = useParams();
@@ -13,6 +14,11 @@ function ProductDetail() {
   const selectedProduct = productsArray.find(
     (product) => product.id === +productDetails
   );
+
+  const myReviews = useSelector((state) => state?.homeReducer?.reviews);
+  const finalReviews = myReviews? Object.values(myReviews) : [];
+console.log(finalReviews,"final Reviews")
+
   const history = useHistory();
   const dispatch = useDispatch();
   const goBack = () => {
@@ -70,10 +76,13 @@ function ProductDetail() {
         addReview({
           data: formData,
           success: (Response) => {
-            history.push(`/${selectedProduct.id}`);
+            if(Response.status === 200){
+              dispatch(getAllReviews(selectedProduct.id));
+              history.push(`/${selectedProduct.id}`);
+            }
           },
           fail: (err) => {
-            alert("Something went wrong");
+            alert("You need to buy this product before reviewing it...");
           },
         })
       );
@@ -158,6 +167,7 @@ function ProductDetail() {
         </div>
       </div>
 
+
       <div className="review-outer">
         <div className="review-left">
           <div>
@@ -192,19 +202,19 @@ function ProductDetail() {
           <div>
             <h3>Top Reviews</h3>
           </div>
-          <div>
-            <h5>User name</h5>
-            <h5>Rating</h5>
-            <p>
-              I previously bought JBL Charge 5, which was a Rs. 16K trash
-              speaker. But when I compare that JBL with this speaker, this one
-              is well over my expectation. This speaker sounds really really
-              good. Of course the bigger the speaker, the better it will sound.
-              In this case, the speaker is about 12cm (height) x 29cm (wide) x
-              12cm(depth). And the speaker has to be bigger to give you more
-              bass.
-            </p>
+          {finalReviews?.map((rev,idx)=>{
+            return (
+              <div key={idx} >
+            <h5>User id : {rev.user_id}</h5>
+            <h5>Rating : {rev.rating}</h5>
+            <h5>Date : {rev.created_at}</h5>
+            <h5>
+              Message : {rev.review}
+            </h5>
           </div>
+            );
+          })}
+          
         </div>
       </div>
     </>

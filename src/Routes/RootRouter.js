@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
-
+import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { updateAuthToken } from "Shared/Axios";
 import AppLayout from "Components/Core/AppLayout";
 import { AUTH_ROUTES } from "./AuthRoutes";
@@ -52,12 +51,12 @@ const RootRouter = () => {
   const baseName = process.env.REACT_APP_BASE_NAME;
   const isAuthenticated = !!token;
   return (
-    <HashRouter basename={baseName}>
+    <BrowserRouter basename={baseName}>
       <DocumentTitle isAuthenticated={isAuthenticated} />
       <AppLayout isAuthenticated={isAuthenticated}>
         {token ? <AuthenticatedRoutes /> : <GuestRoutes />}
       </AppLayout>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

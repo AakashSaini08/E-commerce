@@ -37,7 +37,7 @@ function Navbar() {
             alt="logo"
             src={Images.amazonlogo}
           />
-          <div className="collapse navbar-collapse">
+          <div className=" nav-right collapse navbar-collapse">
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link className="nav-link " aria-current="page" to="/">
@@ -53,6 +53,13 @@ function Navbar() {
                 <li className="nav-item nav-login">
                   <Link className="nav-link " to="/login">
                     LOGIN
+                  </Link>
+                </li>
+              ) : []}
+              {token ? (
+                <li className="nav-item nav-orders">
+                  <Link className="nav-link " to="/orders">
+                    ORDERS
                   </Link>
                 </li>
               ) : []}
