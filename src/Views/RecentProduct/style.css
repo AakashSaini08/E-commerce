@@ -1,7 +1,9 @@
-.pro-img {
-    margin-left: 30px;
-    width: 165px;
+.product-img {
+    margin-left: 3px;
+    width: 231px;
     height: 250px;
+  margin-top: 0px;
+  object-fit: contain;
   }
   
   .myCard-body {
@@ -15,12 +17,12 @@
     padding: 5px;
     
   }
-  .myCard {
+  .myCard-recent {
     border: 2px solid grey;
     width: 250px;
     height: 448px;
   }
-  .card-outer {
+  .card-outer-recent {
     width: 250px;
     height: 460px;
   }

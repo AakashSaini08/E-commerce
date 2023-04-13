@@ -159,7 +159,6 @@ function* allReviews(payload) {
 function* orderHistory(payload) {
   try {
     const response = yield axiosInstance.get(API.orderhistory + "?page="+ payload?.data);
-    console.log(response,"orderHistory response");
     yield put(setOrderHistory(response?.data));
   } catch (error) {
     if (payload && payload?.fail) {

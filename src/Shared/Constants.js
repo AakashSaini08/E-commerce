@@ -4,7 +4,7 @@ export const STRINGS = {
     "You appear to be offline. Please check your internet connection.",
 };
 
-export const BASE_URL = "https://fbaf-122-160-165-213.ngrok-free.app/";
+export const BASE_URL = "https://0a75-122-160-165-213.ngrok-free.app/";
 
 export const API = {
   signin: `${BASE_URL}signin/`,

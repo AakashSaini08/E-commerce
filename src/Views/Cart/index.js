@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getCart, getData, removeFromCart } from "Redux/Actions/HomeActions";
+import { getCart, removeFromCart } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
@@ -9,30 +9,17 @@ function Cart() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCart(1));
-    dispatch(getData([]));
   }, [dispatch]);
-
-  const products = useSelector((state) => state?.homeReducer?.products[1]);
-  const productsArray = products ? Object.values(products) : [];
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-
+  const totalItems = useSelector((state) => state?.homeReducer?.totalItems);
   const history = useHistory();
   const handleBuy = () => {
     if (finalList?.length !== 0) {
       history.push("./checkout");
     }
   };
-
-  const arr = [];
-  finalList?.map((item) => {
-    let data = productsArray.find((value) => value.id === item.product_id);
-    if (data) {
-      arr.push(data);
-    }
-    return arr;
-  });
   const [page, setPage] = useState(1);
   const nextPage = () => {
     dispatch(getCart(page + 1));
@@ -79,31 +66,31 @@ function Cart() {
       {finalList?.length !== 0 ? (
         <div className="checkout">
           <div className="outer-main">
-            {arr?.map((item, idx) => {
+            {finalList?.map((item, idx) => {
               return (
                 <div key={idx} className="inner-left">
                   <div className="details">
                     <div className="photo">
                       <img
                         className="cart-img"
-                        src={BASE_URL + item.photo}
+                        src={BASE_URL + item.image_url}
                         alt="..."
                       ></img>
                     </div>
                     <div className="name-detail">
-                      <h2>{item.name}</h2>
-                      <p>{item.product_details}</p>
+                      <h4>{item.product_name}</h4>
+                      <p>{item.product_description}</p>
+                      <h5>Price: ₹{item.product_price}</h5>
+                      <h5>Quantity: {item.quantity}</h5>
                       <button
-                        className=" myBtn btn btn-dark"
-                        onClick={() => handleRemove(item.id)}
+                        className=" remove-Btn btn btn-dark"
+                        onClick={() => handleRemove(item.product_id)}
                       >
                         Remove
                       </button>
                     </div>
-                    <div className="price">
-                      <h2>Price </h2>
-                      <h3>₹{item.price}</h3>
-                    </div>
+                    <div className="price"></div>
+                    <div></div>
                   </div>
                 </div>
               );
@@ -125,15 +112,17 @@ function Cart() {
       )}
       <div className="paging">
         {page > 1 ? (
-          <button className="btn btn-dark m-5" onClick={previousPage}>
+          <button className=" prev btn btn-dark m-5" onClick={previousPage}>
             Previous
           </button>
         ) : null}
-        <span>
-          <b className="pg">{page}</b>
-        </span>
-        {page <= 1 ? (
-          <button className="btn btn-dark m-5" onClick={nextPage}>
+        <div className="pg">
+          <span>
+            <b>{page}</b>
+          </span>
+        </div>
+        {Math.ceil(totalItems / 5) !== page ? (
+          <button className=" next btn btn-dark m-5" onClick={nextPage}>
             Next
           </button>
         ) : null}

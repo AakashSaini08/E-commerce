@@ -1,10 +1,30 @@
 .qty{
     margin-top: 80px;
 }
-.inner-left {
+.inner-order-left {
     /* border:1px solid grey; */
-    width: 70%;
-    height: 420px;
+  background-color: #a0c7e5;
+
+    width: 90%;
+    height: 280px;
     margin-top: 25px;
     padding: 10px;
 }
+.order-img {
+    width: 260px;
+    height: 245px;
+}
+.order-details{
+    display: flex;
+    justify-content: space-around;
+}
+.pg{
+    color: black;
+    margin-top: 56px;
+  }
+  b{
+    color: black;
+  }
+  .name-detail p{
+    font-size: 18px;
+  }

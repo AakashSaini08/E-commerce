@@ -102,8 +102,7 @@ const SignUp = () => {
       user !== "" &&
       contact !== "" &&
       password !== "" &&
-      detail !== "" &&
-      !Object.keys(validation(user, contact, password)).length
+      detail !== ""
     ) {
       try {
         dispatch(
@@ -202,7 +201,6 @@ const SignUp = () => {
                           className="customer"
                           value="0"
                           name="detail"
-                          checked = {true}
                           onChange={(e) => handleDetail(0)}
                         />
                       </div>

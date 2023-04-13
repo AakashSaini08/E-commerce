@@ -45,8 +45,6 @@ const homeReducer = (data = initialData, action) => {
       return data;
 
     case SETCART:
-      // debugger;
-      // console.log("checkoutData");
       return {
         ...data,
         checkoutData: action?.data?.data?.map((data) => ({ ...data })),

@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, getData, getOrderHistory } from "Redux/Actions/HomeActions";
+import { getCart, getOrderHistory } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
-function Cart() {
+function Orders() {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  useEffect(() => {
+  useEffect(()=>{
     dispatch(getCart(1));
-    dispatch(getData([]));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getOrderHistory(1));
-  }, [dispatch]);
-
+    dispatch(getOrderHistory(page));
+  },[dispatch,page]);
   const myOrderHistory = useSelector((state) => state?.homeReducer?.orderHistory);
   const finalHistory = myOrderHistory ? (myOrderHistory) : [];
-  console.log(finalHistory, "final History");
-  const [page, setPage] = useState(1);
+  const orderCount =myOrderHistory[0]?.total_count;
+  
   const nextPage = () => {
     dispatch(getCart(page + 1));
     setPage(page + 1);
@@ -29,7 +25,6 @@ function Cart() {
       setPage(page - 1);
     }
   };
-
   return (
     <>
       <div className="Shoping-cart">
@@ -42,25 +37,21 @@ function Cart() {
           <div className="outer-main">
             {finalHistory?.map((item, idx) => {
               return (
-                <div key={idx} className="inner-left">
-                  <div className="details">
+                <div key={idx} className="inner-order-left">
+                  <div className="order-details">
                     <div className="photo">
                       <img
-                        className="cart-img"
+                        className="order-img"
                         src={BASE_URL + item.product_name.photo}
                         alt="..."
                       ></img>
                     </div>
                     <div className="name-detail">
-                    <h5>Date:  {item.date_of_payment}</h5>
-                      <h2>{item.product_name.name}</h2>
-                      <p>{item.product_name.product_details}</p>
-                    </div>
-                    <div className="price">
-                      <h4>Price ₹{item.price} </h4>
-                    </div>
-                    <div className="qty">
-                        <h4>Quantity {item.quantity}</h4>
+                    <p>Order Placed:  {item.date}</p>
+                      <h3>{item.product_name.name}</h3>
+                      <h5>Price: ₹{item.price} </h5>
+                      <p>Quantity: {item.quantity}</p>
+                      <p>Address: {item.address}</p>
                     </div>
                   </div>
                 </div>
@@ -79,10 +70,12 @@ function Cart() {
             Previous
           </button>
         ) : null}
+        <div className="pg">
         <span>
           <b className="pg">{page}</b>
         </span>
-        {page <= 1 ? (
+        </div>
+        {Math.ceil(orderCount/5) !== page ? (
           <button className="btn btn-dark m-5" onClick={nextPage}>
             Next
           </button>
@@ -92,4 +85,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Orders;

@@ -58,15 +58,15 @@ function RecentProducts() {
       {arr.length > 0?
       arr?.map((item, idx) => {
         return (
-            <div key={idx} className="card-outer">
-              <div className="myCard">
+            <div key={idx} className="card-outer-recent">
+              <div className="myCard-recent">
                 <button
                   className="prod-btn"
                   onClick={() => handleProductDetail(item.id)}
                 >
                   <img
                     src={BASE_URL + item.photo}
-                    className="pro-img "
+                    className="product-img "
                     alt="..."
                   />
                 </button>

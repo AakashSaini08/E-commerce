@@ -3,21 +3,21 @@ import "./style.css";
 import correct from "../../Assets/Images/correct-removebg-preview.png";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setCart, success } from "Redux/Actions/HomeActions";
+import { success } from "Redux/Actions/HomeActions";
 
 function Success() {
   const object = JSON.parse(localStorage.getItem("persist:rootdata"));
   const obj = JSON.parse(object.auth);
   const token = obj.data;
-  console.log(token, "myToken");
+  // console.log(token, "myToken");
 
   const history = useHistory();
   const dispatch = useDispatch();
  
   const handleOk = () => {
     dispatch(success(token));
-    dispatch(setCart(null))
-    history.push("./");
+    history.push("/");
+    
   };
 
   return (

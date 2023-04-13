@@ -21,7 +21,6 @@ export const login = (payload) => {
   };
 };
 export const setLogin = (payload) => {
-  console.log(payload);
   return {
     type: SETLOGIN,
     payload,

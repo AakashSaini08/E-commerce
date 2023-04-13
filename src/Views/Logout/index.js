@@ -29,12 +29,12 @@ function Logout() {
   return (
     <div className="logout-outer">
       <h2>Do you want to Logout</h2>
-      <div>
-        <button className="btn btn-dark" onClick={handleCancel}>
-          Cancel
+      <div className="my-button">
+        <button className="btn btn-dark cancel-btn" onClick={handleCancel}>
+          CANCEL
         </button>
-        <button className="btn btn-dark" onClick={handleLogout}>
-          Ok
+        <button className="btn btn-dark ok-btn" onClick={handleLogout}>
+          OK
         </button>
       </div>
     </div>

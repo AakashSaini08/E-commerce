@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./style.css";
 import { BASE_URL } from "Shared/Constants";
-import {  useState } from "react";
+import { useState } from "react";
 import { addReview, addToCart, getAllReviews } from "Redux/Actions/HomeActions";
 
 function ProductDetail() {
-
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
   const params = useParams();
@@ -16,9 +15,7 @@ function ProductDetail() {
   );
 
   const myReviews = useSelector((state) => state?.homeReducer?.reviews);
-  const finalReviews = myReviews? Object.values(myReviews) : [];
-console.log(finalReviews,"final Reviews")
-
+  const finalReviews = myReviews ? Object.values(myReviews) : [];
   const history = useHistory();
   const dispatch = useDispatch();
   const goBack = () => {
@@ -51,14 +48,13 @@ console.log(finalReviews,"final Reviews")
           },
         })
       );
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const [rating, setRating] = useState(1);
   const handleChange = (event) => {
-   setRating(event.target.value);
- };
+    setRating(event.target.value);
+  };
 
   const [review, setReview] = useState();
   const handleReview = (e) => {
@@ -76,7 +72,7 @@ console.log(finalReviews,"final Reviews")
         addReview({
           data: formData,
           success: (Response) => {
-            if(Response.status === 200){
+            if (Response.status === 200) {
               dispatch(getAllReviews(selectedProduct.id));
               history.push(`/${selectedProduct.id}`);
             }
@@ -86,16 +82,15 @@ console.log(finalReviews,"final Reviews")
           },
         })
       );
-    } catch (error) {
-    }
-  }
+    } catch (error) {}
+  };
 
   return (
     <>
       <div className="main-product ">
         <div>
           <img
-            className="product-img"
+            className="detail-product-img"
             src={BASE_URL + selectedProduct?.photo}
             alt="iphone 14"
           />
@@ -167,20 +162,20 @@ console.log(finalReviews,"final Reviews")
         </div>
       </div>
 
-
       <div className="review-outer">
         <div className="review-left">
           <div>
             <h3>Customer Reviews</h3>
-            <label>Rating
-            <select value={rating} onChange={handleChange}>
-            <option value="1"> 1 </option>
-            <option value="2"> 2 </option>
-            <option value="3"> 3 </option>
-            <option value="4"> 4 </option>
-            <option value="5"> 5 </option>
-            </select>
-              </label>
+            <label>
+              Rating
+              <select value={rating} onChange={handleChange}>
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+              </select>
+            </label>
           </div>
           <div className="review-title">
             <div>
@@ -194,7 +189,9 @@ console.log(finalReviews,"final Reviews")
               />
             </div>
             <div>
-              <button className="btn btn-dark " onClick={handleSubmit}>Submit</button>
+              <button className="btn btn-dark " onClick={handleSubmit}>
+                Submit
+              </button>
             </div>
           </div>
         </div>
@@ -202,19 +199,24 @@ console.log(finalReviews,"final Reviews")
           <div>
             <h3>Top Reviews</h3>
           </div>
-          {finalReviews?.map((rev,idx)=>{
-            return (
-              <div key={idx} >
-            <h5>User id : {rev.user_id}</h5>
-            <h5>Rating : {rev.rating}</h5>
-            <h5>Date : {rev.created_at}</h5>
-            <h5>
-              Message : {rev.review}
-            </h5>
-          </div>
-            );
-          })}
-          
+          {finalReviews.length !== 0 ? (
+            <div>
+              {finalReviews?.map((rev, idx) => {
+                return (
+                  <div key={idx}>
+                    <h5>User id : {rev.user_id}</h5>
+                    <h5>Rating : {rev.rating}</h5>
+                    <h5>Date : {rev.created_at}</h5>
+                    <h5>Message : {rev.review}</h5>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              <h5>No Reviews yet</h5>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -1,14 +1,16 @@
-.pro-img {
-  margin-left: 30px;
-  width: 165px;
-  height: 250px;
+.product-img {
+  margin-left: 3px;
+    width: 231px;
+    height: 250px;
+  margin-top: 0px;
+  object-fit: contain;
 }
 
 .myCard-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 246px;
+  width: 247px;
   height: 192px;
   text-align: center;
   background-color: #a0c7e5;
@@ -17,13 +19,13 @@
 }
 .myCard {
   border: 2px solid grey;
-  width: 250px;
+  width: 251px;
   height: 448px;
 }
 .card-outer {
   width: 250px;
   height: 460px;
-  /* margin:18px; */
+  margin: 10px 18px;
 }
 .main {
   margin-top: 10px;

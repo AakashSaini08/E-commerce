@@ -77,7 +77,7 @@ const SignIn = () => {
     formData.append("password", password);
     e.preventDefault();
     setErrors(validation(contact, password));
-    if (contact !== "" && password !== "") {
+    if (contact !== "" && password !== "" ) {
       try {
         dispatch(
           login({
@@ -95,8 +95,8 @@ const SignIn = () => {
           })
         );
       } catch (error) {
-        console.log(error.data);
-        console.log(error?.data?.token);
+        // console.log(error.data);
+        // console.log(error?.data?.token);
       }
     }
   };

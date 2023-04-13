@@ -27,10 +27,9 @@ function Checkout() {
             data: formData,
             success: (Response) => {
               // console.log(Response,"stripe");
-              window.open(Response.data.url)//,"self"
+              window.open(Response.data.url,"_self")//,"self"
               // history.pushState('./success')
               setSessionId(Response.data.sessionId);
-              
             },
             fail: (err) => {
               alert("Payment Faild");

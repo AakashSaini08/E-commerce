@@ -4,6 +4,7 @@
   margin-top: -14px;
   width: 150px;
   height: 90px;
+  cursor: pointer;
 }
 
 /* .container-fluid {
@@ -39,22 +40,24 @@
 .nav-logout {
   position: absolute;
   font-size: 22px;
-  right: 90px;
-  top: 52px;
+  right: 82px;
+  top: 53px;
 }
 
 .navouter {
-  margin-top: -25px;
-  background-color: #a0c7e5;
-  width: auto;
-  height: 80px;
+  margin-top: -28px;
+    background-color: #a0c7e5;
+    width: auto;
+    height: 84px;
+
 }
 .cartimg {
   position: relative;
   right: -10px;
   top: 12px;
-  width: 100px;
+  width: 90px;
   height: 90px;
+  cursor: pointer;
 }
 .item-count {
   position: relative;
@@ -65,8 +68,8 @@
 .user-name {
   color: black;
   position: absolute;
-  right: 279px;
-    top: 57px;
+  right: 285px;
+    top: 58px;
 }
 
 .nav-left{
@@ -76,6 +79,6 @@
   position: absolute;
   font-size: 22px;
   right: 182px;
-  top: 52px;
+  top: 53px;
 
 }

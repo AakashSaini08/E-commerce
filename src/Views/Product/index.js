@@ -59,7 +59,7 @@ function MyProduct() {
                 >
                   <img
                     src={BASE_URL + item.photo}
-                    className="pro-img "
+                    className="product-img "
                     alt="..."
                   />
                 </button>
