@@ -78,7 +78,7 @@ function* resetPassword({ payload: { data, success, fail } }) {
   }
 }
 
-function* signup({ payload: { data, success, fail } }) {
+function* signUp({ payload: { data, success, fail } }) {
   try {
     const response = yield axios.post(API.signup, data);
     console.log(response);
@@ -129,7 +129,7 @@ function* Sagaa() {
     takeLatest(GETOTP, otp),
     takeLatest(GETVERIFY, verify),
     takeLatest(GETPASSWORD, resetPassword),
-    takeLatest(SIGNUP, signup),
+    takeLatest(SIGNUP, signUp),
     takeLatest(SIGNUPOTP, otpVerify),
     takeLatest(LOGOUT, logoutCall),
   ]);

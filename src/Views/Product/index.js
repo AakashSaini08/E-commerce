@@ -9,41 +9,53 @@ function MyProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
+  const token = useSelector((state) => state?.auth?.data);
   const history = useHistory();
-  
+
   const handleProductDetail = (x) => {
-    const formData = new FormData();
-  formData.append("product_id",x)
-    dispatch(
-      viewed({
-        data:formData,
-        success: (Response) => {
-        },
-        fail: (err) => {
-          alert("Product dosen't add in recently viewed items");
-        },
-      })
-    )
-    history.push(`/${x}`);
+    if (token) {
+      const formData = new FormData();
+      formData.append("product_id", x);
+      dispatch(
+        viewed({
+          data: formData,
+          success: (Response) => {},
+          fail: (err) => {
+            alert("Product doesn't add in recently viewed items");
+          },
+        })
+      );
+    }
+
+    history.push(`productDetails/${x}`);
   };
 
   const handleCart = (item) => {
-    const formData = new FormData();
-    formData.append("product_id", item.id);
-    formData.append("quantity", count);
-    dispatch(
-      addToCart({
-        data: formData,
-        success: (Response) => {
-          dispatch(getCart(1));
-          history.push("/");
-        },
-        fail: (err) => {
-          alert("Item out of stock");
-        },
-      })
-    );
-    alert("item has been added to cart");
+    if (token) {
+      const formData = new FormData();
+      formData.append("product_id", item.id);
+      formData.append("quantity", count);
+      dispatch(
+        addToCart({
+          data: formData,
+          success: (Response) => {
+            console.log(Response, "my responce");
+            dispatch(getCart(1));
+            history.push("/");
+          },
+          fail: (err) => {
+            if (token) {
+              alert("Item out of stock");
+            }
+          },
+        })
+      );
+      if (token) {
+        alert("item has been added to cart");
+      }
+    } else {
+      alert("You need to login first");
+    }
   };
 
   return (
@@ -64,23 +76,23 @@ function MyProduct() {
                   />
                 </button>
                 <div className="myCard-body">
-                <div>
-                  <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">
-                    <b>Quantity:</b> {item.quantity}<br/>
-                    <b>Price:</b> ₹{item.price}
-                  </p>
-                  
-                </div>
+                  <div>
+                    <h5 className="card-title">{item.name}</h5>
+                    <p className="card-text">
+                      <b>In Stock:</b> {item.quantity}
+                      <br />
+                      <b>Price:</b> ₹{item.price}
+                    </p>
+                  </div>
 
-                <div>
-                  <button
-                    className=" myBtn btn btn-dark"
-                    onClick={() => handleCart(item)}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+                  <div>
+                    <button
+                      className=" myBtn btn btn-dark"
+                      onClick={() => handleCart(item)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

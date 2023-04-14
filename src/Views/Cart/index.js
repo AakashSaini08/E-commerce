@@ -56,6 +56,14 @@ function Cart() {
     );
   };
 
+
+
+  const [quant, setQuant] = useState(1);
+  const handleChange = (event) => {
+    setQuant(event.target.value);
+    
+  };
+
   return (
     <>
       <div className="Shoping-cart">
@@ -82,6 +90,17 @@ function Cart() {
                       <p>{item.product_description}</p>
                       <h5>Price: ₹{item.product_price}</h5>
                       <h5>Quantity: {item.quantity}</h5>
+                      <label>
+                        <h5>Quantity : </h5>
+                        </label>
+                        <select className="quantity" value={quant} onChange={handleChange}>
+                          <option value="1"> 1 </option>
+                          <option value="2"> 2 </option>
+                          <option value="3"> 3 </option>
+                          <option value="4"> 4 </option>
+                          <option value="5"> 5 </option>
+                        </select>
+                      
                       <button
                         className=" remove-Btn btn btn-dark"
                         onClick={() => handleRemove(item.product_id)}
@@ -110,23 +129,25 @@ function Cart() {
           <h2>Cart Is Empty</h2>
         </div>
       )}
-      <div className="paging">
-        {page > 1 ? (
-          <button className=" prev btn btn-dark m-5" onClick={previousPage}>
-            Previous
-          </button>
-        ) : null}
-        <div className="pg">
-          <span>
-            <b>{page}</b>
-          </span>
+      {totalItems !== 0 ? (
+        <div className="paging">
+          {page > 1 ? (
+            <button className=" prev btn btn-dark m-5" onClick={previousPage}>
+              Previous
+            </button>
+          ) : null}
+          <div className="pg">
+            <span>
+              <b>{page}</b>
+            </span>
+          </div>
+          {Math.ceil(totalItems / 5) !== page ? (
+            <button className=" next btn btn-dark m-5" onClick={nextPage}>
+              Next
+            </button>
+          ) : null}
         </div>
-        {Math.ceil(totalItems / 5) !== page ? (
-          <button className=" next btn btn-dark m-5" onClick={nextPage}>
-            Next
-          </button>
-        ) : null}
-      </div>
+      ) : null}
     </>
   );
 }

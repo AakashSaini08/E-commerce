@@ -2,21 +2,24 @@ import Carousel from "../../Components/Atoms/Carousel";
 import React, { useEffect } from "react";
 import "./style.css";
 import Products from "../../Assets/Images/Products.png";
-import MyFooter from "../Footer/index";
 import MyProduct from "Views/Product";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { getCart, getData, getViewedItems } from "Redux/Actions/HomeActions";
 import RecentProducts from "Views/RecentProduct";
 
 function Home() {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state?.auth?.data);
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(getData([]));
-      dispatch(getViewedItems([]));
-      dispatch(getCart(1));  
+      if(token){
+        dispatch(getViewedItems([]));
+        dispatch(getCart(1)); 
+      }
     },500)
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   
   return (
@@ -33,7 +36,7 @@ function Home() {
         <MyProduct />
       </div>
 
-      <MyFooter />
+      
     </div>
   );
 }

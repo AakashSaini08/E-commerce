@@ -82,7 +82,7 @@ export const PUBLIC_ROUTES = [
     title: "Orders",
   },
   {
-    path: "/:productDetails",
+    path: "/productDetails/:id",
     component: ProductDetail,
     title: "Product Details",
   },

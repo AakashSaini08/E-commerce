@@ -21,6 +21,7 @@
     border: 2px solid grey;
     width: 250px;
     height: 448px;
+    border-radius: 5px;
   }
   .card-outer-recent {
     width: 250px;
@@ -30,7 +31,7 @@
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   .myBtn {
     align-items: baseline;

@@ -7,7 +7,7 @@ import { signup } from "Redux/Actions/Auth";
 const SignUp = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  let myMsg = "Password must contain 1 capital letter , 1 small letter , 1 digit, 1 special character, length should be more than or equal to 8";
   function handleSignin() {
     history.push("/login");
   }
@@ -18,7 +18,6 @@ const SignUp = () => {
   const [detail, setDetail] = useState("");
   const validation = (user, contact, password) => {
     let errors = {};
-
     const nameRegex = new RegExp("^[A-Za-z]+$");
     if (!user) {
       errors.user = "Name is required";
@@ -185,7 +184,7 @@ const SignUp = () => {
                       required
                     ></input>
                     {errors.password && (
-                      <p className="err">{errors.password}</p>
+                      <p className="err">{<p className="myMsg">{myMsg}</p>} {errors.password}</p>
                     )}
                   </div>
                   <div className="d-sm-grid gap-1">

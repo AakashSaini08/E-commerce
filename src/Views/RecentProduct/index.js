@@ -22,7 +22,7 @@ function RecentProducts() {
 
   const history = useHistory();
   const handleProductDetail = (x) => {
-    history.push(`/${x}`);
+    history.push(`productDetails/${x}`);
   };
 
   const count = 1;

@@ -12,20 +12,7 @@ import {
   setViewed,
   setViewedItems,
 } from "Redux/Actions/HomeActions";
-import {
-  ADDREVIEW,
-  ADD_TO_CART,
-  GETALLREVIEWS,
-  GETCART,
-  GETDATA,
-  GETORDERHISTORY,
-  GETVIEWEDITEMS,
-  PAY,
-  REMOVE_FROM_CART,
-  SUCCESS,
-  VIEWED,
-
-} from "Redux/Actions/HomeActions/actionStates";
+import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SUCCESS, VIEWED } from "Redux/Actions/HomeActions/actionStates";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
@@ -79,10 +66,9 @@ function* removeItem({ payload: { data, success, fail } }) {
   }
 }
 
-function* payhere({ payload: { data, success, fail } }) {
+function* payHere({ payload: { data, success, fail } }) {
   try {
     const response = yield axiosInstance.post(API.create_checkout , data);
-    // console.log(response,"sdsd");
     if (success) {
       yield put(setPaynow(response?.data));
       success(response);
@@ -147,7 +133,6 @@ function* mySuccess(payload) {
 function* allReviews(payload) {
   try {
     const response = yield axiosInstance.get(API.productreview + "?product_id=" + payload.payload);
-    console.log(response,"allReviews responce");
     yield put(setAllReviews(response?.data));
   } catch (error) {
     if (payload && payload?.fail) {
@@ -170,17 +155,17 @@ function* orderHistory(payload) {
 
 function* Sagaa() {
   yield all([
-    takeLatest(GETDATA, products),
+    takeLatest(GET_DATA, products),
     takeLatest(ADD_TO_CART, myCart),
-    takeLatest(GETCART, cartData),
+    takeLatest(GET_CART, cartData),
     takeLatest(REMOVE_FROM_CART, removeItem),
-    takeLatest(PAY, payhere),
+    takeLatest(PAY, payHere),
     takeLatest(VIEWED, viewedItem),
-    takeLatest(GETVIEWEDITEMS, myViewedItem),
-    takeLatest(ADDREVIEW, myReview),
+    takeLatest(GET_VIEWED_ITEMS, myViewedItem),
+    takeLatest(ADD_REVIEW, myReview),
     takeLatest(SUCCESS,mySuccess),
-    takeLatest(GETALLREVIEWS,allReviews),
-    takeLatest(GETORDERHISTORY,orderHistory),    
+    takeLatest(GET_ALL_REVIEWS,allReviews),
+    takeLatest(GET_ORDER_HISTORY,orderHistory),    
   ]);
 }
 export default Sagaa;

@@ -143,7 +143,7 @@ const SignIn = () => {
                       onChange={(e) => handlePassword(e)}
                     ></input>
                     {errors.password && (
-                      <p className="err">{<p className="myMsg">{myMsg}</p>} ... { errors.password}</p>
+                      <p className="err">{<p className="myMsg">{myMsg}</p>} { errors.password}</p>
                     )}
                     <button
                       className="btn btn-link text-black m-2  round rounded-4 "

@@ -1,18 +1,18 @@
 import {
   ADD_TO_CART,
-  GETALLREVIEWS,
-  GETCART,
-  GETDATA,
-  GETORDERHISTORY,
-  GETVIEWEDITEMS,
+  GET_ALL_REVIEWS,
+  GET_CART,
+  GET_DATA,
+  GET_ORDER_HISTORY,
+  GET_VIEWED_ITEMS,
   PAY,
-  SETALLREVIEWS,
-  SETCART,
-  SETDATA,
-  SETORDERHISTORY,
-  SETPAY,
-  SETVIEWEDITEMS,
   SET_ADD_TO_CART,
+  SET_ALL_REVIEWS,
+  SET_CART,
+  SET_DATA,
+  SET_ORDER_HISTORY,
+  SET_PAY,
+  SET_VIEWED_ITEMS,
 } from "../../Actions/HomeActions/actionStates";
 
 const initialData = {
@@ -26,13 +26,10 @@ const initialData = {
 };
 
 const homeReducer = (data = initialData, action) => {
-  // console.log('reducer....')
-
   switch (action.type) {
-    case GETDATA:
+    case GET_DATA:
       return data;
-    case SETDATA:
-      // console.log('setdata........')
+    case SET_DATA:
       return { ...data, products: action?.data?.map((data) => ({ ...data })) };
 
     case ADD_TO_CART:
@@ -41,10 +38,10 @@ const homeReducer = (data = initialData, action) => {
     case SET_ADD_TO_CART:
       return { ...data, cartData: action?.data?.map((data) => ({ ...data })) };
 
-    case GETCART:
+    case GET_CART:
       return data;
 
-    case SETCART:
+    case SET_CART:
       return {
         ...data,
         checkoutData: action?.data?.data?.map((data) => ({ ...data })),
@@ -55,39 +52,38 @@ const homeReducer = (data = initialData, action) => {
     case PAY:
       return data;
 
-    case SETPAY:
+    case SET_PAY:
       return {
         ...data,
         payData: action?.payload?.sessionId,
       };
 
-    case GETVIEWEDITEMS:
+    case GET_VIEWED_ITEMS:
       return data;
 
-    case SETVIEWEDITEMS:
+    case SET_VIEWED_ITEMS:
       return {
         ...data,
         viewedData: action?.data?.data.map((data) => ({ ...data })),
       };
 
-    case GETALLREVIEWS:
+    case GET_ALL_REVIEWS:
       return data;
 
-    case SETALLREVIEWS:
-      console.log(action, "action");
+    case SET_ALL_REVIEWS:
       return {
         ...data,
         reviews: action?.payload?.data.map((data) => ({ ...data })),
       };
 
-    case GETORDERHISTORY:
+    case GET_ORDER_HISTORY:
       return data;
 
-    case SETORDERHISTORY:
-      return{
+    case SET_ORDER_HISTORY:
+      return {
         ...data,
         orderHistory: action?.data?.data.map((data) => ({ ...data })),
-      }
+      };
 
     default:
       return data;

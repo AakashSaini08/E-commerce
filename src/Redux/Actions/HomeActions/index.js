@@ -1,38 +1,15 @@
-import {
-  ADDREVIEW,
-  ADD_TO_CART,
-  GETALLREVIEWS,
-  GETCART,
-  GETDATA,
-  GETORDERHISTORY,
-  GETVIEWEDITEMS,
-  PAY,
-  REMOVE_FROM_CART,
-  SETALLREVIEWS,
-  SETCART,
-  SETDATA,
-  SETORDERHISTORY,
-  SETPAY,
-  SETREVIEW,
-  SETSUCCESS,
-  SETVIEWED,
-  SETVIEWEDITEMS,
-  SET_ADD_TO_CART,
-  SET_REMOVE_FROM_CART,
-  SUCCESS,
-  VIEWED,
-} from "./actionStates";
+import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SET_ADD_TO_CART, SET_ALL_REVIEWS, SET_CART, SET_DATA, SET_ORDER_HISTORY, SET_PAY, SET_REMOVE_FROM_CART, SET_REVIEW, SET_SUCCESS, SET_VIEWED, SET_VIEWED_ITEMS, SUCCESS, VIEWED } from "./actionStates";
 
 export const getData = (data) => {
   return {
-    type: GETDATA,
+    type: GET_DATA,
     data,
   };
 };
 
 export const setData = (data) => {
   return {
-    type: SETDATA,
+    type: SET_DATA,
     data,
   };
 };
@@ -46,21 +23,21 @@ export const success = (data) => {
 
 export const setSuccess = (data) => {
   return {
-    type: SETSUCCESS,
+    type: SET_SUCCESS,
     data,
   };
 };
 
 export const getViewedItems = (data) => {
   return {
-    type: GETVIEWEDITEMS,
+    type: GET_VIEWED_ITEMS,
     data,
   };
 };
 
 export const setViewedItems = (data) => {
   return {
-    type: SETVIEWEDITEMS,
+    type: SET_VIEWED_ITEMS,
     data,
   };
 };
@@ -81,14 +58,14 @@ export const setAddToCart = (payload) => {
 
 export const addReview = (payload) => {
   return {
-    type: ADDREVIEW,
+    type: ADD_REVIEW,
     payload,
   };
 };
 
 export const setReview = (payload) => {
   return {
-    type: SETREVIEW,
+    type: SET_REVIEW,
     payload,
   };
 };
@@ -104,21 +81,21 @@ export const viewed = (payload) => {
 
 export const setViewed = (payload) => {
   return {
-    type: SETVIEWED,
+    type: SET_VIEWED,
     payload,
   };
 };
 
 export const getCart = (data) => {
   return {
-    type: GETCART,
+    type: GET_CART,
     data,
   };
 };
 
 export const setCart = (data) => {
   return {
-    type: SETCART,
+    type: SET_CART,
     data,
   };
 };
@@ -146,36 +123,35 @@ export const paynow = (payload) => {
 
 export const setPaynow = (payload) => {
   return {
-    type: SETPAY,
+    type: SET_PAY,
     payload,
   };
 };
 
 export const getAllReviews = (payload) => {
   return {
-    type: GETALLREVIEWS,
+    type: GET_ALL_REVIEWS,
     payload,
   };
 };
 
 export const setAllReviews= (payload) => {
-  console.log(payload,'jjjj');
   return {
-    type: SETALLREVIEWS,
+    type: SET_ALL_REVIEWS,
     payload,
   };
 };
 
 export const getOrderHistory = (data) => {
   return {
-    type: GETORDERHISTORY,
+    type: GET_ORDER_HISTORY,
     data,
   };
 };
 
 export const setOrderHistory = (data) => {
   return {
-    type: SETORDERHISTORY,
+    type: SET_ORDER_HISTORY,
     data,
   };
 };

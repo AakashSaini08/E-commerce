@@ -66,6 +66,7 @@
 }
 .emptyCart{
   text-align: center;
+  margin-bottom: 334px;
 }
 .Shoping-cart{
   margin-left:600px ;
@@ -82,4 +83,9 @@
 }
 b{
   color: black;
+}
+.quantity{
+  width: 50px;
+  margin-left: 5px;
+  border-radius: 10px;
 }
