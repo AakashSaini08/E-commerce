@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getCart, removeFromCart } from "Redux/Actions/HomeActions";
+import {  addToCart, getCart, removeFromCart } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
 function Cart() {
+    const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart(1));
-  }, [dispatch]);
+    dispatch(getCart(page));
+  }, [dispatch,page]);
   const finalList = useSelector((state) => state?.homeReducer?.checkoutData);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
   const totalItems = useSelector((state) => state?.homeReducer?.totalItems);
+  const token = useSelector((state) => state?.auth?.data);
   const history = useHistory();
   const handleBuy = () => {
     if (finalList?.length !== 0) {
       history.push("./checkout");
     }
   };
-  const [page, setPage] = useState(1);
+
   const nextPage = () => {
     dispatch(getCart(page + 1));
     setPage(page + 1);
@@ -56,13 +58,30 @@ function Cart() {
     );
   };
 
-
-
-  const [quant, setQuant] = useState(1);
-  const handleChange = (event) => {
-    setQuant(event.target.value);
-    
-  };
+  const handleChange = (item,idx,e) => {
+    if (token) {
+          const formData = new FormData();
+          formData.append("product_id", item.product_id);
+          formData.append("quantity", e.target.value);
+          try {
+            dispatch(
+              addToCart({
+                data: formData,
+                success: (Response) => {
+                  dispatch(getCart(page));
+                },
+                fail: (err) => {
+                  if (token) {
+                    alert("Item out of stock");
+                  } 
+                },
+              })
+            );
+          } catch (error) {}
+        }else {
+          alert("You need to login first");
+        }
+      };
 
   return (
     <>
@@ -89,18 +108,22 @@ function Cart() {
                       <h4>{item.product_name}</h4>
                       <p>{item.product_description}</p>
                       <h5>Price: ₹{item.product_price}</h5>
-                      <h5>Quantity: {item.quantity}</h5>
                       <label>
                         <h5>Quantity : </h5>
-                        </label>
-                        <select className="quantity" value={quant} onChange={handleChange}>
-                          <option value="1"> 1 </option>
-                          <option value="2"> 2 </option>
-                          <option value="3"> 3 </option>
-                          <option value="4"> 4 </option>
-                          <option value="5"> 5 </option>
-                        </select>
-                      
+                      </label>
+
+                      <select
+                        className="quantity"
+                        value={item.quantity}
+                        onChange={(e) => handleChange(item,idx,e)}
+                      >
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                      </select>
+
                       <button
                         className=" remove-Btn btn btn-dark"
                         onClick={() => handleRemove(item.product_id)}
@@ -109,7 +132,6 @@ function Cart() {
                       </button>
                     </div>
                     <div className="price"></div>
-                    <div></div>
                   </div>
                 </div>
               );

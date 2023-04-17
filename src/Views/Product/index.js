@@ -39,7 +39,6 @@ function MyProduct() {
         addToCart({
           data: formData,
           success: (Response) => {
-            console.log(Response, "my responce");
             dispatch(getCart(1));
             history.push("/");
           },

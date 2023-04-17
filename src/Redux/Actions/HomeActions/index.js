@@ -1,4 +1,4 @@
-import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SET_ADD_TO_CART, SET_ALL_REVIEWS, SET_CART, SET_DATA, SET_ORDER_HISTORY, SET_PAY, SET_REMOVE_FROM_CART, SET_REVIEW, SET_SUCCESS, SET_VIEWED, SET_VIEWED_ITEMS, SUCCESS, VIEWED } from "./actionStates";
+import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_TRANSACTION_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SET_ADD_TO_CART, SET_ALL_REVIEWS, SET_CART, SET_DATA, SET_ORDER_HISTORY, SET_PAY, SET_REMOVE_FROM_CART, SET_REVIEW, SET_SUCCESS, SET_TRANSACTION_HISTORY, SET_VIEWED, SET_VIEWED_ITEMS, SUCCESS, VIEWED } from "./actionStates";
 
 export const getData = (data) => {
   return {
@@ -152,6 +152,20 @@ export const getOrderHistory = (data) => {
 export const setOrderHistory = (data) => {
   return {
     type: SET_ORDER_HISTORY,
+    data,
+  };
+};
+
+export const getTransactionHistory = (data) => {
+  return {
+    type: GET_TRANSACTION_HISTORY,
+    data,
+  };
+};
+
+export const setTransactionHistory = (data) => {
+  return {
+    type: SET_TRANSACTION_HISTORY,
     data,
   };
 };

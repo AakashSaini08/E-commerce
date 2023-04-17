@@ -13,6 +13,7 @@ function Orders() {
   },[dispatch,page]);
   const myOrderHistory = useSelector((state) => state?.homeReducer?.orderHistory);
   const finalHistory = myOrderHistory ? (myOrderHistory) : [];
+  console.log(myOrderHistory)
   const orderCount =myOrderHistory[0]?.total_count;
   
   const nextPage = () => {
@@ -64,7 +65,8 @@ function Orders() {
           <h2>No product ordered yet</h2>
         </div>
       )}
-      <div className="paging">
+      {orderCount !== 0 ? (
+        <div className="paging">
         {page > 1 ? (
           <button className="btn btn-dark m-5" onClick={previousPage}>
             Previous
@@ -81,6 +83,8 @@ function Orders() {
           </button>
         ) : null}
       </div>
+      ): null}
+      
     </>
   );
 }

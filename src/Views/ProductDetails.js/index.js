@@ -13,11 +13,7 @@ import {
 function ProductDetail() {
   const products = useSelector((state) => state?.homeReducer?.products[1]);
   const productsArray = products ? Object.values(products) : [];
-  console.log(productsArray[0].quantity,"kjgkgkg")
   const params = useParams();
-  // console.log(params);
-
-  // console.log(params,productDetails?.id,"sgdfsgf");
   const selectedProduct = productsArray.find(
     (product) => product.id === +params?.id
   );
@@ -166,7 +162,7 @@ function ProductDetail() {
               <div className="count-value">
                 <input
                   type="number"
-                  placeholder="Phone number"
+                  placeholder="Quantity"
                   className="form-control my-2 "
                   value={count}
                   onChange={(e) => handleCount(e)}

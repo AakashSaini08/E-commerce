@@ -4,6 +4,7 @@ import {
   GET_CART,
   GET_DATA,
   GET_ORDER_HISTORY,
+  GET_TRANSACTION_HISTORY,
   GET_VIEWED_ITEMS,
   PAY,
   SET_ADD_TO_CART,
@@ -12,6 +13,7 @@ import {
   SET_DATA,
   SET_ORDER_HISTORY,
   SET_PAY,
+  SET_TRANSACTION_HISTORY,
   SET_VIEWED_ITEMS,
 } from "../../Actions/HomeActions/actionStates";
 
@@ -23,6 +25,7 @@ const initialData = {
   payData: [],
   reviews: [],
   orderHistory: [],
+  transactionHistory:[],
 };
 
 const homeReducer = (data = initialData, action) => {
@@ -83,6 +86,15 @@ const homeReducer = (data = initialData, action) => {
       return {
         ...data,
         orderHistory: action?.data?.data.map((data) => ({ ...data })),
+      };
+
+      case GET_TRANSACTION_HISTORY:
+      return data;
+
+    case SET_TRANSACTION_HISTORY:
+      return {
+        ...data,
+        transactionHistory: action?.data?.data.map((data) => ({ ...data })),
       };
 
     default:

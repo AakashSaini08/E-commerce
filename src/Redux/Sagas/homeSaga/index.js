@@ -9,10 +9,11 @@ import {
   setPaynow,
   setRemoveFromCart,
   setReview,
+  setTransactionHistory,
   setViewed,
   setViewedItems,
 } from "Redux/Actions/HomeActions";
-import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SUCCESS, VIEWED } from "Redux/Actions/HomeActions/actionStates";
+import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_TRANSACTION_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SUCCESS, VIEWED } from "Redux/Actions/HomeActions/actionStates";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
@@ -152,6 +153,17 @@ function* orderHistory(payload) {
   }
 }
 
+function* transactionHistory(payload) {
+  try {
+    const response = yield axiosInstance.get(API.transactionhistory + "?page="+ payload?.data);
+    yield put(setTransactionHistory(response?.data));
+  } catch (error) {
+    if (payload && payload?.fail) {
+      payload.fail(error);
+    }
+  }
+}
+
 
 function* Sagaa() {
   yield all([
@@ -165,7 +177,9 @@ function* Sagaa() {
     takeLatest(ADD_REVIEW, myReview),
     takeLatest(SUCCESS,mySuccess),
     takeLatest(GET_ALL_REVIEWS,allReviews),
-    takeLatest(GET_ORDER_HISTORY,orderHistory),    
+    takeLatest(GET_ORDER_HISTORY,orderHistory),   
+    takeLatest(GET_TRANSACTION_HISTORY,transactionHistory),    
+
   ]);
 }
 export default Sagaa;

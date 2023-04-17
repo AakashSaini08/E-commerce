@@ -36,6 +36,11 @@ function Navbar() {
                   HOME
                 </Link>
               </li>
+              <li className="nav-item ">
+                <Link className="nav-link " aria-current="page" to="/history">
+                  HISTORY
+                </Link>
+              </li>
               {token ? (
                 <div>
                   <li className="nav-item user-name">

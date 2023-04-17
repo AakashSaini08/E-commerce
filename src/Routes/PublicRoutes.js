@@ -3,6 +3,7 @@ import Checkout from "Views/Checkout";
 import CreatePassword from "Views/CreatePassword";
 import Failure from "Views/Failure";
 import ForgotPassword from "Views/ForgotPassword";
+import History from "Views/History";
 import Logout from "Views/Logout";
 import Orders from "Views/Orders";
 import Otp from "Views/Otp";
@@ -80,6 +81,11 @@ export const PUBLIC_ROUTES = [
     path: "/orders",
     component: Orders,
     title: "Orders",
+  },
+  {
+    path: "/history",
+    component: History,
+    title: "History",
   },
   {
     path: "/productDetails/:id",
