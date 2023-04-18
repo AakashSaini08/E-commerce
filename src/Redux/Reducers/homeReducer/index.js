@@ -91,10 +91,10 @@ const homeReducer = (data = initialData, action) => {
       case GET_TRANSACTION_HISTORY:
       return data;
 
-    case SET_TRANSACTION_HISTORY:
-      return {
+    case SET_TRANSACTION_HISTORY: 
+    return {
         ...data,
-        transactionHistory: action?.data?.data.map((data) => ({ ...data })),
+        transactionHistory: action?.data?.data.map((data) => ({ ...data }))
       };
 
     default:

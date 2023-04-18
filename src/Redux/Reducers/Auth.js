@@ -2,7 +2,6 @@ import { LOGIN, SETLOGIN } from "../Actions/Auth";
 import { ACTION_STATES } from "../Actions/ActionStates";
 
 const initialState = {
-  token: null,
   userInfo: {},
 };
 const authReducer = (state = initialState, action) => {

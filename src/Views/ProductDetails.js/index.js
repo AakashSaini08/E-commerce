@@ -97,7 +97,7 @@ function ProductDetail() {
           success: (Response) => {
             if (Response.status === 200) {
               dispatch(getAllReviews(selectedProduct.id));
-              history.push(`/${selectedProduct.id}`);
+              history.push(`/productDetails/${selectedProduct.id}`);
             }
           },
           fail: (err) => {

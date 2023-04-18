@@ -6,6 +6,7 @@ import MyProduct from "Views/Product";
 import { useDispatch, useSelector} from "react-redux";
 import { getCart, getData, getViewedItems } from "Redux/Actions/HomeActions";
 import RecentProducts from "Views/RecentProduct";
+import Footer from "Views/Footer";
 
 function Home() {
   const dispatch = useDispatch();
@@ -35,6 +36,8 @@ function Home() {
       <div>
         <MyProduct />
       </div>
+
+      <Footer/>
 
       
     </div>

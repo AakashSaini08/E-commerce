@@ -7,21 +7,28 @@ import "./style.css";
 function Orders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getCart(1));
     dispatch(getOrderHistory(page));
-  },[dispatch,page]);
-  const myOrderHistory = useSelector((state) => state?.homeReducer?.orderHistory);
-  const finalHistory = myOrderHistory ? (myOrderHistory) : [];
-  console.log(myOrderHistory)
-  const orderCount =myOrderHistory[0]?.total_count;
-  
+  }, [dispatch, page]);
+  const myOrderHistory = useSelector(
+    (state) => state?.homeReducer?.orderHistory
+  );
+  const finalHistory = myOrderHistory ? myOrderHistory : [];
+  console.log(myOrderHistory, "orderHistory");
+  const orderCount = myOrderHistory[0]?.total_count;
+
+  // const myOrderId = useSelector((state) => state?.homeReducer?.orderId);
+  // console.log(myOrderId, "orderId");
+
   const nextPage = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     dispatch(getCart(page + 1));
     setPage(page + 1);
   };
   const previousPage = () => {
     if (page > 1) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       dispatch(getCart(page - 1));
       setPage(page - 1);
     }
@@ -32,27 +39,32 @@ function Orders() {
         <h2>Your Orders</h2>
       </div>
       <hr />
-
-      {finalHistory?.length !== 0 ? (
-        <div className="checkout">
-          <div className="outer-main">
-            {finalHistory?.map((item, idx) => {
+      {finalHistory?.map((item,idx)=>{
+        return(
+          <div key={idx}>
+          <div className="order-Header">
+          <div>Order Placed : {item.date}</div>
+          <div>Ship To : {item.address}</div>
+          <div>Order Id : {item.order_id}</div>
+          </div>
+          {item?.data?.length !== 0 ? (
+        <div className="order">
+          <div className="order-main">
+            {item?.data?.map((item, idx) => {
               return (
                 <div key={idx} className="inner-order-left">
                   <div className="order-details">
                     <div className="photo">
                       <img
                         className="order-img"
-                        src={BASE_URL + item.product_name.photo}
+                        src={BASE_URL + item?.product_name?.photo}
                         alt="..."
                       ></img>
                     </div>
                     <div className="name-detail">
-                    <p>Order Placed:  {item.date}</p>
-                      <h3>{item.product_name.name}</h3>
-                      <h5>Price: ₹{item.price} </h5>
-                      <p>Quantity: {item.quantity}</p>
-                      <p>Address: {item.address}</p>
+                      <h4>{item.product_name?.name}</h4>
+                      <h5>Price: ₹{item?.price} </h5>
+                      <p>Quantity: {item?.quantity}</p>
                     </div>
                   </div>
                 </div>
@@ -65,6 +77,12 @@ function Orders() {
           <h2>No product ordered yet</h2>
         </div>
       )}
+        </div>
+        );
+        
+      })}
+
+      
       {orderCount !== 0 ? (
         <div className="paging">
         {page > 1 ? (
@@ -84,7 +102,6 @@ function Orders() {
         ) : null}
       </div>
       ): null}
-      
     </>
   );
 }

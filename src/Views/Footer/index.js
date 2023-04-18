@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import googlPlay from "../../Assets/Images/googlePlay.png";
 import appStore from "../../Assets/Images/appStore.png";
-function MyFooter() {
+function Footer() {
   return (
     <div className="main-footer">
       <div className="footer1">
@@ -66,4 +66,4 @@ function MyFooter() {
   );
 }
 
-export default MyFooter;
+export default Footer;

@@ -4,15 +4,14 @@
 .inner-order-left {
     /* border:1px solid grey; */
   background-color: #a0c7e5;
-
     width: 90%;
     height: 280px;
-    margin-top: 25px;
     padding: 10px;
 }
 .order-img {
     width: 260px;
     height: 245px;
+    object-fit: contain;
 }
 .order-details{
     display: flex;
@@ -27,4 +26,25 @@
   }
   .name-detail p{
     font-size: 16px;
+  }
+  .order-Header {
+display: flex;
+justify-content: space-evenly;
+width: 900px;
+margin-left: 250px;
+height:50px;
+background-color: rgb(9, 89, 120);
+color: white;
+/* margin: 5px; */
+padding: 10px;
+font-size: 20px;
+margin-bottom: 20px;
+  }
+
+  .order{
+width: 1000px;
+margin-left: 250px;
+margin-bottom: 30px;
+margin-top: -25px;
+
   }

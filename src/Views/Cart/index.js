@@ -24,11 +24,13 @@ function Cart() {
   };
 
   const nextPage = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     dispatch(getCart(page + 1));
     setPage(page + 1);
   };
   const previousPage = () => {
     if (page > 1) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       dispatch(getCart(page - 1));
       setPage(page - 1);
     }
@@ -107,7 +109,7 @@ function Cart() {
                     <div className="name-detail">
                       <h4>{item.product_name}</h4>
                       <p>{item.product_description}</p>
-                      <h5>Price: ₹{item.product_price}</h5>
+                      <h5>Total: ₹{item.product_price}</h5>
                       <label>
                         <h5>Quantity : </h5>
                       </label>
