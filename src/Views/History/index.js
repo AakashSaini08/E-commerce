@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTransactionHistory } from "Redux/Actions/HomeActions";
 import "./style.css";
 
-function Orders() {
+function History() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -42,13 +42,14 @@ console.log(finalTransactionHistory,"gfgdf");
             {finalTransactionHistory?.map((item, idx) => {
               return (
                 <div key={idx} className="trans-details">
+                <div className="date-id">
                     <p>Order Placed:  {item.date}</p>
                     <div>
                     <p>Transaction Id: {item.transaction_id}</p>
                     </div>
-                    
+                    </div>
                       <h4>{item.product_name}</h4>
-                      <h5>Paid Status : <span className={item.paid?'text-success':'text-danger'}>{item.paid.toString()?"Success":"Failure"} </span></h5>
+                      <h5>Paid Status : <span className={item.paid?'text-success':'text-danger'}>{item.paid?"Success":"Failure"} </span></h5>
                 </div>
               );
             })}
@@ -83,4 +84,4 @@ console.log(finalTransactionHistory,"gfgdf");
   );
 }
 
-export default Orders;
+export default History;

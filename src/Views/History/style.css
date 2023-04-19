@@ -7,8 +7,12 @@
 }
 .trans-details{
     background-color: antiquewhite;
-    padding: 10px;
     width: 950px;
+    padding: 5px 20px;
     margin-bottom: 20px;
     margin-left: 250px;
+}
+.date-id{
+    display: flex;
+    justify-content: space-between;
 }

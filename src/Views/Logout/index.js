@@ -4,14 +4,16 @@ import { useHistory } from "react-router-dom";
 import { logout, setLogin} from "Redux/Actions/Auth";
 import { setCart } from "Redux/Actions/HomeActions";
 import "./style.css";
-function Logout() {
+function Logout({open,close}) {
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const handleCancel = () => {
-    history.push("./");
-  };
+  // const handleCancel = () => {
+  //   history.push("./");
+  // };
 
   const handleLogout = async () => {
+
     dispatch(
       logout({
         success: (response) => {
@@ -24,19 +26,23 @@ function Logout() {
     );
     dispatch(setLogin(null));
     dispatch(setCart(null));
+    close();
   };
-
+  if(!open) return null;
   return (
-    <div className="logout-outer">
+    <div onClick={close} className="overlay">
+    <div onClick={(e)=>{e.stopPropagation()}} className="logout-outer">
       <h2>Do you want to Logout</h2>
+      {/* <p onClick={close}>Close</p> */}
       <div className="my-button">
-        <button className="btn btn-dark cancel-btn" onClick={handleCancel}>
+        <button className="btn btn-dark cancel-btn" onClick={close}>
           CANCEL
         </button>
         <button className="btn btn-dark ok-btn" onClick={handleLogout}>
           OK
         </button>
       </div>
+    </div>
     </div>
   );
 }

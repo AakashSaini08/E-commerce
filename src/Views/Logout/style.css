@@ -3,11 +3,17 @@
   text-align: center;
   margin-top: 100px;
   margin-bottom: 100px;
-  background-color: #a0c7e5;
+  background-color:wheat;
+  border: 2px solid black;
+  border-radius: 20px;
   width: 400px;
   height: 300px;
   margin-left: 500px;
   padding-top: 100px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
 }
 .my-button{
   display: flex;
@@ -21,4 +27,12 @@ margin-top: 50px;
 .ok-btn{
   margin-right: 30px;
   width: 100px;
+}
+.overlay{
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  margin-top: -92px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }

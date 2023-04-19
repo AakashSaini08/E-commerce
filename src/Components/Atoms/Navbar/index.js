@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import { Images } from "Shared/Images";
 import { useSelector } from "react-redux";
+import Logout from "Views/Logout";
 
 function Navbar() {
+  const [openModel,setOpenModel] = useState(false);
   const userName = useSelector((state) => state?.auth?.userInfo?.username);
   const totalItems = useSelector((state) => state?.homeReducer?.totalItems);
   const token = useSelector((state) => state?.auth?.data);
@@ -26,7 +28,7 @@ function Navbar() {
           onClick={handleLogo}
           className="navimg"
           alt="logo"
-          src={Images.amazonlogo}
+          src={Images.applogo}
         />
         <div className="nav-left container-fluid">
           <div className=" nav-right collapse navbar-collapse">
@@ -60,9 +62,7 @@ function Navbar() {
                   </li>
 
                   <li className="nav-item nav-logout">
-                    <Link className="nav-link " to="/logout">
-                      LOGOUT
-                    </Link>
+                    <button onClick={()=>setOpenModel(true)} className="nav-link log-out">LOGOUT</button>
                   </li>
                 </div>
               ) : (
@@ -89,7 +89,9 @@ function Navbar() {
           )}
         </div>
       </nav>
+      <Logout open={openModel} close={()=>setOpenModel(false)}/>
     </div>
+    
   );
 }
 
