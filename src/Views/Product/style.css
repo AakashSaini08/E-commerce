@@ -30,6 +30,8 @@
 }
 .main {
   margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

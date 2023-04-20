@@ -62,8 +62,6 @@ const CreatePassword = () => {
     } else {
       errors.confirm_password = "";
     }
-
-
     return errors;
   };
 
@@ -80,7 +78,7 @@ const CreatePassword = () => {
     }
   }
   const location = useLocation();
-  let myParam = location.state.newContact;
+  let myParam = location?.state?.newContact;
 
 
   const handleClick = async (e) => {
@@ -138,7 +136,7 @@ const CreatePassword = () => {
                       onChange={(e) => handleResetPassword(e)}
                       required
                     ></input>
-                    {errors.reset_password && <p className="err">{errors.reset_password}</p>}
+                    {errors.reset_password && <p className="err">{errors?.reset_password}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
@@ -153,7 +151,7 @@ const CreatePassword = () => {
                       required
                     ></input>
                     {errors.confirm_password && (
-                      <p className="err">{errors.confirm_password}</p>
+                      <p className="err">{errors?.confirm_password}</p>
                     )}
                   </div>
                 </form>

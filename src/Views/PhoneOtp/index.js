@@ -16,7 +16,7 @@ const PhoneOtp = () => {
     }
   }
   const location = useLocation();
-  let newContact = location.state.contact;
+  let newContact = location?.state?.contact;
 
   const handleClick = async (e) => {
     const formData = new FormData();
@@ -39,7 +39,7 @@ const PhoneOtp = () => {
         })
       );
     } catch (error) {
-      console.log(error.data);
+      console.log(error?.data);
     }
   };
 

@@ -12,7 +12,7 @@ function RecentProducts() {
   const token = useSelector((state) => state?.auth?.data);
   const arr = [];
   viewedItems?.map((item) => {
-    let data = productsArray.find((value) => value.id === item.product_id);
+    let data = productsArray.find((value) => value?.id === item?.product_id);
     if (data) {
       arr.push(data);
     }
@@ -30,7 +30,7 @@ function RecentProducts() {
 
   const handleCart = (item) => {
     const formData = new FormData();
-    formData.append("product_id", item.id);
+    formData.append("product_id", item?.id);
     formData.append("quantity", count);
     dispatch(
       addToCart({
@@ -54,7 +54,7 @@ function RecentProducts() {
       <div>
         <h2 className="headings">Recently viewed Products</h2>
       </div>
-      <div className="main">
+      <div className="recent-main">
       {arr.length > 0?
       arr?.map((item, idx) => {
         return (
@@ -62,20 +62,20 @@ function RecentProducts() {
               <div className="myCard-recent">
                 <button
                   className="prod-btn"
-                  onClick={() => handleProductDetail(item.id)}
+                  onClick={() => handleProductDetail(item?.id)}
                 >
                   <img
-                    src={BASE_URL + item.photo}
+                    src={BASE_URL + item?.photo}
                     className="product-img "
                     alt="..."
                   />
                 </button>
                 <div className="myCard-body">
                 <div>
-                  <h5 className="card-title">{item.name}</h5>
+                  <h5 className="card-title">{item?.name}</h5>
                   <p className="card-text">
-                    <b>Quantity:</b> {item.quantity}<br/>
-                    <b>Price:</b> ₹{item.price}
+                    <b>Quantity:</b> {item?.quantity}<br/>
+                    <b>Price:</b> ₹{item?.price}
                   </p>
                   
                 </div>

@@ -39,13 +39,13 @@ function Cart() {
   const handleRemove = (id) => {
     let productId;
     const myId = finalList?.find((item) => {
-      if (item.product_id === id) {
+      if (item?.product_id === id) {
         productId = item.id;
       }
       return productId;
     });
     const formData = new FormData();
-    formData.append("cart_id", myId.id);
+    formData.append("cart_id", myId?.id);
 
     dispatch(
       removeFromCart({
@@ -63,7 +63,7 @@ function Cart() {
   const handleChange = (item,idx,e) => {
     if (token) {
           const formData = new FormData();
-          formData.append("product_id", item.product_id);
+          formData.append("product_id", item?.product_id);
           formData.append("quantity", e.target.value);
           try {
             dispatch(
@@ -107,16 +107,16 @@ function Cart() {
                       ></img>
                     </div>
                     <div className="name-detail">
-                      <h4>{item.product_name}</h4>
-                      <p>{item.product_description}</p>
-                      <h5>Total: ₹{item.product_price}</h5>
+                      <h4>{item?.product_name}</h4>
+                      <p>{item?.product_description}</p>
+                      <h5>Total: ₹{item?.product_price}</h5>
                       <label>
                         <h5>Quantity : </h5>
                       </label>
 
                       <select
                         className="quantity"
-                        value={item.quantity}
+                        value={item?.quantity}
                         onChange={(e) => handleChange(item,idx,e)}
                       >
                         <option value="1"> 1 </option>
@@ -128,7 +128,7 @@ function Cart() {
 
                       <button
                         className=" remove-Btn btn btn-dark"
-                        onClick={() => handleRemove(item.product_id)}
+                        onClick={() => handleRemove(item?.product_id)}
                       >
                         Remove
                       </button>

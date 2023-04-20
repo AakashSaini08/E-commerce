@@ -15,7 +15,7 @@ const Otp = () => {
     }
   }
   const location = useLocation();
-  let myContact = location.state.contact;
+  let myContact = location?.state?.contact;
   const handleClick = async (e) => {
     const formData = new FormData();
     formData.append("otp", otp);
@@ -38,7 +38,7 @@ const Otp = () => {
           })
         );
       } catch (error) {
-        console.log(error.data);
+        console.log(error?.data);
       }
     }
   };

@@ -94,7 +94,8 @@ const homeReducer = (data = initialData, action) => {
     case SET_TRANSACTION_HISTORY: 
     return {
         ...data,
-        transactionHistory: action?.data?.data.map((data) => ({ ...data }))
+        transactionHistory: action?.data?.data.map((data) => ({ ...data })),
+        orderCount : action.data.order_count
       };
 
     default:

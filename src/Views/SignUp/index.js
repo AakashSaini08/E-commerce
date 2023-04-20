@@ -18,8 +18,8 @@ const SignUp = () => {
   const [detail, setDetail] = useState("");
   const validation = (user, contact, password) => {
     let errors = {};
-    const nameRegex = new RegExp("^[A-Za-z]+$");
-    if (!user) {
+    const nameRegex = new RegExp("^[A-Za-z\\s]+$");
+    if (!user || !user.trim()) {
       errors.user = "Name is required";
     } else if (user.length < 3) {
       errors.user = "Name must be greater than 3 charcter";
@@ -150,7 +150,7 @@ const SignUp = () => {
                         required
                       ></input>
                     </label>
-                    {errors.user && <p className="err">{errors.user}</p>}
+                    {errors.user && <p className="err">{errors?.user}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
@@ -167,7 +167,7 @@ const SignUp = () => {
                         required
                       ></input>
                     </label>
-                    {errors.contact && <p className="err">{errors.contact}</p>}
+                    {errors.contact && <p className="err">{errors?.contact}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
@@ -184,7 +184,7 @@ const SignUp = () => {
                       required
                     ></input>
                     {errors.password && (
-                      <p className="err">{<p className="myMsg">{myMsg}</p>} {errors.password}</p>
+                      <p className="err">{<p className="myMsg">{myMsg}</p>} {errors?.password}</p>
                     )}
                   </div>
                   <div className="d-sm-grid gap-1">

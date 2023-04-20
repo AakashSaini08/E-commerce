@@ -29,7 +29,7 @@ function Checkout() {
               // console.log(Response,"stripe");
               window.open(Response.data.url,"_self")//,"self"
               // history.pushState('./success')
-              setSessionId(Response.data.sessionId);
+              setSessionId(Response?.data?.sessionId);
             },
             fail: (err) => {
               alert("Payment Faild");

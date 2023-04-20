@@ -66,21 +66,21 @@ function MyProduct() {
               <div className="myCard">
                 <button
                   className="prod-btn"
-                  onClick={() => handleProductDetail(item.id)}
+                  onClick={() => handleProductDetail(item?.id)}
                 >
                   <img
-                    src={BASE_URL + item.photo}
+                    src={BASE_URL + item?.photo}
                     className="product-img "
                     alt="..."
                   />
                 </button>
                 <div className="myCard-body">
                   <div>
-                    <h5 className="card-title">{item.name}</h5>
+                    <h5 className="card-title">{item?.name}</h5>
                     <p className="card-text">
-                      <b>In Stock:</b> {item.quantity}
+                      <b>In Stock:</b> {item?.quantity}
                       <br />
-                      <b>Price:</b> ₹{item.price}
+                      <b>Price:</b> ₹{item?.price}
                     </p>
                   </div>
 

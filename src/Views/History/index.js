@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTransactionHistory } from "Redux/Actions/HomeActions";
 import "./style.css";
@@ -11,12 +11,8 @@ function History() {
     dispatch(getTransactionHistory(page));
   },[dispatch,page]);
   const myTransactionHistory = useSelector((state) => state?.homeReducer?.transactionHistory);
-  const historyCount = useSelector((state) => state?.homeReducer?.historyCount);
-  console.log(historyCount);
-
+  const historyCount = useSelector((state) => state?.homeReducer?.orderCount);
   const finalTransactionHistory = myTransactionHistory ? (myTransactionHistory) : [];
-console.log(finalTransactionHistory,"gfgdf");
-//   const TransactionCount =myTransactionHistory[0]?.total_count;
   
   const nextPage = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -43,13 +39,13 @@ console.log(finalTransactionHistory,"gfgdf");
               return (
                 <div key={idx} className="trans-details">
                 <div className="date-id">
-                    <p>Order Placed:  {item.date}</p>
+                    <p>Order Placed:  {item?.date}</p>
                     <div>
-                    <p>Transaction Id: {item.transaction_id}</p>
+                    <p>Transaction Id: {item?.transaction_id}</p>
                     </div>
                     </div>
-                      <h4>{item.product_name}</h4>
-                      <h5>Paid Status : <span className={item.paid?'text-success':'text-danger'}>{item.paid?"Success":"Failure"} </span></h5>
+                      <h4>{item?.product_name}</h4>
+                      <h5>Paid Status : <span className={item?.paid?'text-success':'text-danger'}>{item?.paid?"Success":"Failure"} </span></h5>
                 </div>
               );
             })}
@@ -57,10 +53,10 @@ console.log(finalTransactionHistory,"gfgdf");
         </div>
       ) : (
         <div className="emptyCart">
-          <h2>No product ordered yet</h2>
+          <h2>No Transaction made yet</h2>
         </div>
       )}
-      {historyCount !== 0 ? (
+      {historyCount !== undefined ? (
         <div className="paging">
         {page > 1 ? (
           <button className="btn btn-dark m-5" onClick={previousPage}>

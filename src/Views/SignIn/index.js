@@ -83,10 +83,10 @@ const SignIn = () => {
           login({
             data: formData,
             success: (Response) => {
-              if (Response.data.token) {
+              if (Response?.data?.token) {
                 history.push("/");
               } else {
-                alert(Response.data.message);
+                alert(Response?.data?.message);
               }
             },
             fail: (err) => {
@@ -95,8 +95,6 @@ const SignIn = () => {
           })
         );
       } catch (error) {
-        // console.log(error.data);
-        // console.log(error?.data?.token);
       }
     }
   };
@@ -126,7 +124,7 @@ const SignIn = () => {
                       value={contact}
                       onChange={(e) => handleContact(e)}
                     ></input>
-                    {errors.contact && <p className="err">{errors.contact}</p>}
+                    {errors.contact && <p className="err">{errors?.contact}</p>}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
@@ -143,9 +141,10 @@ const SignIn = () => {
                       onChange={(e) => handlePassword(e)}
                     ></input>
                     {errors.password && (
-                      <p className="err">{<p className="myMsg">{myMsg}</p>} { errors.password}</p>
+                      <p className="err">{<p className="myMsg">{myMsg}</p>} { errors?.password}</p>
                     )}
                     <button
+                      type="button"
                       className="btn btn-link text-black m-2  round rounded-4 "
                       onClick={handleForgot}
                     >
@@ -166,6 +165,7 @@ const SignIn = () => {
 
                   <div className="d-sm-grid gap-2 d-flex">
                     <button
+                      type="button"
                       className="btn btn-link text-black m-2  round rounded-4 "
                       onClick={handleSignup}
                     >
