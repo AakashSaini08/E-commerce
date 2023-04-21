@@ -1,28 +1,25 @@
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, getTransactionHistory } from "Redux/Actions/HomeActions";
+import { getTransactionHistory } from "Redux/Actions/HomeActions";
 import "./style.css";
 
 function History() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(getCart(1));
     dispatch(getTransactionHistory(page));
   },[dispatch,page]);
   const myTransactionHistory = useSelector((state) => state?.homeReducer?.transactionHistory);
   const historyCount = useSelector((state) => state?.homeReducer?.orderCount);
   const finalTransactionHistory = myTransactionHistory ? (myTransactionHistory) : [];
-  
+
   const nextPage = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    dispatch(getCart(page + 1));
     setPage(page + 1);
   };
   const previousPage = () => {
     if (page > 1) {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      dispatch(getCart(page - 1));
       setPage(page - 1);
     }
   };

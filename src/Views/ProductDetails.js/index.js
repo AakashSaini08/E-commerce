@@ -23,6 +23,7 @@ function ProductDetail() {
   const token = useSelector((state) => state?.auth?.data);
   const history = useHistory();
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (token) {
       dispatch(getAllReviews(selectedProduct?.id));
@@ -31,22 +32,17 @@ function ProductDetail() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
     return () => {
       dispatch(setAllReviews(null));
     };
   }, [dispatch]);
 
   const [count, setCount] = useState(1);
-  const handleCount = (e) => {
-    if (count >= 1 && count < 5) {
+  const handleQuantity = (e) => {
       setCount(e.target.value);
-    } else {
-      setCount(1);
-    }
   };
 
-  const handleCart = (selectedProduct) => {
+  const handleCart = (selectedProduct,e) => {
     if (token) {
       const countt = parseInt(count);
       const formData = new FormData();
@@ -77,7 +73,7 @@ function ProductDetail() {
     setRating(event.target.value);
   };
 
-  const [review, setReview] = useState();
+  const [review, setReview] = useState("");
   const handleReview = (e) => {
     if (token) {
       setReview(e.target.value);
@@ -112,6 +108,8 @@ function ProductDetail() {
     }
       
   };
+
+  
 
   return (
     <>
@@ -165,14 +163,17 @@ function ProductDetail() {
             <hr />
             <div className="btns">
               <div className="count-value">
-                <input
-                  type="number"
-                  placeholder="Quantity"
-                  className="form-control my-2 "
-                  value={count}
-                  onChange={(e) => handleCount(e)}
-                  required
-                ></input>
+              <select
+                        className="prod-quantity"
+                        value={count}
+                        onChange={(e) => handleQuantity(e)}
+                      >
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                      </select>
               </div>
               <div>
                 <button

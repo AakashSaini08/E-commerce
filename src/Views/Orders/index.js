@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, getOrderHistory } from "Redux/Actions/HomeActions";
+import { getOrderHistory } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
@@ -8,7 +8,6 @@ function Orders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart(1));
     dispatch(getOrderHistory(page));
   }, [dispatch, page]);
   const myOrderHistory = useSelector(
@@ -19,13 +18,11 @@ function Orders() {
 
   const nextPage = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    dispatch(getCart(page + 1));
     setPage(page + 1);
   };
   const previousPage = () => {
     if (page > 1) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      dispatch(getCart(page - 1));
       setPage(page - 1);
     }
   };
@@ -42,8 +39,8 @@ function Orders() {
               <div key={idx}>
                 <div className="order-Header">
                   <div>Order Placed : {item?.date}</div>
-                  <div>Ship To : {item?.address}</div>
                   <div>Order Id : {item?.order_id}</div>
+                  
                 </div>
                 {item?.data?.length !== 0 ? (
                   <div className="order">
@@ -73,6 +70,7 @@ function Orders() {
                 ) : (
                   ""
                 )}
+                <div className="order-bottom">Ship To : {item?.address}</div>
               </div>
             );
           })}
