@@ -4,8 +4,6 @@ import { getCart, getData, paynow } from "Redux/Actions/HomeActions";
 import "./style.css";
 
 function Checkout() {
-  const [sessionId,setSessionId] = useState('')
-
   const [address, setAddress] = useState("");
   const handleAddress = (e) => {
     setAddress(e.target.value);
@@ -26,10 +24,7 @@ function Checkout() {
           paynow({
             data: formData,
             success: (Response) => {
-              // console.log(Response,"stripe");
-              window.open(Response.data.url,"_self")//,"self"
-              // history.pushState('./success')
-              setSessionId(Response?.data?.sessionId);
+              window.open(Response.data.url,"_self")
             },
             fail: (err) => {
               alert("Payment Faild");
@@ -44,9 +39,6 @@ function Checkout() {
       alert("Please Enter Address")
     }
   }
-
-  console.log(sessionId,"mySessionId")
-
 
   return (
     <div>
@@ -99,3 +91,4 @@ function Checkout() {
 
 export default Checkout;
 //7983732368
+//8427908502

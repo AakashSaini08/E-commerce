@@ -1,18 +1,16 @@
 .logout-outer {
   justify-content: center;
   text-align: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
   background-color:wheat;
   border: 2px solid black;
   border-radius: 20px;
   width: 400px;
   height: 300px;
-  margin-left: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
   padding-top: 100px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
   z-index: 1;
 }
 .my-button{

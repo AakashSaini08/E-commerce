@@ -178,8 +178,7 @@ function* Sagaa() {
     takeLatest(SUCCESS,mySuccess),
     takeLatest(GET_ALL_REVIEWS,allReviews),
     takeLatest(GET_ORDER_HISTORY,orderHistory),   
-    takeLatest(GET_TRANSACTION_HISTORY,transactionHistory),    
-
+    takeLatest(GET_TRANSACTION_HISTORY,transactionHistory),
   ]);
 }
 export default Sagaa;

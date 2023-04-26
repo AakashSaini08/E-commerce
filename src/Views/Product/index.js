@@ -33,7 +33,7 @@ function MyProduct() {
   const handleCart = (item) => {
     if (token) {
       const formData = new FormData();
-      formData.append("product_id", item.id);
+      formData.append("product_id", item?.id);
       formData.append("quantity", count);
       dispatch(
         addToCart({

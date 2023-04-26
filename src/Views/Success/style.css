@@ -4,10 +4,9 @@
 }
 
 .outer-success{
-    margin-top: 110px;
-    margin-bottom: 110px;
-    margin-left: 500px;
-    width: 400px;
+    margin: auto;
+    width: 30%;
+    margin-top: 5%;
     border: 3px solid green;
     padding: 10px;
     text-align: center;

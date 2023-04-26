@@ -7,6 +7,7 @@ import {
   addReview,
   addToCart,
   getAllReviews,
+  getData,
   setAllReviews,
 } from "Redux/Actions/HomeActions";
 
@@ -25,6 +26,7 @@ function ProductDetail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getData(1))
     if (token) {
       dispatch(getAllReviews(selectedProduct?.id));
     }

@@ -50,24 +50,23 @@
 
 }
 .cartimg {
-  position: relative;
-  right: -10px;
+  position: absolute;
+  right: 10px;
   top: 12px;
   width: 90px;
-  height: 90px;
   cursor: pointer;
 }
 .item-count {
-  position: relative;
-  left: 74px;
-  top: -65px;
+  position: absolute;
+  right:30px;
+  top: 26px;
   width: 10px;
 }
 .user-name {
   color: black;
   position: absolute;
   right: 285px;
-    top: 58px;
+  top: 59px;
 }
 
 .nav-left{

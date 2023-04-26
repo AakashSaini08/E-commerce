@@ -33,10 +33,10 @@ function Orders() {
       </div>
       <hr />
       {orderCount !== undefined ? (
-        <div>
+        <div >
           {finalHistory?.map((item, idx) => {
             return (
-              <div key={idx}>
+              <div className="outer-order" key={idx}>
                 <div className="order-Header">
                   <div>Order Placed : {item?.date}</div>
                   <div>Order Id : {item?.order_id}</div>

@@ -72,10 +72,9 @@
   text-align: center;
 }
 .paging{
-  margin-left: 1110px;
-  bottom: 1px;
-  right: 1px;
+  width: 90%;
   display: flex;
+  justify-content: flex-end;
 }
 .pg{
   color: black;
