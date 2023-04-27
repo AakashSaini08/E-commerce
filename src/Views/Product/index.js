@@ -3,8 +3,11 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "Shared/Constants";
+import ProductAdded from "Views/ProductAdded";
+import { useState } from "react";
 
 function MyProduct() {
+  const [isProductAdded,setIsProductAdded] = useState(false);
   const count = 1;
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.homeReducer?.products[1]);
@@ -31,7 +34,9 @@ function MyProduct() {
   };
 
   const handleCart = (item) => {
+    
     if (token) {
+      setIsProductAdded(true); 
       const formData = new FormData();
       formData.append("product_id", item?.id);
       formData.append("quantity", count);
@@ -46,19 +51,26 @@ function MyProduct() {
             if (token) {
               alert("Item out of stock");
             }
-          },
+          }
         })
       );
-      if (token) {
-        alert("item has been added to cart");
-      }
-    } else {
+    }
+
+    setTimeout(()=>{
+      setIsProductAdded(false);
+    },2000)
+    
+    if(!token) {
       alert("You need to login first");
     }
+
   };
 
   return (
     <>
+    <div className="my-product-added">
+        {isProductAdded ? <ProductAdded/> : null}
+      </div>
       <div className="main">
         {productsArray?.map((item, idx) => {
           return (

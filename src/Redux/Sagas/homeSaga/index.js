@@ -1,5 +1,4 @@
-import axios from "axios";
-import { takeLatest, put, all } from "redux-saga/effects";
+import { takeLatest, put, all} from "redux-saga/effects";
 import {
   setAddToCart,
   setAllReviews,
@@ -16,12 +15,16 @@ import {
 import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_TRANSACTION_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SUCCESS, VIEWED } from "Redux/Actions/HomeActions/actionStates";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
+import { showLoader, hideLoader } from '../../Actions/LoadingActions'
 
 function* products(payload) {
   try {
-    const response = yield axios.get(API.getProduct);
+    yield put(showLoader())
+    const response = yield axiosInstance.get(API.getProduct);
+    yield put(hideLoader())
     yield put(setData(Object.values(response?.data)));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -44,9 +47,12 @@ function* myCart({ payload: { data, success, fail } }) {
 
 function* cartData(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.cart + "?page="+ payload?.data);
+    yield put(hideLoader())
     yield put(setCart(response?.data));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -144,9 +150,12 @@ function* allReviews(payload) {
 
 function* orderHistory(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.orderhistory + "?page="+ payload?.data);
+    yield put(hideLoader())
     yield put(setOrderHistory(response?.data));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -155,9 +164,12 @@ function* orderHistory(payload) {
 
 function* transactionHistory(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.transactionhistory + "?page="+ payload?.data);
+    yield put(hideLoader())
     yield put(setTransactionHistory(response?.data));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }

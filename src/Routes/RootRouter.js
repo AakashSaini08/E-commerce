@@ -8,6 +8,7 @@ import { PUBLIC_ROUTES } from "./PublicRoutes";
 import { PRIVATE_ROUTES } from "./PrivateRoutes";
 import DocumentTitle from "./DocumentTitle";
 import PrivateLayout from "Components/Core/PrivateLayout";
+import Loader from "Views/Loader";
 
 const DEFAULT_GUEST_ROUTE = "/";
 const GuestRoutes = () => {
@@ -55,11 +56,15 @@ const AuthenticatedRoutes = () => {
 
 const RootRouter = () => {
   const token = useSelector((state) => state.auth.data);
+  const isLoading = useSelector((state) => state.loading.isLoading)
   updateAuthToken(token);
   const baseName = process.env.REACT_APP_BASE_NAME;
   const isAuthenticated = !!token;
   return (
     <BrowserRouter basename={baseName}>
+        <Loader
+          isShow={isLoading}
+        />
       <DocumentTitle isAuthenticated={isAuthenticated} />
       <AppLayout isAuthenticated={isAuthenticated}>
         {token ? <AuthenticatedRoutes /> : <GuestRoutes />}

@@ -38,7 +38,6 @@ function Navbar() {
                   HOME
                 </Link>
               </li>
-
               {token ? (
                 <div>
                   <li className="nav-item ">

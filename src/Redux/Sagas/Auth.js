@@ -15,13 +15,12 @@ import {
   SIGNUP,
   SIGNUPOTP,
 } from "../Actions/Auth";
-import axios from "axios";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 
 function* auth({ payload : { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.signin, data);
+    const response = yield axiosInstance.post(API.signin, data);
     yield put(setLogin(response?.data));
     if (success) {
       success(response);
@@ -35,7 +34,7 @@ function* auth({ payload : { data, success, fail } }) {
 
 function* otp({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.resend_otp, data);
+    const response = yield axiosInstance.post(API.resend_otp, data);
     console.log(response);
     yield put(setOtp(Object.values(response?.data)));
     if (success) {
@@ -50,7 +49,7 @@ function* otp({ payload: { data, success, fail } }) {
 
 function* verify({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.verify, data);
+    const response = yield axiosInstance.post(API.verify, data);
     console.log(response);
     yield put(setVerify(Object.values(response?.data)));
     if (success) {
@@ -65,7 +64,7 @@ function* verify({ payload: { data, success, fail } }) {
 
 function* resetPassword({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.forgot_password, data);
+    const response = yield axiosInstance.post(API.forgot_password, data);
     console.log(response);
     yield put(setPassword(Object.values(response?.data)));
     if (success) {
@@ -80,7 +79,7 @@ function* resetPassword({ payload: { data, success, fail } }) {
 
 function* signUp({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.signup, data);
+    const response = yield axiosInstance.post(API.signup, data);
     console.log(response);
     yield put(setSignUp(Object.values(response?.data)));
     if (success) {
@@ -95,7 +94,7 @@ function* signUp({ payload: { data, success, fail } }) {
 
 function* otpVerify({ payload: { data, success, fail } }) {
   try {
-    const response = yield axios.post(API.verify, data);
+    const response = yield axiosInstance.post(API.verify, data);
     console.log(response);
     yield put(setSignUpOtp(Object.values(response?.data)));
     if (success) {

@@ -1,11 +1,9 @@
 import axios from "axios";
-// import { useSelector } from "react-redux";
 import { BASE_URL } from "./Constants";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
-
 axiosInstance.interceptors.request.use(
   (config) => {
     const object = JSON.parse(localStorage.getItem("persist:rootdata"));
