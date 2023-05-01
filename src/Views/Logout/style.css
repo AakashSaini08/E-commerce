@@ -1,0 +1,36 @@
+.logout-outer {
+  justify-content: center;
+  text-align: center;
+  background-color:wheat;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  padding-top: 100px;
+  z-index: 1;
+}
+.my-button{
+  display: flex;
+  justify-content: space-evenly;
+margin-top: 50px;
+}
+.cancel-btn{
+  margin-left: 30px;
+  width: 100px;
+}
+.ok-btn{
+  margin-right: 30px;
+  width: 100px;
+}
+.overlay{
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  margin-top: -92px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}

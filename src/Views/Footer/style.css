@@ -1,0 +1,39 @@
+.main-footer {
+  width: auto;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #a0c7e5;
+  color: black;
+  margin-top: 20px;
+  font-size: 20px;
+}
+.footer1,
+.footer2,
+.footer3,
+.footer4 {
+  width: 350px;
+  height: 300px;
+  padding: 20px;
+  background-color: #a0c7e5;
+}
+.playImg {
+  margin: 5px;
+  width: 200px;
+  height: 70px;
+}
+.storeImg {
+  margin: 5px;
+  width: 200px;
+  height: 70px;
+}
+
+.myIcons {
+  padding: 5px;
+  margin-left: -50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

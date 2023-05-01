@@ -1,21 +1,39 @@
-import Login from "Views/Login";
 import SignUp from "Views/SignUp";
 import ForgotPassword from "Views/ForgotPassword";
+import SignIn from "Views/SignIn";
+import Otp from "Views/Otp";
+import PhoneOtp from "Views/PhoneOtp";
+import CreatePassword from "Views/CreatePassword";
 
 export const AUTH_ROUTES = [
   {
     path: "/login",
-    component: Login,
-    title: "Login",
+    component: SignIn,
+    title: "Sign In",
   },
   {
     path: "/signup",
     component: SignUp,
-    title: "Signup",
+    title: "Sign Up",
   },
   {
-    path: "/forgot-password",
+    path: "/otp",
+    component: Otp,
+    title: "OTP",
+  },
+  {
+    path: "/forgot",
     component: ForgotPassword,
-    title: "Forgot Password",
+    title: "Forgot",
+  },
+  {
+    path: "/phoneotp",
+    component: PhoneOtp,
+    title: "Phone Otp",
+  },
+  {
+    path: "/createpassword",
+    component: CreatePassword,
+    title: "Create Password",
   },
 ];

@@ -1,0 +1,18 @@
+.history-main{
+    margin-bottom: 405px;
+}
+.transaction-head{
+    text-align: center;
+    margin-top: 5px;
+}
+.trans-details{
+    background-color: antiquewhite;
+    width: 70%;
+    padding: 5px 20px;
+    margin: auto;
+    margin-top: 1%;
+}
+.date-id{
+    display: flex;
+    justify-content: space-between;
+}

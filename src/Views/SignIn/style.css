@@ -1,0 +1,28 @@
+.signin {
+  margin-top: -8px;
+  height: 730px;
+  /* background-color: wheat; */
+  /* border-top: 3px solid black; */
+}
+
+.login-head {
+  background-color: black;
+  border: 2px solid black;
+}
+
+.signin-box {
+  margin-top: 50px;
+    width: 400px;
+    height: 660px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: aliceblue;
+}
+.otp {
+  position: relative;
+  bottom: -100px;
+}
+.myMsg{
+  color: black;
+  font-size: 13px;
+}
