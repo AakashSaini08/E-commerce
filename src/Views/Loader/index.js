@@ -7,7 +7,7 @@ function Loader({ isShow }) {
       {isShow ? (
         <div className="my-overlay">
           <div className="loader-outer">
-            <div class="lds-ring">
+            <div className="lds-ring">
               <div></div>
               <div></div>
               <div></div>

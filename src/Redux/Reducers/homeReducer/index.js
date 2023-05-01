@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CLEAR_ORDERS,
   GET_ALL_REVIEWS,
   GET_CART,
   GET_DATA,
@@ -85,7 +86,7 @@ const homeReducer = (data = initialData, action) => {
     case SET_ORDER_HISTORY:
       return {
         ...data,
-        orderHistory: action?.data?.data.map((data) => ({ ...data })),
+        orderHistory: [...data.orderHistory, ...action?.data?.data.map((data) => ({ ...data }))],
       };
 
       case GET_TRANSACTION_HISTORY:
@@ -97,6 +98,12 @@ const homeReducer = (data = initialData, action) => {
         transactionHistory: action?.data?.data.map((data) => ({ ...data })),
         orderCount : action.data.order_count
       };
+
+      case CLEAR_ORDERS: 
+      return {
+        ...data,
+        orderHistory:[]
+      }
 
     default:
       return data;

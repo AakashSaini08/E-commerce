@@ -1,31 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderHistory } from "Redux/Actions/HomeActions";
+import { clearOrders, getOrderHistory } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Shared/Constants";
 import "./style.css";
 
 function Orders() {
-  const [page, setPage] = useState(1);
+  const pageRef = useRef(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrderHistory(page));
-  }, [dispatch, page]);
+    dispatch(getOrderHistory(1));
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearOrders(null));
+    }
+  }, [dispatch]);
+  
+  // useEffect(()=>{
+  //   const getOrder = setTimeout(()=>{
+  //     dispatch(getOrderHistory())
+  //   })
+  // },[])
+  
   const myOrderHistory = useSelector(
     (state) => state?.homeReducer?.orderHistory
   );
   const finalHistory = myOrderHistory ? myOrderHistory : [];
   const orderCount = myOrderHistory[0]?.data[0]?.total_count;
 
-  const nextPage = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    setPage(page + 1);
-  };
-  const previousPage = () => {
-    if (page > 1) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      setPage(page - 1);
+  window.onscroll = function () {
+    var totalPageHeight = document.body.scrollHeight;
+    var scrollPoint = window.scrollY + window.innerHeight;
+    if (scrollPoint >= totalPageHeight) {
+      if(Math.ceil(orderCount / 5) !== pageRef )
+      dispatch(getOrderHistory(++pageRef.current));
     }
   };
+
   return (
     <>
       <div className="your-order">
@@ -33,14 +45,13 @@ function Orders() {
       </div>
       <hr />
       {orderCount !== undefined ? (
-        <div >
+        <div>
           {finalHistory?.map((item, idx) => {
             return (
               <div className="outer-order" key={idx}>
                 <div className="order-Header">
                   <div>Order Placed : {item?.date}</div>
                   <div>Order Id : {item?.order_id}</div>
-                  
                 </div>
                 {item?.data?.length !== 0 ? (
                   <div className="order">
@@ -81,7 +92,7 @@ function Orders() {
         </div>
       )}
 
-      {orderCount !== undefined ? (
+      {/* {orderCount !== undefined ? (
         <div className="paging">
           {page > 1 ? (
             <button className="btn btn-dark m-5" onClick={previousPage}>
@@ -99,7 +110,10 @@ function Orders() {
             </button>
           ) : null}
         </div>
-      ) : null}
+      ) : null} */}
+      {/* <div className="list-inner" onScroll={() => onScroll()} ref={listInnerRef}>
+        {/* List items */}
+      {/* </div> */}
     </>
   );
 }

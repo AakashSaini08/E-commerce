@@ -4,7 +4,7 @@ export const STRINGS = {
     "You appear to be offline. Please check your internet connection.",
 };
 
-export const BASE_URL = "https://tough-symbols-turn-122-160-165-213.loca.lt/";
+export const BASE_URL = "https://curvy-cases-play-112-196-113-2.loca.lt/";
 
 export const API = {
   signin: `${BASE_URL}signin/`,

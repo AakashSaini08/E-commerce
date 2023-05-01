@@ -65,7 +65,7 @@ function RecentProducts() {
       {token ? (
         <div>
         <div className="my-product-added">
-        {isProductAdded ? <ProductAdded/> : null}
+        {isProductAdded ? <ProductAdded /> : null}
       </div>
           <div>
             <h2 className="headings">Recently viewed Products</h2>
