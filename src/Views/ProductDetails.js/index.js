@@ -107,8 +107,8 @@ function ProductDetail() {
       } catch (error) {}
     }else{
       alert("You need to login first")
-    }
-      
+    } 
+    setReview(null);
   };
 
   

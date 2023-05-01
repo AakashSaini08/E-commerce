@@ -15,7 +15,7 @@ const SignUp = () => {
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [detail, setDetail] = useState("");
+  // const [detail, setDetail] = useState("");
   const validation = (user, contact, password) => {
     let errors = {};
     const nameRegex = new RegExp("^[A-Za-z\\s]+$");
@@ -85,23 +85,23 @@ const SignUp = () => {
     }
   }
 
-  function handleDetail(val) {
-    setDetail(val);
-  }
+  // function handleDetail(val) {
+  //   setDetail(val);
+  // }
   const handleClick = async (e) => {
     const formData = new FormData();
     formData.append("name", user);
     formData.append("phone_number", contact);
     formData.append("password", password);
-    formData.append("detail", detail);
+    formData.append("detail", 0);
     e.preventDefault();
     setErrors(validation(user, contact, password));
     // console.log(Object.keys(validation(user, contact, password)).length);
     if (
       user !== "" &&
       contact !== "" &&
-      password !== "" &&
-      detail !== ""
+      password !== "" 
+      // detail !== ""
     ) {
       try {
         dispatch(
@@ -114,7 +114,7 @@ const SignUp = () => {
               });
             },
             fail: (err) => {
-              alert("Check Empty Fields");
+              alert("Phone number already exists");
             },
           })
         );
@@ -187,7 +187,7 @@ const SignUp = () => {
                       <p className="err">{<p className="myMsg">{myMsg}</p>} {errors?.password}</p>
                     )}
                   </div>
-                  <div className="d-sm-grid gap-1">
+                  {/* <div className="d-sm-grid gap-1">
                     <label>
                       <b>
                         Detail<span>*</span> :
@@ -207,7 +207,7 @@ const SignUp = () => {
                         <p>Customer</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </form>
 
                 <div className="d-sm-grid gap-1 d-flex">

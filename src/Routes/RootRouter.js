@@ -15,21 +15,21 @@ const GuestRoutes = () => {
   return (
     <Switch>
       {AUTH_ROUTES.map((route, routeIdx) => (
-      <Route
-        path={route.path}
-        key={routeIdx}
-        component={route.component}
-        exact={route.exact}
-      />
-    ))}
+        <Route
+          path={route.path}
+          key={routeIdx}
+          component={route.component}
+          exact={route.exact}
+        />
+      ))}
       {PUBLIC_ROUTES.map((route, routeIdx) => (
-      <Route
-        path={route.path}
-        key={routeIdx}
-        component={route.component}
-        exact={route.exact}
-      />
-    ))}
+        <Route
+          path={route.path}
+          key={routeIdx}
+          component={route.component}
+          exact={route.exact}
+        />
+      ))}
       <Redirect from="*" to={DEFAULT_GUEST_ROUTE} />
     </Switch>
   );
@@ -40,7 +40,7 @@ const AuthenticatedRoutes = () => {
   return (
     <PrivateLayout>
       <Switch>
-      {routes.map((route, routeIdx) => (
+        {routes.map((route, routeIdx) => (
           <Route
             path={route.path}
             key={routeIdx}
@@ -56,15 +56,13 @@ const AuthenticatedRoutes = () => {
 
 const RootRouter = () => {
   const token = useSelector((state) => state.auth.data);
-  const isLoading = useSelector((state) => state.loading.isLoading)
+  const isLoading = useSelector((state) => state.loading.isLoading);
   updateAuthToken(token);
   const baseName = process.env.REACT_APP_BASE_NAME;
   const isAuthenticated = !!token;
   return (
     <BrowserRouter basename={baseName}>
-        <Loader
-          isShow={isLoading}
-        />
+      <Loader isShow={isLoading} />
       <DocumentTitle isAuthenticated={isAuthenticated} />
       <AppLayout isAuthenticated={isAuthenticated}>
         {token ? <AuthenticatedRoutes /> : <GuestRoutes />}

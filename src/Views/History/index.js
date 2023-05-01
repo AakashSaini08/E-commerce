@@ -53,7 +53,7 @@ function History() {
           <h2>No Transaction made yet</h2>
         </div>
       )}
-      {historyCount !== undefined ? (
+      {historyCount !== 0 ? (
         <div className="paging">
         {page > 1 ? (
           <button className="btn btn-dark m-5" onClick={previousPage}>

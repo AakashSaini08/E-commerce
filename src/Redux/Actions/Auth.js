@@ -4,7 +4,6 @@ export const SIGNUP = "SIGNUP";
 export const SETSIGNUP = "SETSIGNUP";
 export const LOGOUT = "LOGOUT";
 export const SETLOGOUT = "SETLOGOUT";
-
 export const GETOTP = "GETOTP";
 export const SETOTP = "SETOTP";
 export const GETVERIFY = "GETVERIFY";

@@ -19,12 +19,9 @@ import { showLoader, hideLoader } from '../../Actions/LoadingActions'
 
 function* products(payload) {
   try {
-    yield put(showLoader())
     const response = yield axiosInstance.get(API.getProduct);
-    yield put(hideLoader())
     yield put(setData(Object.values(response?.data)));
   } catch (error) {
-    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -47,12 +44,9 @@ function* myCart({ payload: { data, success, fail } }) {
 
 function* cartData(payload) {
   try {
-    yield put(showLoader())
     const response = yield axiosInstance.get(API.cart + "?page="+ payload?.data);
-    yield put(hideLoader())
     yield put(setCart(response?.data));
   } catch (error) {
-    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -75,12 +69,15 @@ function* removeItem({ payload: { data, success, fail } }) {
 
 function* payHere({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.create_checkout , data);
+    yield put(hideLoader())
     if (success) {
       yield put(setPaynow(response?.data));
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
