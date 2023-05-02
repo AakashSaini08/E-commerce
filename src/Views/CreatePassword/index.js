@@ -10,7 +10,8 @@ const CreatePassword = () => {
   const [reset_password, setreset_password] = useState("");
   const [confirm_password, setconfirm_password] = useState("");
   const [errors, setErrors] = useState({});
-
+  let myMsg =
+    "Password must contain 1 capital letter , 1 small letter , 1 digit, 1 special character, length should be more than or equal to 8";
   const validation = (reset_password, confirm_password) => {
     let errors = {};
     const uppercaseRegExp = /(?=.*?[A-Z])/;
@@ -80,7 +81,6 @@ const CreatePassword = () => {
   const location = useLocation();
   let myParam = location?.state?.newContact;
 
-
   const handleClick = async (e) => {
     const formData = new FormData();
     formData.append("phone_number", myParam);
@@ -88,7 +88,11 @@ const CreatePassword = () => {
     formData.append("confirm_password", confirm_password);
     e.preventDefault();
     setErrors(validation(reset_password, confirm_password));
-    if(reset_password === confirm_password){
+    if (
+      reset_password === confirm_password &&
+      reset_password !== "" &&
+      confirm_password !== ""
+    ) {
       try {
         dispatch(
           getPassword({
@@ -105,11 +109,9 @@ const CreatePassword = () => {
           })
         );
       } catch (error) {
-        console.log(error.data);
+        alert("Something went Wrong");
       }
-      alert("Password has been reset, You can now login");
-    }else{
-      alert("Recheck Password you have entered")
+      alert("Password has been updated, Now you are redirected to Login");
     }
   };
 
@@ -126,7 +128,9 @@ const CreatePassword = () => {
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Set Password<span>*</span> :</b>
+                      <b>
+                        Set Password<span>*</span> :
+                      </b>
                     </label>
                     <input
                       type="password"
@@ -136,11 +140,15 @@ const CreatePassword = () => {
                       onChange={(e) => handleResetPassword(e)}
                       required
                     ></input>
-                    {errors.reset_password && <p className="err">{errors?.reset_password}</p>}
+                    {errors.reset_password && (
+                      <p className="err">{errors?.reset_password}</p>
+                    )}
                   </div>
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Comfirm Password<span>*</span> :</b>
+                      <b>
+                        Comfirm Password<span>*</span> :
+                      </b>
                     </label>
                     <input
                       type="password"
@@ -151,7 +159,10 @@ const CreatePassword = () => {
                       required
                     ></input>
                     {errors.confirm_password && (
-                      <p className="err">{errors?.confirm_password}</p>
+                      <p className="err">
+                        {<p className="myMsg">{myMsg}</p>}{" "}
+                        {errors?.confirm_password}
+                      </p>
                     )}
                   </div>
                 </form>

@@ -35,7 +35,6 @@ function* auth({ payload : { data, success, fail } }) {
 function* otp({ payload: { data, success, fail } }) {
   try {
     const response = yield axiosInstance.post(API.resend_otp, data);
-    console.log(response);
     yield put(setOtp(Object.values(response?.data)));
     if (success) {
       success(response);

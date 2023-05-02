@@ -147,9 +147,12 @@ function* allReviews(payload) {
 
 function* orderHistory(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.orderhistory + "?page="+ payload?.data);
+    yield put(hideLoader())
     yield put(setOrderHistory(response?.data));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }

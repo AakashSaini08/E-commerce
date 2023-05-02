@@ -9,11 +9,13 @@ const Otp = () => {
   const history = useHistory();
   const [otp, setOtp] = useState("");
   function handleOtp(e) {
+
     var otp = e.target.value;
     if (otp.length < 7) {
       setOtp(e.target.value);
     }
   }
+
   const location = useLocation();
   let myContact = location?.state?.contact;
   const handleClick = async (e) => {
@@ -68,7 +70,6 @@ const Otp = () => {
                     ></input>
                   </div>
                 </form>
-
                 <div className="d-sm-grid gap-1 d-flex">
                   <button
                     className="btn btn-dark text-white m-2  round rounded-4 "

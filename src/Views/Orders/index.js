@@ -7,6 +7,7 @@ import "./style.css";
 function Orders() {
   const pageRef = useRef(1);
   const dispatch = useDispatch();
+  const orderDebounceRef = useRef(null);
   useEffect(() => {
     dispatch(getOrderHistory(1));
   }, [dispatch]);
@@ -16,12 +17,6 @@ function Orders() {
       dispatch(clearOrders(null));
     }
   }, [dispatch]);
-  
-  // useEffect(()=>{
-  //   const getOrder = setTimeout(()=>{
-  //     dispatch(getOrderHistory())
-  //   })
-  // },[])
   
   const myOrderHistory = useSelector(
     (state) => state?.homeReducer?.orderHistory
@@ -34,7 +29,15 @@ function Orders() {
     var scrollPoint = window.scrollY + window.innerHeight;
     if (scrollPoint >= totalPageHeight) {
       if(Math.ceil(orderCount / 5) !== pageRef )
-      dispatch(getOrderHistory(++pageRef.current));
+      {
+        if(orderDebounceRef.current) {
+          clearTimeout(orderDebounceRef.current)
+        }
+        orderDebounceRef.current = setTimeout(()=>{
+          orderDebounceRef.current = null
+          dispatch(getOrderHistory(++pageRef.current));
+        },500)
+      } 
     }
   };
 
