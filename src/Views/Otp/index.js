@@ -8,10 +8,22 @@ const Otp = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [otp, setOtp] = useState("");
-  function handleOtp(e) {
+  const [errors, setErrors] = useState({});
 
+  const validation = (otp) => {
+    let errors = {};
+    const contactRegex = new RegExp("^[0-9]{10}$");
+    if (!otp) {
+      errors.otp = "Please enter OTP";
+    } else if (!contactRegex.test(otp)) {
+      errors.otp = "OTP must contain 4 digit";
+    }
+    return errors;
+  };
+
+  function handleOtp(e) {
     var otp = e.target.value;
-    if (otp.length < 7) {
+    if (otp.length < 5) {
       setOtp(e.target.value);
     }
   }
@@ -23,24 +35,29 @@ const Otp = () => {
     formData.append("otp", otp);
     formData.append("phone_number", myContact);
     e.preventDefault();
-    if (otp !== "") {
+    setErrors(validation(otp));
+    if (otp !== "" && otp.length===4) {
       try {
         dispatch(
           signUpOtp({
             data: formData,
             success: (Response) => {
-              history.push({
-                pathname: "/login",
-                state: { myContact },
-              });
+              if(Response.data.response!=="fail"){
+                history.push({
+                  pathname: "/login",
+                  state: { myContact },
+                });
+              }else{
+                alert("Incorrect OTP");
+              }
             },
             fail: (err) => {
-              alert("OTP incorrect");
+              alert("Incorrect OTP");
             },
           })
         );
       } catch (error) {
-        console.log(error?.data);
+        alert(error?.data);
       }
     }
   };
@@ -61,13 +78,14 @@ const Otp = () => {
                       <b>OTP :</b>
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       placeholder="OTP"
                       className="form-control my-2"
                       value={otp}
                       onChange={(e) => handleOtp(e)}
                       required
                     ></input>
+                    {errors.otp && <p className="err">{errors?.otp}</p>}
                   </div>
                 </form>
                 <div className="d-sm-grid gap-1 d-flex">

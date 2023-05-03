@@ -134,7 +134,7 @@ const CreatePassword = () => {
                     </label>
                     <input
                       type="password"
-                      placeholder="abc@123"
+                      placeholder="Enter Password"
                       className="form-control my-2"
                       value={reset_password}
                       onChange={(e) => handleResetPassword(e)}
@@ -152,7 +152,7 @@ const CreatePassword = () => {
                     </label>
                     <input
                       type="password"
-                      placeholder="abc@123"
+                      placeholder="Re-enter Password"
                       className="form-control my-2"
                       value={confirm_password}
                       onChange={(e) => handleConfirmPassword(e)}

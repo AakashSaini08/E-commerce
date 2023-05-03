@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import correct from "../../Assets/Images/correct-removebg-preview.png";
 import { useHistory } from "react-router-dom";
@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { success } from "Redux/Actions/HomeActions";
 
 function Success() {
+
+  
   const object = JSON.parse(localStorage.getItem("persist:rootdata"));
   const obj = JSON.parse(object.auth);
   const token = obj.data;
@@ -13,11 +15,13 @@ function Success() {
 
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(success(token))
+  },[dispatch,token])
  
   const handleOk = () => {
-    dispatch(success(token));
-    history.push("/");
-    
+    history.push("/"); 
   };
 
   return (
@@ -38,6 +42,7 @@ function Success() {
         <button className="btn btn-success" onClick={handleOk}>
           OK
         </button>
+        
       </div>
     </div>
   );

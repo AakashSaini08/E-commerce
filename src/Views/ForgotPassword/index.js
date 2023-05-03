@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     }
   }
 
-  const validation = (contact, password) => {
+  const validation = (contact) => {
     let errors = {};
     const contactRegex = new RegExp("^[0-9]{10}$");
     if (!contact) {
@@ -41,14 +41,13 @@ const ForgotPassword = () => {
           getOtp({
             data: formData,
             success: (Response) => {
-              console.log(Response,"dfdfd")
               if (Response.data.status === 200) {
                 history.push({
                   pathname: "/phoneotp",
                   state: { contact },
                 });
               }else{
-                alert("dfdf")
+                alert("Check the phone number you have entered")
               }
             },
             fail: (err) => {

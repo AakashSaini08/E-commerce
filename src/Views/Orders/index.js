@@ -28,7 +28,7 @@ function Orders() {
     var totalPageHeight = document.body.scrollHeight;
     var scrollPoint = window.scrollY + window.innerHeight;
     if (scrollPoint >= totalPageHeight) {
-      if(Math.ceil(orderCount / 5) !== pageRef )
+      if(Math.ceil(orderCount / 5) !== pageRef.current )
       {
         if(orderDebounceRef.current) {
           clearTimeout(orderDebounceRef.current)

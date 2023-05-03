@@ -76,17 +76,17 @@ function RecentProducts() {
                 return (
                   <div key={idx} className="card-outer-recent">
                     <div className="myCard-recent">
-                      <button
+                      <div
                         className="prod-btn"
                         onClick={() => handleProductDetail(item?.id)}
                       >
                         <img
                           src={BASE_URL + item?.photo}
-                          className="product-img "
+                          className="recent-product-img "
                           alt="..."
                         />
-                      </button>
-                      <div className="myCard-body">
+                      </div>
+                      <div className="myCard-body-recent">
                         <div>
                           <h5 className="card-title">{item?.name}</h5>
                           <p className="card-text">

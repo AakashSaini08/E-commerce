@@ -18,7 +18,7 @@ function Checkout() {
   const handlePay=()=>{
     const formData = new FormData();
     formData.append("address", address);
-    if(address !== ''){
+    if(address !== '' && address.trim() !== ''){
       try {
         dispatch(
           paynow({
@@ -33,7 +33,7 @@ function Checkout() {
         );
         
       } catch (error) {
-        console.log(error.data);
+        alert(error.data);
       }
     }else{
       alert("Please Enter Address")

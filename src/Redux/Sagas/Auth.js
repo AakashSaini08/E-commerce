@@ -17,15 +17,19 @@ import {
 } from "../Actions/Auth";
 import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
+import { hideLoader, showLoader } from "Redux/Actions/LoadingActions";
 
 function* auth({ payload : { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.signin, data);
+    yield put(hideLoader())
     yield put(setLogin(response?.data));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -34,12 +38,15 @@ function* auth({ payload : { data, success, fail } }) {
 
 function* otp({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.resend_otp, data);
+    yield put(hideLoader())
     yield put(setOtp(Object.values(response?.data)));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -48,13 +55,15 @@ function* otp({ payload: { data, success, fail } }) {
 
 function* verify({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.verify, data);
-    console.log(response);
+    yield put(hideLoader())
     yield put(setVerify(Object.values(response?.data)));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -63,13 +72,15 @@ function* verify({ payload: { data, success, fail } }) {
 
 function* resetPassword({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.forgot_password, data);
-    console.log(response);
+    yield put(hideLoader())
     yield put(setPassword(Object.values(response?.data)));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -78,14 +89,16 @@ function* resetPassword({ payload: { data, success, fail } }) {
 
 function* signUp({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.signup, data);
-    console.log(response);
+    yield put(hideLoader())
     yield put(setSignUp(Object.values(response?.data)));
     if (success) {
       success(response);
     }
   } catch (error) {
     if (fail) {
+      yield put(hideLoader())
       fail(error);
     }
   }
@@ -93,13 +106,15 @@ function* signUp({ payload: { data, success, fail } }) {
 
 function* otpVerify({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.verify, data);
-    console.log(response);
+    yield put(hideLoader())
     yield put(setSignUpOtp(Object.values(response?.data)));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -107,14 +122,16 @@ function* otpVerify({ payload: { data, success, fail } }) {
 }
 
 function* logoutCall({ payload: { success, fail } }) {
-  console.log(success, "dfdf");
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.logout);
+    yield put(hideLoader())
     yield put(setLogout(response?.data));
     if (success) {
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }

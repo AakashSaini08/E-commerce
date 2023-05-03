@@ -30,12 +30,15 @@ function* products(payload) {
 
 function* myCart({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.post(API.cart, data);
+    yield put(hideLoader())
     if (success) {
       yield put(setAddToCart(response?.data));
       success(response);
     }
   } catch (error) {
+    yield put(hideLoader())
     if (fail) {
       fail(error);
     }
@@ -55,13 +58,16 @@ function* cartData(payload) {
 
 function* removeItem({ payload: { data, success, fail } }) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.delete(API.cart + data + "/");
+    yield put(hideLoader())
     if (success) {
       yield put(setRemoveFromCart(response?.data));
       success(response);
     }
   } catch (error) {
     if (fail) {
+      yield put(hideLoader())
       fail(error);
     }
   }
@@ -125,9 +131,12 @@ function* myReview({ payload: { data, success, fail } }) {
 
 function* mySuccess(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.success);
+    yield put(hideLoader())
     yield put(setData(Object.values(response?.data)));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }
@@ -136,9 +145,12 @@ function* mySuccess(payload) {
 
 function* allReviews(payload) {
   try {
+    yield put(showLoader())
     const response = yield axiosInstance.get(API.productreview + "?product_id=" + payload.payload);
+    yield put(hideLoader())
     yield put(setAllReviews(response?.data));
   } catch (error) {
+    yield put(hideLoader())
     if (payload && payload?.fail) {
       payload.fail(error);
     }

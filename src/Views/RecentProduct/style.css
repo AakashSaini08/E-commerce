@@ -1,17 +1,25 @@
-.product-img {
-    margin-left: 3px;
-    width: 231px;
-    height: 250px;
+.recent-product-img {
+  width: 220px;
+  height: 230px;
+  margin-bottom: 20px;
+  margin-left: 16px;
   margin-top: 0px;
   object-fit: contain;
   }
+
+  .recent-product-img:hover{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    width: 235px;
+    height: 250px;
+  }
   
-  .myCard-body {
+  .myCard-body-recent {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 246px;
-    height: 192px;
+    height: 194px;
     text-align: center;
     background-color: #a0c7e5;
     padding: 5px;

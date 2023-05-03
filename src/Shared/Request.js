@@ -15,6 +15,20 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   function (error) {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  function (error) {
+    if(error.response.status === 401){
+      localStorage.clear();
+      window.location.replace('./login')
+    }
     return Promise.reject(error);
   }
 );
