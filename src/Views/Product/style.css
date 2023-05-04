@@ -2,14 +2,14 @@
   width: 220px;
   height: 230px;
   margin-bottom: 20px;
-  margin-left: 16px;
+  margin-left: 8px;
   margin-top: 0px;
   object-fit: contain;
 }
 
 .product-img:hover{
   margin-bottom: 0px;
-  margin-left: 12px;
+  margin-left: 6px;
   width: 230px;
   height: 250px;
 }
@@ -26,7 +26,7 @@
 .myCard {
   border: 2px solid grey;
   width: 251px;
-  height: 448px;
+  height: 450px;
   border-radius: 5px;
 }
 .card-outer {

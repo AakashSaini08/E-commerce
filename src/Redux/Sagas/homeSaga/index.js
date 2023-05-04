@@ -19,7 +19,7 @@ import { showLoader, hideLoader } from '../../Actions/LoadingActions'
 
 function* products(payload) {
   try {
-    const response = yield axiosInstance.get(API.getProduct);
+    const response = yield axiosInstance.get("https://ecommercechicmic-default-rtdb.firebaseio.com/products.json");
     yield put(setData(Object.values(response?.data)));
   } catch (error) {
     if (payload && payload?.fail) {

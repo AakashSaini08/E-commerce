@@ -4,7 +4,7 @@ export const STRINGS = {
     "You appear to be offline. Please check your internet connection.",
 };
 
-export const BASE_URL = "https://fresh-moons-train-112-196-113-2.loca.lt/";
+export const BASE_URL = "https://strong-doodles-kneel-112-196-113-2.loca.ltt/";
 
 export const API = {
   signin: `${BASE_URL}signin/`,
@@ -22,3 +22,17 @@ export const API = {
   orderhistory: `${BASE_URL}orderhistory/`,
   transactionhistory: `${BASE_URL}transactionhistory/`,
 };
+
+
+
+// function* products(payload) {
+//   try {
+//     const response = yield axiosInstance.get("https://ecommercechicmic-default-rtdb.firebaseio.com/products.json");
+//     console.log(Object.values(response.data),"dfsdfsd")
+//     yield put(setData(Object.values(response?.data)));
+//   } catch (error) {
+//     if (payload && payload?.fail) {
+//       payload.fail(error);
+//     }
+//   }
+// }

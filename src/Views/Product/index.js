@@ -2,15 +2,15 @@ import { addToCart, getCart, viewed } from "Redux/Actions/HomeActions";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { BASE_URL } from "Shared/Constants";
+// import { BASE_URL } from "Shared/Constants";
 import ProductAdded from "Views/ProductAdded";
 import { useState } from "react";
 
 function MyProduct() {
-  const [isProductAdded, setIsProductAdded] = useState(false);
+  const [isProductAdded,setIsProductAdded] = useState(false);
   const count = 1;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state?.homeReducer?.products[1]);
+  const products = useSelector((state) => state?.homeReducer?.products);
   const productsArray = products ? Object.values(products) : [];
   const token = useSelector((state) => state?.auth?.data);
   const history = useHistory();
@@ -34,8 +34,9 @@ function MyProduct() {
   };
 
   const handleCart = (item) => {
+    
     if (token) {
-      setIsProductAdded(true);
+      setIsProductAdded(true); 
       const formData = new FormData();
       formData.append("product_id", item?.id);
       formData.append("quantity", count);
@@ -50,40 +51,42 @@ function MyProduct() {
             if (token) {
               alert("Item out of stock");
             }
-          },
+          }
         })
       );
     }
 
-    setTimeout(() => {
+    setTimeout(()=>{
       setIsProductAdded(false);
-    }, 2000);
-
-    if (!token) {
+    },2000)
+    
+    if(!token) {
       alert("You need to login first");
     }
+
   };
 
   return (
     <>
-      <div className="my-product-added">
-        {isProductAdded ? <ProductAdded /> : null}
+    <div className="my-product-added">
+        {isProductAdded ? <ProductAdded/> : null}
       </div>
       <div className="main">
         {productsArray?.map((item, idx) => {
           return (
             <div key={idx} className="card-outer">
               <div className="myCard">
-                <div
+                <button
                   className="prod-btn"
                   onClick={() => handleProductDetail(item?.id)}
                 >
+
                   <img
-                    src={BASE_URL + item?.photo}
-                    className="product-img"
+                    src={item?.photo}
+                    className="product-img "
                     alt="..."
                   />
-                </div>
+                </button>
                 <div className="myCard-body">
                   <div>
                     <h5 className="card-title">{item?.name}</h5>

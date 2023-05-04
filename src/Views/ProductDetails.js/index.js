@@ -88,27 +88,34 @@ function ProductDetail() {
       formData.append("product_id", selectedProduct?.id);
       formData.append("review", review);
       formData.append("rating", rating);
-  
-      try {
-        dispatch(
-          addReview({
-            data: formData,
-            success: (Response) => {
-              if (Response.status === 200) {
-                dispatch(getAllReviews(selectedProduct?.id));
-                history.push(`/productDetails/${selectedProduct?.id}`);
-              }
-            },
-            fail: (err) => {
-              alert("You need to buy this product before reviewing it...");
-            },
-          })
-        );
-      } catch (error) {}
-    }else{
-      alert("You need to login first")
-    } 
-    setReview(null);
+      if(review !== ''){
+        try {
+          dispatch(
+            addReview({
+              data: formData,
+              success: (Response) => {
+                if (Response.status === 200) {
+                  dispatch(getAllReviews(selectedProduct?.id));
+                  history.push(`/productDetails/${selectedProduct?.id}`);
+                  setReview("");
+                  setRating(1)
+                }
+              },
+              fail: (err) => {
+                alert("You need to buy this product before reviewing it...");
+              },
+            })
+          );
+        } catch (error) {}
+      }else{
+        alert("Review cannot be leaved empty")
+      } 
+      }else{
+        alert("You need to login first")
+      }
+      
+      
+    
   };
 
   
