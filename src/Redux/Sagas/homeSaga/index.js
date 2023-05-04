@@ -13,7 +13,8 @@ import {
   setViewedItems,
 } from "Redux/Actions/HomeActions";
 import { ADD_REVIEW, ADD_TO_CART, GET_ALL_REVIEWS, GET_CART, GET_DATA, GET_ORDER_HISTORY, GET_TRANSACTION_HISTORY, GET_VIEWED_ITEMS, PAY, REMOVE_FROM_CART, SUCCESS, VIEWED } from "Redux/Actions/HomeActions/actionStates";
-import { API } from "Shared/Constants";
+import { API } from "Services/Api/Constants";
+
 import { axiosInstance } from "Shared/Request";
 import { showLoader, hideLoader } from '../../Actions/LoadingActions'
 

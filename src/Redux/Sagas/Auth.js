@@ -15,9 +15,9 @@ import {
   SIGNUP,
   SIGNUPOTP,
 } from "../Actions/Auth";
-import { API } from "Shared/Constants";
 import { axiosInstance } from "Shared/Request";
 import { hideLoader, showLoader } from "Redux/Actions/LoadingActions";
+import { API } from "Services/Api/Constants";
 
 function* auth({ payload : { data, success, fail } }) {
   try {

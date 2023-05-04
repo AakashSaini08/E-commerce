@@ -4,21 +4,35 @@ export const STRINGS = {
     "You appear to be offline. Please check your internet connection.",
 };
 
-export const BASE_URL = "https://fresh-moons-train-112-196-113-2.loca.lt/";
+export const ALLSTRINGS = {
+  DEAL_OF_THE_DAY: "DEAL OF THE DAY",
+  Most_Selling_Products:"Most Selling Products"
+}
 
-export const API = {
-  signin: `${BASE_URL}signin/`,
-  signup: `${BASE_URL}signup/`,
-  resend_otp: `${BASE_URL}resend_otp/`,
-  verify: `${BASE_URL}verify/`,
-  forgot_password: `${BASE_URL}forgot_password/`,
-  getProduct: `${BASE_URL}getproduct/`,
-  cart: `${BASE_URL}cart/`,
-  logout: `${BASE_URL}logout/`,
-  create_checkout: `${BASE_URL}create_checkout/`,
-  recentlyviewed: `${BASE_URL}recentlyviewed/`,
-  success: `${BASE_URL}success/`,
-  productreview: `${BASE_URL}productreview/`,
-  orderhistory: `${BASE_URL}orderhistory/`,
-  transactionhistory: `${BASE_URL}transactionhistory/`,
-};
+export const NAVSTRINGS = {
+  HOME:"HOME",
+  HISTORY:"HISTORY",
+  ORDERS:"ORDERS",
+  LOGOUT:"LOGOUT",
+  LOGIN:"LOGIN",
+}
+
+export const FOOTERSTRINGS = {
+  ONLINE_SHOPPING:"Online Shopping",
+  MEN:"Men",
+  WOMEN:"Women",
+  KIDS:"Kids",
+  BOOKS:"Books",
+  SALE:"Sale",
+  CUSTOMER_POLICIES:"Customer Policies",
+  CONTACTS:"Contact",
+  FAQ:"FAQ",
+  TC:"T&C",
+  RETURNS:"Returns",
+  TERMS_OF_USE:"Terms Of Use",
+  PRIVACY_POLICY:"Privacy Policy",
+  EXPERIENCE_US_ON:"Experience us on",
+  KEEP_IN_TOUCH:"Keep In Touch",
+  ORIGINAL:"100% ORIGINAL guarantee for all products",
+  RETURN:"Return within 30 days of receiving your order",
+}

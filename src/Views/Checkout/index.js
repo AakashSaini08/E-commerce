@@ -6,7 +6,12 @@ import "./style.css";
 function Checkout() {
   const [address, setAddress] = useState("");
   const handleAddress = (e) => {
-    setAddress(e.target.value);
+    if (e.target.value.length < 100) {
+      setAddress(e.target.value);
+    } 
+    else {
+      alert("Address limit exceeded...")
+    }
   };
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,30 +20,29 @@ function Checkout() {
   }, [dispatch]);
   const totalAmount = useSelector((state) => state?.homeReducer?.totalPrice);
   const subTotal = totalAmount ? Object.values(totalAmount) : [];
-  const handlePay=()=>{
+  const handlePay = () => {
     const formData = new FormData();
     formData.append("address", address);
-    if(address !== '' && address.trim() !== ''){
+    if (address !== "" && address.trim() !== "") {
       try {
         dispatch(
           paynow({
             data: formData,
             success: (Response) => {
-              window.open(Response.data.url,"_self")
+              window.open(Response.data.url, "_self");
             },
             fail: (err) => {
               alert("Payment Faild");
             },
           })
         );
-        
       } catch (error) {
         alert(error.data);
       }
-    }else{
-      alert("Please Enter Address")
+    } else {
+      alert("Please Enter Address");
     }
-  }
+  };
 
   return (
     <div>
@@ -60,7 +64,6 @@ function Checkout() {
               />
             </div>
           </div>
-          
         </div>
         <div className="outer-cart-right">
           <div>
@@ -78,10 +81,12 @@ function Checkout() {
           <hr />
           <div className="bill">
             <h3>Total Amount</h3>
-            <p>Price:  ₹{subTotal}</p>
+            <p>Price: ₹{subTotal}</p>
           </div>
           <div className="bill">
-            <button className="btn btn-warning" onClick={handlePay}>Pay now</button>
+            <button className="btn btn-warning" onClick={handlePay}>
+              Pay now
+            </button>
           </div>
         </div>
       </div>

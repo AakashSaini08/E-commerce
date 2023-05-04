@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearOrders, getOrderHistory } from "Redux/Actions/HomeActions";
-import { BASE_URL } from "Shared/Constants";
+import { BASE_URL } from "Services/Api/Constants";
 import "./style.css";
 
 function Orders() {

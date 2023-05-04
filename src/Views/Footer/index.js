@@ -1,39 +1,39 @@
 import React from "react";
 import "./style.css";
-import googlPlay from "../../Assets/Images/googlePlay.png";
-import appStore from "../../Assets/Images/appStore.png";
+import { Images } from "Shared/Images";
+import { FOOTERSTRINGS } from "Shared/Constants";
 function Footer() {
   return (
     <div className="main-footer">
       <div className="footer1">
-        <h3>Online Shoping</h3>
+        <h3>{FOOTERSTRINGS.ONLINE_SHOPPING}</h3>
         <ul>
-          <li>Men</li>
-          <li>Women</li>
-          <li>Kids</li>
-          <li>Books</li>
-          <li>Sale</li>
+          <li>{FOOTERSTRINGS.MEN}</li>
+          <li>{FOOTERSTRINGS.WOMEN}</li>
+          <li>{FOOTERSTRINGS.KIDS}</li>
+          <li>{FOOTERSTRINGS.BOOKS}</li>
+          <li>{FOOTERSTRINGS.SALE}</li>
         </ul>
       </div>
       <div className="footer2">
-        <h3>Customer Policies</h3>
+        <h3>{FOOTERSTRINGS.CUSTOMER_POLICIES}</h3>
         <ul>
-          <li>Contact Us</li>
-          <li>FAQ</li>
-          <li>T&C</li>
-          <li>Returns</li>
-          <li>Terms Of Use</li>
-          <li>Privacy Policy</li>
+          <li>{FOOTERSTRINGS.CUSTOMER_POLICIES}</li>
+          <li>{FOOTERSTRINGS.FAQ}</li>
+          <li>{FOOTERSTRINGS.TC}</li>
+          <li>{FOOTERSTRINGS.RETURNS}</li>
+          <li>{FOOTERSTRINGS.TERMS_OF_USE}</li>
+          <li>{FOOTERSTRINGS.PRIVACY_POLICY}</li>
         </ul>
       </div>
       <div className="footer3">
-        <h3>Experience us on</h3>
-        <img className="playImg" alt="Google Play" src={googlPlay} />
-        <img className="storeImg" alt="Google Play" src={appStore} />
+        <h3>{FOOTERSTRINGS.EXPERIENCE_US_ON}</h3>
+        <img className="playImg" alt="Google Play" src={Images.googlePlay} />
+        <img className="storeImg" alt="Google Play" src={Images.appStore} />
       </div>
       <div className="footer4">
         <div>
-          <h3>Keep In Touch</h3>
+          <h3>{FOOTERSTRINGS.KEEP_IN_TOUCH}</h3>
           <div className="myIcons">
             <div>
               <h3>
@@ -58,8 +58,8 @@ function Footer() {
           </div>
         </div>
         <div className="mt-3">
-          <h5>100% ORIGINAL guarantee for all products </h5>
-          <h5>Return within 30 days of receiving your order</h5>
+          <h5>{FOOTERSTRINGS.ORIGINAL} </h5>
+          <h5>{FOOTERSTRINGS.RETURN}</h5>
         </div>
       </div>
     </div>

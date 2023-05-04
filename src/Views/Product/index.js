@@ -2,9 +2,9 @@ import { addToCart, getCart, viewed } from "Redux/Actions/HomeActions";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { BASE_URL } from "Shared/Constants";
 import ProductAdded from "Views/ProductAdded";
 import { useState } from "react";
+import { BASE_URL } from "Services/Api/Constants";
 
 function MyProduct() {
   const [isProductAdded, setIsProductAdded] = useState(false);

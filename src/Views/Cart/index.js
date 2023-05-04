@@ -2,7 +2,8 @@ import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {  addToCart, getCart, removeFromCart } from "Redux/Actions/HomeActions";
-import { BASE_URL } from "Shared/Constants";
+import { BASE_URL } from "Services/Api/Constants";
+
 import "./style.css";
 
 function Cart() {
