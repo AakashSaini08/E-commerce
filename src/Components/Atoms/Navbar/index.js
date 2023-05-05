@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Images } from "Shared/Images";
 import { useSelector } from "react-redux";
 import Logout from "Views/Logout";
-import { NAVSTRINGS } from "Shared/Constants";
+import { NAV_STRINGS } from "Shared/Constants";
 
 function Navbar() {
   const [openModel,setOpenModel] = useState(false);
@@ -36,7 +36,7 @@ function Navbar() {
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link className="nav-link " aria-current="page" to="/">
-                  {NAVSTRINGS.HOME}
+                  {NAV_STRINGS.HOME}
                 </Link>
               </li>
               {token ? (
@@ -47,7 +47,7 @@ function Navbar() {
                       aria-current="page"
                       to="/history"
                     >
-                      {NAVSTRINGS.HISTORY}
+                      {NAV_STRINGS.HISTORY}
                     </Link>
                   </li>
 
@@ -57,18 +57,18 @@ function Navbar() {
 
                   <li className="nav-item nav-orders">
                     <Link className="nav-link " to="/orders">
-                      {NAVSTRINGS.ORDERS}
+                      {NAV_STRINGS.ORDERS}
                     </Link>
                   </li>
 
                   <li className="nav-item nav-logout">
-                    <button onClick={()=>setOpenModel(true)} className="nav-link log-out">{NAVSTRINGS.LOGOUT}</button>
+                    <button onClick={()=>setOpenModel(true)} className="nav-link log-out">{NAV_STRINGS.LOGOUT}</button>
                   </li>
                 </div>
               ) : (
                 <li className="nav-item nav-login">
                   <Link className="nav-link " to="/login">
-                    {NAVSTRINGS.LOGIN}
+                    {NAV_STRINGS.LOGIN}
                   </Link>
                 </li>
               )}

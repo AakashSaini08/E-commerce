@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactionHistory } from "Redux/Actions/HomeActions";
+import { HISTORY_STRINGS, PAGING } from "Shared/Constants";
 import "./style.css";
 
 function History() {
@@ -26,7 +27,7 @@ function History() {
   return (
     <>
       <div className="transaction-head">
-        <h2>Transaction History</h2>
+        <h2>{HISTORY_STRINGS.TRANSACTION_HISTORY}</h2>
       </div>
       <hr />
       {finalTransactionHistory?.length !== 0 ? (
@@ -36,13 +37,13 @@ function History() {
               return (
                 <div key={idx} className="trans-details">
                 <div className="date-id">
-                    <p>Order Placed:  {item?.date}</p>
+                    <p>{HISTORY_STRINGS.ORDER_PLACED}:  {item?.date}</p>
                     <div>
-                    <p>Transaction Id: {item?.transaction_id}</p>
+                    <p>{HISTORY_STRINGS.TRANSACTION_ID}: {item?.transaction_id}</p>
                     </div>
                     </div>
                       <h4>{item?.product_name}</h4>
-                      <h5>Paid Status : <span className={item?.paid?'text-success':'text-danger'}>{item?.paid?"Success":"Failure"} </span></h5>
+                      <h5>{HISTORY_STRINGS.PAID_STATUS} : <span className={item?.paid?'text-success':'text-danger'}>{item?.paid?"Success":"Failure"} </span></h5>
                 </div>
               );
             })}
@@ -50,14 +51,14 @@ function History() {
         </div>
       ) : (
         <div className="emptyCart">
-          <h2>No Transaction made yet</h2>
+          <h2>{HISTORY_STRINGS.NO_TRANSACTION_MADE_YET}</h2>
         </div>
       )}
       {historyCount !== 0 ? (
         <div className="paging">
         {page > 1 ? (
           <button className="btn btn-dark m-5" onClick={previousPage}>
-            Previous
+            {PAGING.PREVIOUS}
           </button>
         ) : null}
         <div className="pg">
@@ -67,7 +68,7 @@ function History() {
         </div>
         {Math.ceil(historyCount/5) !== page ? (
           <button className="btn btn-dark m-5" onClick={nextPage}>
-            Next
+            {PAGING.NEXT}
           </button>
         ) : null}
       </div>

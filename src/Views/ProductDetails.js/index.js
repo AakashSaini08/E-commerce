@@ -11,6 +11,7 @@ import {
   setAllReviews,
 } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Services/Api/Constants";
+import { PRODUCT_DETAIL_STRINGS } from "Shared/Constants";
 
 function ProductDetail() {
   const products = useSelector((state) => state?.homeReducer?.products[1]);
@@ -135,8 +136,8 @@ function ProductDetail() {
           <div className="product-detail">
             <h2>{selectedProduct?.name}</h2>
             <hr />
-            <h3>Price: ₹{selectedProduct?.price}</h3>
-            <p>Inclusive of all taxes</p>
+            <h3>{PRODUCT_DETAIL_STRINGS.PRICE}{selectedProduct?.price}</h3>
+            <p>{PRODUCT_DETAIL_STRINGS.INCLUSIVE}</p>
             <hr />
             <div>
               <p>{selectedProduct?.product_details}</p>
@@ -148,8 +149,8 @@ function ProductDetail() {
                   <i className="bi bi-truck"></i>
                 </h4>
                 <p>
-                  Free <br />
-                  Delivery
+                  {PRODUCT_DETAIL_STRINGS.FREE} <br />
+                  {PRODUCT_DETAIL_STRINGS.DELIVERY}
                 </p>
               </div>
               <div>
@@ -157,8 +158,8 @@ function ProductDetail() {
                   <i className="bi bi-wallet2 "></i>
                 </h4>
                 <p>
-                  Pay on <br />
-                  Delivery
+                  {PRODUCT_DETAIL_STRINGS.PAY_ON} <br />
+                  {PRODUCT_DETAIL_STRINGS.DELIVERY}
                 </p>
               </div>
               <div>
@@ -166,7 +167,7 @@ function ProductDetail() {
                   <i className="bi bi-arrow-repeat "></i>
                 </h4>
                 <p>
-                  30 day <br /> Returnable
+                {PRODUCT_DETAIL_STRINGS.DAY} <br />{PRODUCT_DETAIL_STRINGS.RETURNABLE}
                 </p>
               </div>
             </div>
@@ -178,11 +179,11 @@ function ProductDetail() {
                         value={count}
                         onChange={(e) => handleQuantity(e)}
                       >
-                        <option value="1"> 1 </option>
-                        <option value="2"> 2 </option>
-                        <option value="3"> 3 </option>
-                        <option value="4"> 4 </option>
-                        <option value="5"> 5 </option>
+                        <option value="1"> {PRODUCT_DETAIL_STRINGS.ONE} </option>
+                        <option value="2"> {PRODUCT_DETAIL_STRINGS.TWO} </option>
+                        <option value="3"> {PRODUCT_DETAIL_STRINGS.THREE} </option>
+                        <option value="4"> {PRODUCT_DETAIL_STRINGS.FOUR} </option>
+                        <option value="5"> {PRODUCT_DETAIL_STRINGS.FIVE} </option>
                       </select>
               </div>
               <div>
@@ -190,7 +191,7 @@ function ProductDetail() {
                   className=" myBtn btn btn-dark"
                   onClick={() => handleCart(selectedProduct)}
                 >
-                  Add to Cart
+                  {PRODUCT_DETAIL_STRINGS.ADD_TO_CART}
                 </button>
               </div>
             </div>
@@ -200,21 +201,21 @@ function ProductDetail() {
         <div className="review-outer">
           <div className="review-left">
             <div>
-              <h3>Customer Reviews</h3>
+              <h3>{PRODUCT_DETAIL_STRINGS.CUSTOMER_REVIEWS}</h3>
               <label>
-                Rating
+                {PRODUCT_DETAIL_STRINGS.RATING}
                 <select value={rating} onChange={handleChange}>
-                  <option value="1"> 1 </option>
-                  <option value="2"> 2 </option>
-                  <option value="3"> 3 </option>
-                  <option value="4"> 4 </option>
-                  <option value="5"> 5 </option>
+                  <option value="1"> {PRODUCT_DETAIL_STRINGS.ONE}</option>
+                  <option value="2"> {PRODUCT_DETAIL_STRINGS.TWO} </option>
+                  <option value="3"> {PRODUCT_DETAIL_STRINGS.THREE} </option>
+                  <option value="4"> {PRODUCT_DETAIL_STRINGS.FOUR} </option>
+                  <option value="5"> {PRODUCT_DETAIL_STRINGS.FIVE} </option>
                 </select>
               </label>
             </div>
             <div className="review-title">
               <div>
-                <h4>Review this Product</h4>
+                <h4>{PRODUCT_DETAIL_STRINGS.REVIEW_THIS_PRODUCT}</h4>
               </div>
               <div>
                 <textarea
@@ -225,31 +226,31 @@ function ProductDetail() {
               </div>
               <div>
                 <button className="btn btn-dark " onClick={handleSubmit}>
-                  Submit
+                  {PRODUCT_DETAIL_STRINGS.SUBMIT}
                 </button>
               </div>
             </div>
           </div>
           <div className="review-right">
             <div>
-              <h3>Top Reviews</h3>
+              <h3>{PRODUCT_DETAIL_STRINGS.TOP_REVIEWS}</h3>
             </div>
             {finalReviews.length !== 0 ? (
               <div>
                 {finalReviews?.map((rev, idx) => {
                   return (
                     <div className="single-review" key={idx}>
-                      <h5>User Name : {rev?.username}</h5>
-                      <h5>Rating : {rev?.rating}</h5>
-                      <h5>Date : {rev?.date}</h5>
-                      <h5>Message : {rev?.review}</h5>
+                      <h5>{PRODUCT_DETAIL_STRINGS.USER_NAME} : {rev?.username}</h5>
+                      <h5>{PRODUCT_DETAIL_STRINGS.RATING} : {rev?.rating}</h5>
+                      <h5>{PRODUCT_DETAIL_STRINGS.DATE} : {rev?.date}</h5>
+                      <h5>{PRODUCT_DETAIL_STRINGS.MESSAGE}: {rev?.review}</h5>
                     </div>
                   );
                 })}
               </div>
             ) : (
               <div>
-                <h5>No Reviews yet</h5>
+                <h5>{PRODUCT_DETAIL_STRINGS.NO_REVIEW_YET}</h5>
               </div>
             )}
           </div>

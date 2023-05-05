@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearOrders, getOrderHistory } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Services/Api/Constants";
+import { ORDER_STRINGS } from "Shared/Constants";
 import "./style.css";
 
 function Orders() {
@@ -44,7 +45,7 @@ function Orders() {
   return (
     <>
       <div className="your-order">
-        <h2>Your Orders</h2>
+        <h2>{ORDER_STRINGS.YOUR_ORDERS}</h2>
       </div>
       <hr />
       {orderCount !== undefined ? (
@@ -53,8 +54,8 @@ function Orders() {
             return (
               <div className="outer-order" key={idx}>
                 <div className="order-Header">
-                  <div>Order Placed : {item?.date}</div>
-                  <div>Order Id : {item?.order_id}</div>
+                  <div>{ORDER_STRINGS.ORDER_PLACED} : {item?.date}</div>
+                  <div>{ORDER_STRINGS.ORDER_ID}: {item?.order_id}</div>
                 </div>
                 {item?.data?.length !== 0 ? (
                   <div className="order">
@@ -72,8 +73,8 @@ function Orders() {
                               </div>
                               <div className="name-detail">
                                 <h4>{item?.product_name?.name}</h4>
-                                <h5>Price: ₹{item?.price} </h5>
-                                <p>Quantity: {item?.quantity}</p>
+                                <h5>{ORDER_STRINGS.PRICE}{item?.price} </h5>
+                                <p>{ORDER_STRINGS.QUANTITY}: {item?.quantity}</p>
                               </div>
                             </div>
                           </div>
@@ -84,14 +85,14 @@ function Orders() {
                 ) : (
                   ""
                 )}
-                <div className="order-bottom">Ship To : {item?.address}</div>
+                <div className="order-bottom">{ORDER_STRINGS.SHIP_TO} : {item?.address}</div>
               </div>
             );
           })}
         </div>
       ) : (
         <div className="emptyCart">
-          <h2>No product ordered yet</h2>
+          <h2>{ORDER_STRINGS.NO_PRODUCT_ORDERED_YET}</h2>
         </div>
       )}
 

@@ -3,6 +3,7 @@ import "./style.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPassword } from "Redux/Actions/Auth";
+import { PASSWORD_STRINGS } from "Shared/Constants";
 
 const CreatePassword = () => {
   const dispatch = useDispatch();
@@ -122,14 +123,14 @@ const CreatePassword = () => {
           <div className="signup-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" signup-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                Reset Password
+                {PASSWORD_STRINGS.RESET_PASSWORD}
               </h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Set Password<span>*</span> :
+                       {PASSWORD_STRINGS.SET_PASSWORD}<span>*</span> :
                       </b>
                     </label>
                     <input
@@ -147,7 +148,7 @@ const CreatePassword = () => {
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Comfirm Password<span>*</span> :
+                        {PASSWORD_STRINGS.CONFIRM_PASSWORD}<span>*</span> :
                       </b>
                     </label>
                     <input
@@ -173,7 +174,7 @@ const CreatePassword = () => {
                     onClick={handleClick}
                   >
                     {" "}
-                    Continue
+                    {PASSWORD_STRINGS.CONTINUE}
                   </button>
                 </div>
               </div>

@@ -1,18 +1,19 @@
 import React from 'react'
 import './style.css'
-import failure from "../../Assets/Images/failure-removebg-preview.png"
+import { Images } from 'Shared/Images'
+import { FAILURE_STRINGS } from 'Shared/Constants'
 
 function Failure() {
   return (
     <div className='outer-fail'>
         <div className='fail'>
-            <img className='tick' src={failure} alt='correct'/>
+            <img className='tick' src={Images.failure} alt='correct'/>
         </div>
         <div className='head-fail'>
-            <h2>Payment Failed</h2>
+            <h2>{FAILURE_STRINGS.PAYMENT_FAILED}</h2>
         </div>
         <div className='para-fail'>
-        <p>Please try again later</p>
+        <p>{FAILURE_STRINGS.PLEASE_TRY_AGAIN_LATER}</p>
         </div>
     </div>
   )

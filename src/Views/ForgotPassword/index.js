@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getOtp } from "Redux/Actions/Auth";
+import { PASSWORD_STRINGS } from "Shared/Constants";
 const ForgotPassword = () => {
   const dispatch = useDispatch();
   const [contact, setContact] = useState("");
@@ -68,13 +69,13 @@ const ForgotPassword = () => {
           <div className="otp-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" otp-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                Forgot Password
+                {PASSWORD_STRINGS.FORGOT_PASSWORD}
               </h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>Phone no. :</b>
+                      <b>{PASSWORD_STRINGS.PHONE} :</b>
                     </label>
                     <input
                       type="text"
@@ -94,7 +95,7 @@ const ForgotPassword = () => {
                     onClick={handleClick}
                   >
                     {" "}
-                    Continue
+                    {PASSWORD_STRINGS.CONTINUE}
                   </button>
                 </div>
               </div>

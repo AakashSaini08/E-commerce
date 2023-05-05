@@ -3,11 +3,13 @@ import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "Redux/Actions/Auth";
+import { SIGNUP_STRINGS } from "Shared/Constants";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  let myMsg = "Password must contain 1 capital letter , 1 small letter , 1 digit, 1 special character, length should be more than or equal to 8";
+  let myMsg =
+    "Password must contain 1 capital letter , 1 small letter , 1 digit, 1 special character, length should be more than or equal to 8";
   function handleSignin() {
     history.push("/login");
   }
@@ -15,7 +17,6 @@ const SignUp = () => {
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  // const [detail, setDetail] = useState("");
   const validation = (user, contact, password) => {
     let errors = {};
     const nameRegex = new RegExp("^[A-Za-z\\s]+$");
@@ -85,9 +86,6 @@ const SignUp = () => {
     }
   }
 
-  // function handleDetail(val) {
-  //   setDetail(val);
-  // }
   const handleClick = async (e) => {
     const formData = new FormData();
     formData.append("name", user);
@@ -96,11 +94,10 @@ const SignUp = () => {
     formData.append("detail", 0);
     e.preventDefault();
     setErrors(validation(user, contact, password));
-    // console.log(Object.keys(validation(user, contact, password)).length);
     if (
       user !== "" &&
       contact !== "" &&
-      password !== "" 
+      password !== ""
       // detail !== ""
     ) {
       try {
@@ -131,14 +128,15 @@ const SignUp = () => {
           <div className="signup-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" signup-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                Sign Up
+                {SIGNUP_STRINGS.SIGN_UP}
               </h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Name<span>*</span> :
+                        {SIGNUP_STRINGS.NAME}
+                        <span>*</span> :
                       </b>
 
                       <input
@@ -155,7 +153,8 @@ const SignUp = () => {
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Phone Number<span>*</span> :
+                        {SIGNUP_STRINGS.PHONE_NUMBER}
+                        <span>*</span> :
                       </b>
 
                       <input
@@ -172,7 +171,8 @@ const SignUp = () => {
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Password<span>*</span> :
+                        {SIGNUP_STRINGS.PASSWORD}
+                        <span>*</span> :
                       </b>
                     </label>
                     <input
@@ -184,7 +184,9 @@ const SignUp = () => {
                       required
                     ></input>
                     {errors.password && (
-                      <p className="err">{<p className="myMsg">{myMsg}</p>} {errors?.password}</p>
+                      <p className="err">
+                        {<p className="myMsg">{myMsg}</p>} {errors?.password}
+                      </p>
                     )}
                   </div>
                   {/* <div className="d-sm-grid gap-1">
@@ -216,7 +218,7 @@ const SignUp = () => {
                     onClick={handleClick}
                   >
                     {" "}
-                    Continue
+                    {SIGNUP_STRINGS.CONTINUE}
                   </button>
                 </div>
               </div>
@@ -227,7 +229,7 @@ const SignUp = () => {
                   onClick={handleSignin}
                 >
                   {" "}
-                  Already have an account? login
+                  {SIGNUP_STRINGS.ALREADT_HAVE_AN_ACCOUNT}
                 </button>
               </div>
             </div>

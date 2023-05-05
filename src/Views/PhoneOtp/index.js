@@ -3,6 +3,7 @@ import "./style.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getVerify } from "Redux/Actions/Auth";
+import { OTP_STRINGS } from "Shared/Constants";
 
 const PhoneOtp = () => {
   const dispatch = useDispatch();
@@ -70,13 +71,13 @@ const PhoneOtp = () => {
           <div className="otp-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" otp-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                OTP
+              {OTP_STRINGS.OTP}
               </h1>
               <div className=" px-4 bg-transparent">
                 <form className="form-group">
                   <div className="d-sm-grid gap-1">
                     <label>
-                      <b>OTP :</b>
+                      <b>{OTP_STRINGS.OTP} :</b>
                     </label>
                     <input
                       type="text"
@@ -95,7 +96,7 @@ const PhoneOtp = () => {
                     className="btn btn-dark text-white m-2  round rounded-4 "
                     onClick={handleClick}
                   >
-                    Continue
+                    {OTP_STRINGS.CONTINUE}
                   </button>
                 </div>
               </div>

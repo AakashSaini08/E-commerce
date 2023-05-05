@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import ProductAdded from "Views/ProductAdded";
 import { useState } from "react";
 import { BASE_URL } from "Services/Api/Constants";
+import { PRODUCT_STRINGS } from "Shared/Constants";
 
 function MyProduct() {
   const [isProductAdded, setIsProductAdded] = useState(false);
@@ -88,9 +89,9 @@ function MyProduct() {
                   <div>
                     <h5 className="card-title">{item?.name}</h5>
                     <p className="card-text">
-                      <b>In Stock:</b> {item?.quantity}
+                      <b>{PRODUCT_STRINGS.STOCK}</b> {item?.quantity}
                       <br />
-                      <b>Price:</b> ₹{item?.price}
+                      <b>{PRODUCT_STRINGS.PRICE}</b> ₹{item?.price}
                     </p>
                   </div>
 
@@ -99,7 +100,7 @@ function MyProduct() {
                       className=" myBtn btn btn-dark"
                       onClick={() => handleCart(item)}
                     >
-                      Add to Cart
+                      {PRODUCT_STRINGS.ADD_TO_CART}
                     </button>
                   </div>
                 </div>

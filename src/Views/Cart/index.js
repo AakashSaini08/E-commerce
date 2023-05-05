@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {  addToCart, getCart, removeFromCart } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Services/Api/Constants";
+import { CART_STRINGS, PAGING } from "Shared/Constants";
 
 import "./style.css";
 
@@ -89,7 +90,7 @@ function Cart() {
   return (
     <>
       <div className="Shoping-cart">
-        <h2>Shopping Cart</h2>
+        <h2>{CART_STRINGS.SHOPPING_CART}</h2>
       </div>
       <hr />
 
@@ -110,9 +111,9 @@ function Cart() {
                     <div className="name-detail">
                       <h4>{item?.product_name}</h4>
                       <p>{item?.product_description}</p>
-                      <h5>Total: ₹{item?.product_price}</h5>
+                      <h5>{CART_STRINGS.TOTAL}{item?.product_price}</h5>
                       <label>
-                        <h5>Quantity : </h5>
+                        <h5>{CART_STRINGS.QUANTITY} : </h5>
                       </label>
 
                       <select
@@ -120,18 +121,18 @@ function Cart() {
                         value={item?.quantity}
                         onChange={(e) => handleChange(item,idx,e)}
                       >
-                        <option value="1"> 1 </option>
-                        <option value="2"> 2 </option>
-                        <option value="3"> 3 </option>
-                        <option value="4"> 4 </option>
-                        <option value="5"> 5 </option>
+                        <option value="1"> {CART_STRINGS.ONE} </option>
+                        <option value="2"> {CART_STRINGS.TWO} </option>
+                        <option value="3"> {CART_STRINGS.THREE} </option>
+                        <option value="4"> {CART_STRINGS.FOUR} </option>
+                        <option value="5"> {CART_STRINGS.FIVE} </option>
                       </select>
 
                       <button
                         className=" remove-Btn btn btn-dark"
                         onClick={() => handleRemove(item?.product_id)}
                       >
-                        Remove
+                       {CART_STRINGS.REMOVE}
                       </button>
                     </div>
                     <div className="price"></div>
@@ -142,23 +143,23 @@ function Cart() {
           </div>
 
           <div className="inner-right">
-            <h3>Sub-Total</h3>
+            <h3>{CART_STRINGS.SUB_TOTAL}</h3>
             <h4>₹{subTotal}</h4>
             <button className="btn btn-dark" onClick={handleBuy}>
-              Proceed to Buy
+              {CART_STRINGS.PROCEED_TO_BUY}
             </button>
           </div>
         </div>
       ) : (
         <div className="emptyCart">
-          <h2>Cart Is Empty</h2>
+          <h2>{CART_STRINGS.CART_IS_EMPTY}</h2>
         </div>
       )}
       {totalItems !== 0 ? (
         <div className="paging">
           {page > 1 ? (
             <button className=" prev btn btn-dark m-5" onClick={previousPage}>
-              Previous
+              {PAGING.PREVIOUS}
             </button>
           ) : null}
           <div className="pg">
@@ -168,7 +169,7 @@ function Cart() {
           </div>
           {Math.ceil(totalItems / 5) !== page ? (
             <button className=" next btn btn-dark m-5" onClick={nextPage}>
-              Next
+              {PAGING.NEXT}
             </button>
           ) : null}
         </div>

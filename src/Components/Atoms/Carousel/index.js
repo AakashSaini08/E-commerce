@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Carousel1 from "../../../Assets/Images/carousel1.png";
-import Carousel2 from "../../../Assets/Images/carousel2.png";
-import Carousel3 from "../../../Assets/Images/carousel3.png";
-import Carousel4 from "../../../Assets/Images/carousel4.png";
+import { Images } from "Shared/Images";
 
 function ControlledCarousel() {
   const [index, setIndex] = useState(0);
@@ -16,16 +13,16 @@ function ControlledCarousel() {
     <div className="my-carousel">
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
-        <img className="d-block w-100" src={Carousel1} alt="First slide" />
+        <img className="d-block w-100" src={Images.carousel1} alt="First slide" />
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Carousel2} alt="Second slide" />
+        <img className="d-block w-100" src={Images.carousel2} alt="Second slide" />
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Carousel3} alt="Third slide" />
+        <img className="d-block w-100" src={Images.carousel3} alt="Third slide" />
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Carousel4} alt="Fourth slide" />
+        <img className="d-block w-100" src={Images.carousel4} alt="Fourth slide" />
       </Carousel.Item>
     </Carousel>
     </div>

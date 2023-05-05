@@ -11,7 +11,7 @@ export const STATUS_CODES = {
   BAD_REQUEST: 400,
 };
 
-export const BASE_URL = "https://strong-doodles-kneel-112-196-113-2.loca.lt/";
+export const BASE_URL = "https://grumpy-paws-dig-112-196-113-2.loca.lt/";
 
 export const API = {
   signin: `${BASE_URL}signin/`,

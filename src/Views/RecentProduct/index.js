@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToCart, getCart } from "Redux/Actions/HomeActions";
 import { BASE_URL } from "Services/Api/Constants";
+import { PRODUCT_STRINGS } from "Shared/Constants";
 
 import ProductAdded from "Views/ProductAdded";
 import "./style.css";
@@ -69,7 +70,7 @@ function RecentProducts() {
         {isProductAdded ? <ProductAdded /> : null}
       </div>
           <div>
-            <h2 className="headings">Recently viewed Products</h2>
+            <h2 className="headings">{PRODUCT_STRINGS.RECENTLY_VIEWED_PRODUCTS}</h2>
           </div>
           <div className="recent-main">
             {arr.length > 0 ? (
@@ -91,9 +92,9 @@ function RecentProducts() {
                         <div>
                           <h5 className="card-title">{item?.name}</h5>
                           <p className="card-text">
-                            <b>Quantity:</b> {item?.quantity}
+                            <b>{PRODUCT_STRINGS.STOCK}</b> {item?.quantity}
                             <br />
-                            <b>Price:</b> ₹{item?.price}
+                            <b>{PRODUCT_STRINGS.PRICE}</b> ₹{item?.price}
                           </p>
                         </div>
                         <div>
@@ -101,7 +102,7 @@ function RecentProducts() {
                             className=" myBtn btn btn-dark"
                             onClick={() => handleCart(item)}
                           >
-                            Add to Cart
+                            {PRODUCT_STRINGS.ADD_TO_CART}
                           </button>
                         </div>
                       </div>
@@ -111,7 +112,7 @@ function RecentProducts() {
               })
             ) : (
               <div>
-                <h2>No item viewed yet</h2>
+                <h2>{PRODUCT_STRINGS.NO_ITEM_VIEWED_YET}</h2>
               </div>
             )}
           </div>

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout, setLogin } from "Redux/Actions/Auth";
 import { setCart } from "Redux/Actions/HomeActions";
+import { LOGOUT_STRINGS } from "Shared/Constants";
 import "./style.css";
 function Logout({ open, close }) {
   const dispatch = useDispatch();
@@ -31,13 +32,13 @@ function Logout({ open, close }) {
         }}
         className="logout-outer"
       >
-        <h2>Do you want to Logout</h2>
+        <h2>{LOGOUT_STRINGS.DO_YOU_WANT_TO_LOGOUT}</h2>
         <div className="my-button">
           <button className="btn btn-dark cancel-btn" onClick={close}>
-            CANCEL
+            {LOGOUT_STRINGS.CANCEL}
           </button>
           <button className="btn btn-dark ok-btn" onClick={handleLogout}>
-            OK
+            {LOGOUT_STRINGS.OK}
           </button>
         </div>
       </div>

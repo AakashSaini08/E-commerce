@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart, getData, paynow } from "Redux/Actions/HomeActions";
+import { CHECKOUT_STRINGS } from "Shared/Constants";
 import "./style.css";
 
 function Checkout() {
@@ -47,14 +48,14 @@ function Checkout() {
   return (
     <div>
       <div className="checkoutTitle">
-        <h1>Checkout</h1>
+        <h1>{CHECKOUT_STRINGS.CHECKOUT}</h1>
       </div>
       <hr />
       <div className="outer-cart-main">
         <div className="outer-cart-left">
           <div className="address">
             <div>
-              <h3>Delivery Address</h3>
+              <h3>{CHECKOUT_STRINGS.DELIVERY_ADDRESS}</h3>
             </div>
             <div>
               <textarea
@@ -67,25 +68,25 @@ function Checkout() {
         </div>
         <div className="outer-cart-right">
           <div>
-            <h3>Order Summary</h3>
+            <h3>{CHECKOUT_STRINGS.ORDER_SUMMARY}</h3>
           </div>
 
           <div>
             <p>
-              Choose a payment method to continue checking out.
+              {CHECKOUT_STRINGS.PAYMENT_METHOD}
               <br />
-              You'll still have a chance to review your
-              <br /> order before it's final.
+              {CHECKOUT_STRINGS.REVIEW}
+              <br /> {CHECKOUT_STRINGS.FINAL}
             </p>
           </div>
           <hr />
           <div className="bill">
-            <h3>Total Amount</h3>
-            <p>Price: ₹{subTotal}</p>
+            <h3>{CHECKOUT_STRINGS.TOTAL_AMOUNT}</h3>
+            <p>{CHECKOUT_STRINGS.PRICE}{subTotal}</p>
           </div>
           <div className="bill">
             <button className="btn btn-warning" onClick={handlePay}>
-              Pay now
+              {CHECKOUT_STRINGS.PAY_NOW}
             </button>
           </div>
         </div>

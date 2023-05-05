@@ -3,6 +3,7 @@ import "./style.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "Redux/Actions/Auth";
+import { SIGNIN_STRINGS } from "Shared/Constants";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -107,14 +108,14 @@ const SignIn = () => {
           <div className="signin-box p-5 row-2">
             <div className="column  rounded-4   ">
               <h1 className=" login-head text-dark p-3 text-center  rounded-bottom rounded-4 text-white">
-                Sign In
+              {SIGNIN_STRINGS.SIGN_IN}
               </h1>
               <div className="bbb px-4 bg-transparent">
                 <form className="form-group" onSubmit={handleSubmit}>
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Phone Number<span>*</span> :
+                      {SIGNIN_STRINGS.PHONE_NUMBER}<span>*</span> :
                       </b>
                     </label>
                     <input
@@ -129,7 +130,7 @@ const SignIn = () => {
                   <div className="d-sm-grid gap-1">
                     <label>
                       <b>
-                        Password<span>*</span> :
+                      {SIGNIN_STRINGS.PASSWORD}<span>*</span> :
                       </b>
                     </label>
                     <input
@@ -149,7 +150,7 @@ const SignIn = () => {
                       onClick={handleForgot}
                     >
                       {" "}
-                      Forgot Password
+                      {SIGNIN_STRINGS.FORGOT_PASSWORD}
                     </button>
                   </div>
 
@@ -159,7 +160,7 @@ const SignIn = () => {
                       type="submit"
                     >
                       {" "}
-                      login
+                      {SIGNIN_STRINGS.LOGIN}
                     </button>
                   </div>
 
@@ -170,7 +171,7 @@ const SignIn = () => {
                       onClick={handleSignup}
                     >
                       {" "}
-                      Create Account
+                      {SIGNIN_STRINGS.CREATE_ACCOUNT}
                     </button>
                   </div>
                 </form>
